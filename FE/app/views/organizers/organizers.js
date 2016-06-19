@@ -4,7 +4,10 @@
 
 'use strict';
 
-angular.module('portal.organizers', ['ngRoute'])
+angular.module('portal.organizers',
+    [   'ngRoute',
+        'ui.bootstrap'
+    ])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/organizers', {
@@ -13,12 +16,48 @@ angular.module('portal.organizers', ['ngRoute'])
         });
     }])
 
-    .controller('OrganizersController', ['$scope', function($scope) {
-        
+    .controller('OrganizersController', function($scope, OrganizersService, $modal) {
+        $scope.isOrganizer = true;
+        $scope.organizers = [];
+        $scope.canEdit = true;
         $scope.init = function() {
+            loadAll();
             console.log("loaded OrganizersController");
+            $scope.organizerAction($scope.organizers[0], "edit");
+
+        };
+
+        var loadAll = function() {
+            $scope.organizers = OrganizersService.getAll();
+            console.log($scope.organizers);
+        };
+
+
+
+        $scope.organizerAction = function(organizer, action) {
+            var modalInstance = $modal.open({
+                templateUrl: 'views/organizers/editOrganizer.html',
+                controller: 'EditOrganizerController',
+                size: 'lg',
+                resolve: {
+                    organizer: function () {
+                        return organizer;
+                    },
+                    isOrganizer: function () {
+                        return $scope.isOrganizer;
+                    },
+                    editing: function() {
+                        return action == "edit";
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                console.log('Modal dismissed at: ' + new Date());
+            });
         };
         
-        
         $scope.init();
-    }]);
+    });

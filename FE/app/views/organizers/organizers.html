@@ -1,1 +1,56 @@
-<h1>test</h1>
+<h1> ISWinT 2016 - Organizers</h1>
+
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>PhoneNumber</th>
+
+                <th ng-if="isOrganizer">Room</th>
+                <th ng-if="isOrganizer">Shirt Size</th>
+                <th ng-if="isOrganizer">Has Shirt</th>
+                <th ng-if="isOrganizer">Has Badge</th>
+                <th ng-if="isOrganizer">Genre</th>
+                <th ng-if="isOrganizer">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="organizer in organizers">
+                <td>{{$index + 1}}</td>
+                <td>{{organizer.FirstName}}</td>
+                <td>{{organizer.LastName}}</td>
+                <td>{{organizer.PhoneNumber}}</td>
+
+                <td ng-if="isOrganizer">{{organizer.Room}}</td>
+                <td ng-if="isOrganizer">{{organizer.ShirtSize}}</td>
+                <td ng-if="isOrganizer">
+                    <label class="checkbox-inline">
+                        <input type="checkbox"
+                               ng-model="organizer.ShirtGiven">
+                        &nbsp;
+                    </label>
+                </td>
+                <td ng-if="isOrganizer">
+                    <label class="checkbox-inline">
+                        <input type="checkbox"
+                               ng-model="organizer.BadgeGiven">
+                        &nbsp;
+                    </label>
+                </td>
+                <td ng-if="isOrganizer">{{organizer.Genre}}</td>
+                <td ng-if="isOrganizer">
+                    <span class="table-btn glyphicon glyphicon-edit" ng-click="organizerAction(organizer, 'edit');"></span>
+                    <span class="table-btn glyphicon glyphicon-eye-open" ng-click="organizerAction(organizer, 'edit');"></span>
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
