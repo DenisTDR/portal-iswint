@@ -20,6 +20,7 @@ angular.module('portal.organizers',
         $scope.isOrganizer = true;
         $scope.organizers = [];
         $scope.canEdit = true;
+        $scope.type = organizerType;
         $scope.init = function() {
             loadAll();
             console.log("loaded OrganizersController");
@@ -31,8 +32,6 @@ angular.module('portal.organizers',
             $scope.organizers = OrganizersService.getAll();
             console.log($scope.organizers);
         };
-
-
 
         $scope.organizerAction = function(organizer, action) {
             var modalInstance = $modal.open({
