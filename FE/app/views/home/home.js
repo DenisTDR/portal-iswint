@@ -12,11 +12,13 @@ angular.module('portal.home', ['ngRoute'])
         });
     }])
 
-    .controller('HomeController', ['$scope', 'OrganizersService', function($scope, OrganizersService) {
+    .controller('HomeController', ['$scope', 'OrganizersService', '$rootScope', function($scope, OrganizersService, $rootScope) {
 
         $scope.init = function() {
             loadAll();
             console.log("loaded OrganizersController");
+
+            $rootScope.currentView = "home";
         };
 
         var loadAll = function() {

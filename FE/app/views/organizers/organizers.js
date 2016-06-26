@@ -16,15 +16,15 @@ angular.module('portal.organizers',
         });
     }])
 
-    .controller('OrganizersController', function($scope, OrganizersService, $modal) {
+    .controller('OrganizersController', function($scope, OrganizersService, $modal, $rootScope) {
         $scope.isOrganizer = true;
         $scope.organizers = [];
         $scope.canEdit = true;
         $scope.init = function() {
             loadAll();
             console.log("loaded OrganizersController");
-            $scope.organizerAction($scope.organizers[0], "edit");
-
+            //$scope.organizerAction($scope.organizers[0], "edit");
+            $rootScope.currentView = "organizers";
         };
 
         var loadAll = function() {

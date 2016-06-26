@@ -11,9 +11,9 @@
             </div>
             <div class="collapse navbar-collapse" ng-class="{'in': menuCollapsed}" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#/organizers">Organizers</a></li>
-                    <li><a href="#/participants">Participants</a></li>
+                    <li ng-class="{'active': currentView=='home'}"><a href="#">Home</a></li>
+                    <li ng-class="{'active': currentView=='organizers'}"><a href="#/organizers">Organizers</a></li>
+                    <li ng-class="{'active': currentView=='participants'}"><a href="#/participants">Participants</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
