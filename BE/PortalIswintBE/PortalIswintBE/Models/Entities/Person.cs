@@ -2,8 +2,8 @@
 {
     public class Person : Entity
     {
-        public string LastName { get; set; }
         public string FirstName { get; set; }
+        public string LastName { get; set; }
         public Room Room { get; set; }
         public string ShirtSize { get; set; }
         public bool ShirtGiven { get; set; }

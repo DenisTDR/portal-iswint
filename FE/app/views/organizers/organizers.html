@@ -14,14 +14,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="organizer in organizers">
+            <tr ng-repeat="item in organizers">
                 <td>{{$index + 1}}</td>
-                <td ng-repeat="(propertyName, propertyValue) in type">
-                    {{organizer[propertyName]}}
+                <td ng-repeat="(propertyName, propertyDesc) in type">
+                    <span class="row" ng-include='"partialViews/propertyDisplay.html"'>
+
+                    </span>
+                    <!--{{organizer[propertyName]}}-->
                 </td>
                 <td ng-if="isOrganizer">
-                    <span class="table-btn glyphicon glyphicon-edit" ng-click="organizerAction(organizer, 'edit');"></span>
-                    <span class="table-btn glyphicon glyphicon-eye-open" ng-click="organizerAction(organizer, 'edit');"></span>
+                    <span class="table-btn glyphicon glyphicon-edit" ng-click="organizerAction(item, 'edit');"></span>
+                    <span class="table-btn glyphicon glyphicon-eye-open" ng-click="organizerAction(item, 'edit');"></span>
                 </td>
 
             </tr>

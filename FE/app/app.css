@@ -22,3 +22,8 @@
 .table-btn:hover {
     color: #286090;
 }
+
+.table .span {
+    margin: 0 !important;
+    padding: 0 !important;
+}
