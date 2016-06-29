@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -220,5 +221,21 @@ namespace LogisticsAPI.DataAccess
             return inserted;
         }
         #endregion
+
+        public void Attach(T entity)
+        {
+            _context.Set<T>().Attach(entity);
+        }
+
+        public void SetModifiedProperty(T entity, string propertyName)
+        {
+            var manager = ((IObjectContextAdapter)_context).ObjectContext.ObjectStateManager;
+            manager.GetObjectStateEntry(entity).SetModifiedProperty(propertyName);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

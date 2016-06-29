@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using PortalIswintBE.Attributes;
 
 namespace PortalIswintBE.Models.Entities
 {
+
+    [Scaffoldable]
     public class Workshop : Entity
     {
         public virtual IList<Participant> Participants { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using PortalIswintBE.Data;
 using PortalIswintBE.Models.Entities;
 using PortalIswintBE.Models.ViewModels;
@@ -93,6 +94,47 @@ namespace PortalIswintBE.Controllers
                 }
                 return Ok();
             }
+        }
+
+        [ActionName("UpdateProperties")]
+
+        public async Task<IHttpActionResult> UpdateProperties(int id, [FromBody] Dictionary<string, object> propertyBag )
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (propertyBag == null || propertyBag.Count == 0)
+            {
+                return BadRequest("no properties given");
+            }
+            using (var db = new Database())
+            {
+                var repo = db.Repo<Model>();
+                var rez = await repo.FindAsync(entity=>entity.Id == id);
+                if (rez == null)
+                {
+                    return NotFound();
+                }
+                var tmpEntity = rez;// (Model)Activator.CreateInstance(typeof(Model));
+                repo.Attach(tmpEntity);
+                typeof(Model).GetProperties().ForEach(prop =>
+                {
+                    if (propertyBag.ContainsKey(prop.Name))
+                    {
+                        if (prop.PropertyType.IsBooleanType())
+                        {
+                            bool value;
+                            bool.TryParse(propertyBag[prop.Name].ToString(), out value);
+                            propertyBag[prop.Name] = value;
+                        }
+                        prop.SetValue(tmpEntity, propertyBag[prop.Name]);
+                        repo.SetModifiedProperty(tmpEntity, prop.Name);
+                    }
+                });
+                await repo.SaveChangesAsync();
+            }
+            return Ok();
         }
     }
 }

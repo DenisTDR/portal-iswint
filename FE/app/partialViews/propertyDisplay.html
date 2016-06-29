@@ -1,15 +1,15 @@
 
-<div ng-switch="propertyDesc.viewType">
+<div ng-switch="property.Type">
     <span ng-switch-when="mail">
-        <a href="mailto:{{item[propertyName]}}">{{item[propertyName]}}</a>
+        <a href="mailto:{{item[property.Name]}}">{{item[property.Name]}}</a>
     </span>
-    <span ng-switch-when="link">
-        <a ng-href="item[propertyName]">(click)</a>
+    <span ng-switch-when="url">
+        <a href="{{item[property.Name]}}">(click)</a>
     </span>
     <span ng-switch-when="image">
-        <img ng-src="item[propertyName]" class="boundedImage"/>
+        <img ng-src="item[property.Name]" class="boundedImage"/>
     </span>
     <span ng-switch-default>
-        {{item[propertyName]}}
+        {{item[property.Name]}}
     </span>
 </div>

@@ -7,6 +7,7 @@ angular.module('portal', [
     'portal.organizers',
     'portal.menu',
     'portal.home',
+    'portal.modals',
     'ui.bootstrap'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     // $locationProvider.hashPrefix('!!!');

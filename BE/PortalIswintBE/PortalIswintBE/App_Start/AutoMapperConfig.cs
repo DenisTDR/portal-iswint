@@ -16,9 +16,15 @@ namespace PortalIswintBE.App_Start
                 cfg.CreateMap<Person, PersonViewModel>().AfterMap((p, pvm) => { pvm.RoomId = p.Room?.Id??0; });
                 cfg.CreateMap<PersonViewModel, Person>();
 
-                cfg.CreateMap<Organizer, OrganizerViewModel>().AfterMap((p, pvm) => { pvm.RoomId = p.Room?.Id??0; });
+                cfg.CreateMap<Organizer, OrganizerViewModel>().AfterMap((p, pvm) => { pvm.RoomId = p.Room?.Id ?? 0; });
                 cfg.CreateMap<OrganizerViewModel, Organizer>();
-                
+
+                cfg.CreateMap<Participant, ParticipantViewModel>().AfterMap((p, pvm) => { pvm.RoomId = p.Room?.Id ?? 0; });
+                cfg.CreateMap<ParticipantViewModel, Participant>();
+
+                cfg.CreateMap<Country, CountryViewModel>();
+                cfg.CreateMap<CountryViewModel, Country>();
+
             });
 
 

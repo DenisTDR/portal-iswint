@@ -1,5 +1,7 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Formatting;
+using System.Web.Http;
 using Newtonsoft.Json;
+using PortalIswintBE.Controllers;
 
 namespace PortalIswintBE
 {
@@ -17,10 +19,17 @@ namespace PortalIswintBE
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
-            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling =
-                PreserveReferencesHandling.Objects;
+//
+//            var jsonFormatter = new JsonMediaTypeFormatter
+//            {
+//                SerializerSettings =
+//                {
+//                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+//                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+//                }
+//            };
+//
+//            config.Services.Replace(typeof(IContentNegotiator), new JsonContentNegotiator(jsonFormatter));
         }
     }
 }

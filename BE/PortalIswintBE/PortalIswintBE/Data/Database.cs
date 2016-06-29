@@ -9,7 +9,7 @@ namespace PortalIswintBE.Data
 {
     public class Database:IDisposable
     {
-        private readonly PortalIswintContext _context;
+        public readonly PortalIswintContext _context;
         private readonly MySqlConnection _connection;
         private bool _disposed;
 

@@ -187,12 +187,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Attributes\AdminOnlyAttribute.cs" />
+    <Compile Include="Attributes\EditableInTableAttribute.cs" />
+    <Compile Include="Attributes\OrganizerOnlyAttribute.cs" />
+    <Compile Include="Attributes\ScaffoldableAttribute.cs" />
+    <Compile Include="Attributes\TypeNameAttribute.cs" />
+    <Compile Include="Attributes\ViewNameAttribute.cs" />
+    <Compile Include="Attributes\VisibleInTableAttribute.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\MentorsController.cs" />
     <Compile Include="Controllers\OrganizersController.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Controllers\ViewModelsController.cs" />
     <Compile Include="Controllers\WorkshopController.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\PortalIswintContext.cs" />
@@ -200,6 +209,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JsonContentNegotiator.cs" />
     <Compile Include="Migrations\201606260859327_firstOne.cs" />
     <Compile Include="Migrations\201606260859327_firstOne.Designer.cs">
       <DependentUpon>201606260859327_firstOne.cs</DependentUpon>
@@ -212,7 +222,16 @@
     <Compile Include="Migrations\201606262234475_moreEntities.Designer.cs">
       <DependentUpon>201606262234475_moreEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606282108457_someChanges.cs" />
+    <Compile Include="Migrations\201606282108457_someChanges.Designer.cs">
+      <DependentUpon>201606282108457_someChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606282359548_addedCountry.cs" />
+    <Compile Include="Migrations\201606282359548_addedCountry.Designer.cs">
+      <DependentUpon>201606282359548_addedCountry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entities\Country.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Entities\Mentor.cs" />
     <Compile Include="Models\Entities\Organizer.cs" />
@@ -220,12 +239,15 @@
     <Compile Include="Models\Entities\Person.cs" />
     <Compile Include="Models\Entities\Room.cs" />
     <Compile Include="Models\Entities\Workshop.cs" />
+    <Compile Include="Models\ModelMappings\CountryMap.cs" />
     <Compile Include="Models\ModelMappings\EntityMap.cs" />
     <Compile Include="Models\ModelMappings\MentorMap.cs" />
     <Compile Include="Models\ModelMappings\OrganizerMap.cs" />
     <Compile Include="Models\ModelMappings\ParticipantMap.cs" />
     <Compile Include="Models\ModelMappings\RoomMap.cs" />
     <Compile Include="Models\ModelMappings\WorkshopMap.cs" />
+    <Compile Include="Models\ShirtSizes.cs" />
+    <Compile Include="Models\ViewModels\CountryViewModel.cs" />
     <Compile Include="Models\ViewModels\Extensions.cs" />
     <Compile Include="Models\ViewModels\MentorViewModel.cs" />
     <Compile Include="Models\ViewModels\OrganizerViewModel.cs" />
@@ -310,6 +332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606262234475_moreEntities.resx">
       <DependentUpon>201606262234475_moreEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606282108457_someChanges.resx">
+      <DependentUpon>201606282108457_someChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606282359548_addedCountry.resx">
+      <DependentUpon>201606282359548_addedCountry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

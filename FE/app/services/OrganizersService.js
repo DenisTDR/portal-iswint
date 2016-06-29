@@ -4,13 +4,14 @@
 
 
 angular.module('portal').service("OrganizersService", function ($http) {
-    var thisService = backendUrl + "organizers/";
+    var thisService = backendUrl + "Organizers/";
     this.getAll = function() {
-        return mockOrganizers;
+        return $http.get(thisService);
     };
-    this.saveProperty = function (entityId, propertyName, propertyValue) {
-        var reqObj = {entityId: entityId, propertyName: propertyName, propertyValue:propertyValue};
-        return $http.post(thisService + "saveProperty", reqObj);
+
+    this.saveProperties = function (entityId, propertyBag) {
+
+        return $http.post(thisService + entityId, propertyBag);
     }
 });
 

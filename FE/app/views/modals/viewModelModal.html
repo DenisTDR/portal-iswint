@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h3 class="modal-title">bla bla <span style="font-size: 0.8em">({{type.Name}})</span></h3>
+</div>
+<div class="modal-body profile">
+    <div class="row">
+        <div class="col-sm-5">
+            dfgdg
+        </div>
+        <div class="col-sm-7">
+            <div class="row" ng-repeat="property in type.Properties">
+                <div class="col-lg-3">{{property.ViewName?property.ViewName:property.Name}}:</div>
+                <div class="col-lg-9" ng-if="isOrganizer && editing && !property.ReadOnly" ng-include='"partialViews/propertyEditField.html"'></div>
+                <div class="col-lg-9" ng-if="!isOrganizer || !editing || property.ReadOnly" ng-include='"partialViews/propertyDisplay.html"'></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="save()" ng-if="isOrganizer">Save</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

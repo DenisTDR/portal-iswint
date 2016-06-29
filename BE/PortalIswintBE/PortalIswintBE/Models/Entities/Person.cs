@@ -1,11 +1,15 @@
-﻿namespace PortalIswintBE.Models.Entities
+﻿using PortalIswintBE.Attributes;
+
+namespace PortalIswintBE.Models.Entities
 {
+    [Scaffoldable]
     public class Person : Entity
     {
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Room Room { get; set; }
-        public string ShirtSize { get; set; }
+        public ShirtSizes ShirtSize { get; set; }
         public bool ShirtGiven { get; set; }
         public bool BadgeGiven { get; set; }
         public string PhoneNumber { get; set; }

@@ -2,34 +2,51 @@
 
 
 <div class="row">
-    <div class="table-responsive">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <span ng-repeat="property in type.Properties">
+                <label>
+                    <input type="checkbox" ng-model="property.visible" />
+                    {{property.ViewName?property.ViewName:property.Name}}
+                </label>
+            </span>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="table-wrapper row">
         <table class="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <td ng-repeat="(propertyName, propertyValue) in type">
-                    {{propertyName}}
-                </td>
-                <td>Actions</td>
-            </tr>
+            <thead >
+                <tr>
+                    <td>#</td>
+                    <td ng-repeat="property in type.Properties" ng-if="showProperty(property)" class="">
+                        {{property.ViewName?property.ViewName:property.Name}}
+                    </td>
+                    <td >Actions</td>
+                </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in organizers">
-                <td>{{$index + 1}}</td>
-                <td ng-repeat="(propertyName, propertyDesc) in type">
-                    <span class="row" ng-include='"partialViews/propertyDisplay.html"'>
+                <tr ng-repeat="item in organizers">
+                    <td>{{$index + 1}}</td>
+                    <td ng-repeat="property in type.Properties" ng-if="showProperty(property)">
+                        <span ng-include='"partialViews/propertyDisplay.html"'
+                              ng-if="!property.EditableInTable"></span>
+                        <span ng-include='"partialViews/propertyEditField.html"'
+                              ng-if="property.EditableInTable"></span>
+                    </td>
+                    <td>
+                        <span class="table-btn glyphicon glyphicon-edit"
+                              ng-click="organizerAction(item, 'edit');"
+                              ng-if="isOrganizer"></span>
+                        <span class="table-btn glyphicon glyphicon-eye-open"
+                              ng-click="organizerAction(item, 'view');">
 
-                    </span>
-                    <!--{{organizer[propertyName]}}-->
-                </td>
-                <td ng-if="isOrganizer">
-                    <span class="table-btn glyphicon glyphicon-edit" ng-click="organizerAction(item, 'edit');"></span>
-                    <span class="table-btn glyphicon glyphicon-eye-open" ng-click="organizerAction(item, 'edit');"></span>
-                </td>
-
-            </tr>
-
+                        </span>
+                    </td>
+                </tr>
             </tbody>
+
         </table>
     </div>
+    <button ng-click="logType();">Get</button>
 </div>
