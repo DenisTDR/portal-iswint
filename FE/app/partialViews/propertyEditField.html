@@ -1,19 +1,19 @@
 
-<div ng-switch="property.Type">
+<div ng-switch="property.Type" >
     <span ng-switch-when="mail">
-        <input type="email" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
+        <input class="form-control" type="email" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
     <span ng-switch-when="url">
-        <input type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
+        <input class="form-control" type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
     <span ng-switch-when="image">
         <img ng-src="item[property.Name]" class="boundedImage"/>
     </span>
     <span ng-switch-when="boolean">
-        <input type="checkbox" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
+        <input class="form-control" type="checkbox" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
 
     <span ng-switch-default>
-        <input type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
+        <input class="form-control" type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
 </div>
