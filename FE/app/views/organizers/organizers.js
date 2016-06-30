@@ -104,7 +104,7 @@ angular.module('portal.organizers',
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
             }, function () {
-                console.log('Modal dismissed at: ' + new Date());
+                //console.log('Modal dismissed at: ' + new Date());
             });
         };
         $scope.autoDisplayModal = function () {
