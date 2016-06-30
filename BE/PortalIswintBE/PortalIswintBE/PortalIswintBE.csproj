@@ -305,6 +305,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -374,9 +375,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>41466</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://api.portal.iswint.tdr</IISUrl>
+          <IISUrl>http://dev.api.portal.iswint.tdr</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://api.portal.iswint.tdr</IISAppRootUrl>
+          <IISAppRootUrl>http://dev.api.portal.iswint.tdr</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

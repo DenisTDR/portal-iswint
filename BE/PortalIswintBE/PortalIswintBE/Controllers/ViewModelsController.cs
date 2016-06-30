@@ -69,7 +69,10 @@ namespace PortalIswintBE.Controllers
             var propName = propertyInfo.Name;
             var propertyBag = new Dictionary<string, object>();
             AddAttributes(propertyInfo, propertyBag);
-
+            if (propName == "People")
+            {
+                
+            }
             if (propertyBag.ContainsKey("Type")) return propertyBag;
 
             if (propertyInfo.PropertyType.IsBooleanType())

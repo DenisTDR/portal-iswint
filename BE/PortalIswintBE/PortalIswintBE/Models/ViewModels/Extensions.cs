@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace PortalIswintBE.Models.ViewModels
 {
@@ -51,7 +52,9 @@ namespace PortalIswintBE.Models.ViewModels
 
         public static bool IsCollectionType(this Type type)
         {
-            return typeof(ICollection).IsAssignableFrom(type) || typeof(IList).IsAssignableFrom(type);
+            return typeof(ICollection).IsAssignableFrom(type) || typeof(IList).IsAssignableFrom(type)
+                   || typeof(ICollection<>).IsAssignableFrom(type) || typeof(IList<>).IsAssignableFrom(type)
+                   || typeof(IEnumerable).IsAssignableFrom(type);
         }
         public static bool IsCollection(this object o)
         {
@@ -74,6 +77,11 @@ namespace PortalIswintBE.Models.ViewModels
         public static bool IsBoolean(this object o)
         {
             return o is bool || o is Boolean;
+        }
+
+        public static bool IsPrimaryType(this Type type)
+        {
+            return type.IsBooleanType() || type.IsStringType() || type.IsNumericType() || type.IsEnumType();
         }
     }
 }
