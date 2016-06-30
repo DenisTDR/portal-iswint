@@ -9,16 +9,16 @@
                      ng-include='"partialViews/propertyDisplay.html"'></div>
             </div>
             <div class="row">
-                <div class="row" ng-repeat="property in LeftViewProperties">
-                    <div class="col-lg-3">{{property.ViewName?property.ViewName:property.Name}}:</div>
+                <div class="row form_field" ng-repeat="property in LeftViewProperties">
+                    <div class="col-lg-3 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
                     <div class="col-lg-9" ng-if="isOrganizer && editing && !property.ReadOnly" ng-include='"partialViews/propertyEditField.html"'></div>
                     <div class="col-lg-9" ng-if="!isOrganizer || !editing || property.ReadOnly" ng-include='"partialViews/propertyDisplay.html"'></div>
                 </div>
             </div>
         </div>
         <div class="col-sm-7">
-            <div class="row" ng-repeat="property in RightViewProperties">
-                <div class="col-lg-3">{{property.ViewName?property.ViewName:property.Name}}:</div>
+            <div class="row form_field" ng-repeat="property in RightViewProperties">
+                <div class="col-lg-3 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
                 <div class="col-lg-9" ng-if="isOrganizer && editing && !property.ReadOnly" ng-include='"partialViews/propertyEditField.html"'></div>
                 <div class="col-lg-9" ng-if="!isOrganizer || !editing || property.ReadOnly" ng-include='"partialViews/propertyDisplay.html"'></div>
             </div>

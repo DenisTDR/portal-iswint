@@ -1,0 +1,12 @@
+ .modal-body .form_field {
+     margin:10px 10px;
+ }
+
+ .modal-dialog .modal-content {
+     padding:25px;
+ }
+
+ .row .row .label_inline {
+     display: inline-block;
+     vertical-align: bottom;
+ }
