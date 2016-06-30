@@ -1,9 +1,12 @@
-﻿using PortalIswintBE.Attributes;
+﻿using System;
+using PortalIswintBE.Attributes;
+using PortalIswintBE.Models.Entities;
 
 namespace PortalIswintBE.Models.ViewModels
 {
     public class PersonViewModel: ViewModel
     {
+
         [VisibleInTable]
         [ViewName("Last name")]
         public string LastName { get; set; }
@@ -12,6 +15,7 @@ namespace PortalIswintBE.Models.ViewModels
         [ViewName("First name")]
         public string FirstName { get; set; }
 
+        [MainView]
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Shirt size")]
@@ -29,6 +33,7 @@ namespace PortalIswintBE.Models.ViewModels
         [EditableInTable]
         public bool BadgeGiven { get; set; }
 
+        [MainView]
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Phone number")]
@@ -38,6 +43,7 @@ namespace PortalIswintBE.Models.ViewModels
         [TypeName("photourl")]
         public string PhotoUrl { get; set; }
 
+        [MainView]
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Email")]
@@ -55,7 +61,20 @@ namespace PortalIswintBE.Models.ViewModels
         public RoomViewModel Room { get; set; }
 
         [OrganizerOnly]
-        [ViewName("Room ID")]
         public int RoomId { get; set; }
+
+        [MainView]
+        [VisibleInTable]
+        [ViewName("Genre")]
+        public Genre Genre { get; set; }
+
+        [MainView]
+        [VisibleInTable]
+        [ViewName("Birth Date")]
+        public DateTime BirthDate { get; set; }
+
+        [MainView]
+        [VisibleInTable]
+        public Country Country { get; set; }
     }
 }

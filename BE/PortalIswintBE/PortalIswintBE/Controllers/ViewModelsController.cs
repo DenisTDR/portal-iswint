@@ -121,6 +121,10 @@ namespace PortalIswintBE.Controllers
             {
                 propertyBag["OrganizerOnly"] = true;
             }
+            if (propertyInfo.GetCustomAttributes().Any(attr => attr is MainViewAttribute))
+            {
+                propertyBag["MainView"] = true;
+            }
             propertyInfo.GetCustomAttributes().Where(attr => attr is TypeNameAttribute).Cast<TypeNameAttribute>().ForEach(attr =>
             {
                 propertyBag["Type"] = attr.Name;

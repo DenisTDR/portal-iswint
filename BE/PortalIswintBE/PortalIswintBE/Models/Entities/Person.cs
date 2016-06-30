@@ -1,4 +1,6 @@
-﻿using PortalIswintBE.Attributes;
+﻿using System;
+using System.Web.Razor;
+using PortalIswintBE.Attributes;
 
 namespace PortalIswintBE.Models.Entities
 {
@@ -16,5 +18,7 @@ namespace PortalIswintBE.Models.Entities
         public string PhotoUrl { get; set; }
         public string EMail { get; set; }
         public string FacebookUrl { get; set; }
+        public Genre Genre { get; set; }
+        public DateTime BirthDate { get; set; }
     }
 }

@@ -1,10 +1,10 @@
 
 <div ng-switch="property.Type">
     <span ng-switch-when="mail">
-        <input type="email" ng-model="item[property.Name]" />
+        <input type="email" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
     <span ng-switch-when="url">
-        <input type="text" ng-model="item[property.Name]" />
+        <input type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
     <span ng-switch-when="image">
         <img ng-src="item[property.Name]" class="boundedImage"/>
@@ -14,6 +14,6 @@
     </span>
 
     <span ng-switch-default>
-        <input type="text" ng-model="item[property.Name]" />
+        <input type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
 </div>
