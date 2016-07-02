@@ -61,8 +61,13 @@ angular.module('portal.organizers',
         };
 
         $scope.showProperty = function(property) {
-            return property.visible 
+            return property.visible
                 && (!property.OrganizerOnly || $scope.isOrganizer)
+                && property.VisibleInTable;
+        };
+
+        $scope.showPropertyVisibleCheckbox = function(property) {
+            return (!property.OrganizerOnly || $scope.isOrganizer)
                 && property.VisibleInTable;
         };
 
@@ -80,7 +85,7 @@ angular.module('portal.organizers',
             });
         };
 
-        $scope.organizerAction = function(item, action) {
+        $scope.organizerAction = function(item, action) {z
             var modalInstance = $modal.open({
                 templateUrl: 'views/modals/viewModelModal.html',
                 controller: 'viewModelModalController',

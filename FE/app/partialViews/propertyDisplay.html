@@ -4,12 +4,11 @@
         <a href="mailto:{{item[property.Name]}}">{{item[property.Name]}}</a>
     </span>
     <span ng-switch-when="url">
-        <a href="{{item[property.Name]}}">(click)</a>
+        <a ng-href="{{item[property.Name]}}">(click)</a>
     </span>
-    <span ng-switch-when="photourl">
-        <img ng-src="item[property.Name]" class="boundedImage"/>
-        sfsdfds
-    </span>
+    <div ng-switch-when="photourl" class="profileImageWrapper">
+        <img ng-src="{{item[property.Name]}}" />
+    </div>
     <span ng-switch-default>
         {{item[property.Name]}}
     </span>

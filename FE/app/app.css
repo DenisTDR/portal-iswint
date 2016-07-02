@@ -1,6 +1,7 @@
 /* app css stylesheet */
 
-
+.profileImageWrapper,
+.profileImageWrapper img,
 .profile .profileImg {
   max-width: 100%;
   max-height: 100%;

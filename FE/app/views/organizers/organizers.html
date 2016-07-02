@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
-            <span ng-repeat="property in type.Properties">
+            <span ng-repeat="property in type.Properties" ng-if="showPropertyVisibleCheckbox(property)" >
                 <label>
                     <input type="checkbox" ng-model="property.visible" />
                     {{property.ViewName?property.ViewName:property.Name}}

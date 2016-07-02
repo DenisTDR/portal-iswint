@@ -5,7 +5,7 @@
 var ShirtSizes = ["XS", "S", "M", "L", "XL"];
 var Genres = ["M", "F", "Unknown"];
 
-var backendUrl = "http://api.portal.iswint.tdr/api/";
+var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
 
 
 
@@ -26,4 +26,8 @@ Object.prototype.forEachProperty = function (fct) {
             fct(property, this[property]);
         }
     }
+};
+
+Object.prototype.clonare = function () {
+    console.log(this);
 };

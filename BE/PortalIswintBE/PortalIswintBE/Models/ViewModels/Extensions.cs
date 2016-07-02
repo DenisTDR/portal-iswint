@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PortalIswintBE.Models.ViewModels
 {
@@ -54,7 +55,7 @@ namespace PortalIswintBE.Models.ViewModels
         {
             return typeof(ICollection).IsAssignableFrom(type) || typeof(IList).IsAssignableFrom(type)
                    || typeof(ICollection<>).IsAssignableFrom(type) || typeof(IList<>).IsAssignableFrom(type)
-                   || typeof(IEnumerable).IsAssignableFrom(type);
+                   || typeof(IEnumerable).IsAssignableFrom(type) || typeof(IQueryable).IsAssignableFrom(type);
         }
         public static bool IsCollection(this object o)
         {
@@ -83,5 +84,19 @@ namespace PortalIswintBE.Models.ViewModels
         {
             return type.IsBooleanType() || type.IsStringType() || type.IsNumericType() || type.IsEnumType();
         }
+
+//        static bool IsSubclassOfRawGeneric(this Type toCheck, Type generic)
+//        {
+//            while (toCheck != null && toCheck != typeof(object))
+//            {
+//                var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+//                if (generic == cur)
+//                {
+//                    return true;
+//                }
+//                toCheck = toCheck.BaseType;
+//            }
+//            return false;
+//        }
     }
 }

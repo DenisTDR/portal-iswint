@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using PortalIswintBE.Attributes;
 using PortalIswintBE.Models.Entities;
 
@@ -19,6 +21,7 @@ namespace PortalIswintBE.Models.ViewModels
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Shirt size")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public ShirtSizes ShirtSize { get; set; }
 
         [VisibleInTable]
@@ -66,11 +69,13 @@ namespace PortalIswintBE.Models.ViewModels
         [MainView]
         [VisibleInTable]
         [ViewName("Genre")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public Genre Genre { get; set; }
 
         [MainView]
         [VisibleInTable]
         [ViewName("Birth Date")]
+        [TypeName("date")]
         public DateTime BirthDate { get; set; }
 
         [MainView]

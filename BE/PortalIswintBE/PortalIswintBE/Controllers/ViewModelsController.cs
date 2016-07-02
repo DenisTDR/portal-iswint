@@ -90,6 +90,18 @@ namespace PortalIswintBE.Controllers
             else if (propertyInfo.PropertyType.IsCollectionType())
             {
                 propertyBag["Type"] = "list";
+                //                propertyBag["GenericType"] = GetTypeDescription()
+               
+                var rez = new Dictionary<string, Dictionary<string, object>>();
+                propertyInfo.PropertyType.GenericTypeArguments[0].GetProperties()
+                               .Select(GetTypeDescription)
+                               .ForEach(attr => rez.Add(attr["Name"].ToString(), attr));
+                var genericTypeBag = new Dictionary<string, object>
+                {
+                    ["Name"] = propertyInfo.PropertyType.GenericTypeArguments[0].Name.Replace("ViewModel", ""),
+                    ["Properties"] = rez
+                };
+                propertyBag["GenericType"] = genericTypeBag;
             }
             else
             {
