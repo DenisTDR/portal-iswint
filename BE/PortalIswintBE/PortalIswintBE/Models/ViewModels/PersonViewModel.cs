@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using PortalIswintBE.Attributes;
@@ -64,6 +65,7 @@ namespace PortalIswintBE.Models.ViewModels
         public RoomViewModel Room { get; set; }
 
         [OrganizerOnly]
+        [ReadOnly(true)]
         public int RoomId { get; set; }
 
         [MainView]

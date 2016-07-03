@@ -10,14 +10,27 @@ angular.module('portal.modals', ['ngRoute'])
             $scope.item = item;
             $scope.editing = editing;
             $scope.isOrganizer = isOrganizer;
+            var propertyBag = {};
+            var originalItem = item.Clone();
 
             $scope.propertyChanged = function(item, property) {
-                console.log(property.Name + " changed to " + item[property.Name]);
+                // console.log(property.Name + " changed to " + item[property.Name]);
+                if(!item[property.Name].Equals(originalItem[property.Name])) {
+                    propertyBag[property.Name] = item[property.Name];
+                }
+                else {
+                    delete propertyBag[property.Name];
+                }
             };
 
             $scope.cancel = function () {
                 $modalInstance.dismiss('cancel');
             };
+
+            $scope.save = function () {
+                console.log(propertyBag);
+            };
+
 
             $scope.init = function () {
                 $scope.LeftViewProperties = [];

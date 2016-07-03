@@ -85,7 +85,8 @@ angular.module('portal.organizers',
             });
         };
 
-        $scope.organizerAction = function(item, action) {z
+        $scope.organizerAction = function(item, action) {
+            var model = action == "edit" ? item.Clone() : item;
             var modalInstance = $modal.open({
                 templateUrl: 'views/modals/viewModelModal.html',
                 controller: 'viewModelModalController',
@@ -95,7 +96,7 @@ angular.module('portal.organizers',
                         return $scope.type;
                     },
                     item: function () {
-                        return item;
+                        return model;
                     },
                     isOrganizer: function () {
                         return $scope.isOrganizer;
