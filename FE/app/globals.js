@@ -5,7 +5,7 @@
 var ShirtSizes = ["XS", "S", "M", "L", "XL"];
 var Genres = ["M", "F", "Unknown"];
 
-var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
+var backendUrl = "http://api.portal.iswint.tdr/api/";
 
 
 
@@ -28,9 +28,7 @@ Object.prototype.forEachProperty = function (fct) {
     }
 };
 
-/*
- * @return {boolean}
- */
+
 Object.prototype.Clone = function () {
     var newObj = this.length === undefined ? {} : [];
     this.forEachProperty(function(propertyName, propertyValue){
