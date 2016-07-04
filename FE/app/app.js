@@ -8,9 +8,12 @@ angular.module('portal', [
     'portal.menu',
     'portal.home',
     'portal.modals',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngAnimate'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     // $locationProvider.hashPrefix('!!!');
 
     $routeProvider.otherwise({redirectTo: '/home'});
 }]);
+
+var modals = angular.module('portal.modals', ['ngRoute']);

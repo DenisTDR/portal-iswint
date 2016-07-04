@@ -15,6 +15,7 @@ namespace PortalIswintBE
         public JsonContentNegotiator(JsonMediaTypeFormatter formatter)
         {
             _jsonFormatter = formatter;
+
         }
 
         public ContentNegotiationResult Negotiate(

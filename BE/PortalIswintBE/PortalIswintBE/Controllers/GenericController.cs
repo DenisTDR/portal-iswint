@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PortalIswintBE.Data;
 using PortalIswintBE.Models.Entities;
 using PortalIswintBE.Models.ViewModels;
@@ -118,18 +122,49 @@ namespace PortalIswintBE.Controllers
                 }
                 var tmpEntity = rez;// (Model)Activator.CreateInstance(typeof(Model));
                 repo.Attach(tmpEntity);
-                typeof(Model).GetProperties().ForEach(prop =>
+                typeof(Model).GetProperties().ForEach(async prop =>
                 {
                     if (propertyBag.ContainsKey(prop.Name))
                     {
+                        var skipSettingProperty = false;
                         if (prop.PropertyType.IsBooleanType())
                         {
                             bool value;
                             bool.TryParse(propertyBag[prop.Name].ToString(), out value);
                             propertyBag[prop.Name] = value;
                         }
-                        prop.SetValue(tmpEntity, propertyBag[prop.Name]);
-                        repo.SetModifiedProperty(tmpEntity, prop.Name);
+                        else if (prop.PropertyType.IsEnum)
+                        {
+                            propertyBag[prop.Name] = Enum.Parse(prop.PropertyType, propertyBag[prop.Name].ToString());
+                        }
+                        else if (prop.PropertyType.IsCustomEntity())
+                        {
+                            if (typeof(Room).IsAssignableFrom(prop.PropertyType))
+                            {
+                                var roomVm = ((JObject) propertyBag[prop.Name]).ToObject<RoomViewModel>();
+                               //var roomX = Mapper.Map<Room>(roomVm);
+                                var propRepo = db.Repo<Room>();
+                                var room = await propRepo.FindAsync(r => r.Id == roomVm.Id);
+                                var person = (Person) (object) tmpEntity;
+                                person.Room?.People.Remove(person);
+                                room?.People?.Add(person);
+                                skipSettingProperty = true;
+                            }
+                        }
+                        try
+                        {
+                            if (!skipSettingProperty)
+                            {
+                                prop.SetValue(tmpEntity, propertyBag[prop.Name]);
+                                repo.SetModifiedProperty(tmpEntity, prop.Name);
+                            }
+                        }
+                        catch (Exception exc)
+                        {
+                            
+                        }
+
+
                     }
                 });
                 await repo.SaveChangesAsync();

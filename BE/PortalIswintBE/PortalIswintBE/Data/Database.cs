@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using LogisticsAPI.DataAccess;
 using MySql.Data.MySqlClient;
 using PortalIswintBE.Models.Entities;
@@ -46,6 +47,18 @@ namespace PortalIswintBE.Data
             _repositories.Add(type, repositoryInstance);
             return (Repository<T>) repositoryInstance;
         }
+
+//        public Repository<Entity> UnsafeRepository(Type type)
+//        {
+//            var method =
+//                typeof(Database)
+//                    .GetMethods(
+//                    ).FirstOrDefault(meth => meth.Name == "Repository" && meth.IsGenericMethod &&
+//                                             meth.GetParameters().Length == 0);
+//            var genericMethod = method?.MakeGenericMethod(type);
+//            var rez = genericMethod.Invoke(null, null);
+//            return (Repository<Entity>) rez;
+//        }
 
         public Repository<T> Repo<T>() where T : Entity
         {

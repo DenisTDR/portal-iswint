@@ -5,36 +5,39 @@
 var ShirtSizes = ["XS", "S", "M", "L", "XL"];
 var Genres = ["M", "F", "Unknown"];
 
-var backendUrl = "http://api.portal.iswint.tdr/api/";
+var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
 
 
+//
+// Object.prototype.numberOfProperties = function() {
+//     var number = 0;
+//     for (var property in this) {
+//         if (this.hasOwnProperty(property)) {
+//             number++;
+//         }
+//     }
+//     return number;
+// };
 
-Object.prototype.numberOfProperties = function() {
-    var number = 0;
-    for (var property in this) {
-        if (this.hasOwnProperty(property)) {
-            number++;
-        }
-    }
-    return number;
-};
-
-Object.prototype.forEachProperty = function (fct) {
-    for (var propertyName in this) {
-        if (this.hasOwnProperty(propertyName)) {
+var ForEachProperty = function (obj, fct) {
+    for (var propertyName in obj) {
+        if (obj.hasOwnProperty(propertyName)) {
             if(propertyName == "$id") continue;
-            if(fct(propertyName, this[propertyName])) return;
+            if(fct(propertyName, obj[propertyName])) return;
         }
     }
 };
 
 
-Object.prototype.Clone = function () {
-    var newObj = this.length === undefined ? {} : [];
-    this.forEachProperty(function(propertyName, propertyValue){
+Clone = function (obj) {
+    if(obj.constructor == Date){
+        return new Date(obj.getTime());
+    }
+    var newObj = obj.length === undefined ? {} : [];
+    ForEachProperty(obj, function(propertyName, propertyValue){
         switch(typeof propertyValue){
             case "object":
-                newObj[propertyName] = propertyValue?propertyValue.Clone():propertyValue;
+                newObj[propertyName] = propertyValue?Clone(propertyValue):propertyValue;
                 break;
             default:
                 newObj[propertyName] = propertyValue;
@@ -48,27 +51,35 @@ Object.prototype.Clone = function () {
 /*
 * @return {boolean}
 */
-Object.prototype.Equals = function (cmpObject) {
-    console.log(typeof this);
-    console.log(this);
-    if(typeof this != "object" || this.isWrapperOfPrimitive()) {
-       return this.comparePrimitiveWrappers(cmpObject);
+Equals = function (obj, cmpObject) {
+    //console.log(typeof this);
+    //console.log(this);
+    if(obj.constructor == Date || cmpObject == Date) {
+        return new Date(obj).getTime() == new Date(cmpObject).getTime();
     }
-    if(this.length) {
-        for(var i = 0; i < this.length; i ++){
-            if(this[i] != cmpObject[i]){
-                console.log("[" + i + "] => " + this[i] + "!=" + cmpObject[i]);
+
+    if(typeof obj != "object" || IsWrapperOfPrimitive(obj)) {
+        console.log(1);
+       return ComparePrimitiveWrappers(obj, cmpObject);
+    }
+    if(obj.length) {
+        if(obj.length != cmpObject.length){
+            return false;
+        }
+        for(var i = 0; i < obj.length; i ++){
+            if(obj[i] != cmpObject[i]){
+                console.log("[" + i + "] => " + obj[i] + "!=" + cmpObject[i]);
                 return false;
             }
         }
     }
     var notEq = false;
-    this.forEachProperty(function(propertyName, propertyValue){
+    ForEachProperty(obj, function(propertyName, propertyValue){
         switch(typeof propertyValue){
             case "object":
-                if(!propertyValue.Equals(cmpObject[propertyName])){
+                if(!Equals(propertyValue, cmpObject[propertyName])){
                     notEq = true;
-                    console.log(propertyName);
+                    // console.log(propertyName);
                     return true;
                 }
                 break;
@@ -76,6 +87,7 @@ Object.prototype.Equals = function (cmpObject) {
                 if(propertyValue != cmpObject[propertyName]){
                     notEq = true;
                     // console.log(propertyName + " => " + propertyValue + "!=" + cmpObject[propertyName]);
+
                     return true;
                 }
                 break;
@@ -86,12 +98,32 @@ Object.prototype.Equals = function (cmpObject) {
 };
 
 
-Object.prototype.isWrapperOfPrimitive = function () {
-    return this.constructor == Boolean
-        || this.constructor == String
-        || this.constructor == Number;
+IsWrapperOfPrimitive = function (obj) {
+    return obj.constructor == Boolean
+        || obj.constructor == String
+        || obj.constructor == Number;
 };
 
-Object.prototype.comparePrimitiveWrappers = function (cmpObject) {
-    return this.valueOf() == cmpObject.valueOf();
+ComparePrimitiveWrappers = function (obj, cmpObject) {
+    return cmpObject && obj.valueOf() == cmpObject.valueOf();
 };
+
+// function getParent($this) {
+//     var selector = $this.attr('data-target')
+//         , $parent
+//
+//     if (!selector) {
+//         selector = $this.attr('href')
+//         selector = selector && /#/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+//     }
+//
+//     if(selector == '#') {
+//         selector = '#-';
+//     }
+//
+//     $parent = $(selector)
+//     $parent.length || ($parent = $this.parent())
+//
+//     return $parent
+// }
+

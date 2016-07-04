@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using PortalIswintBE.Models.Entities;
 
 namespace PortalIswintBE.Models.ViewModels
 {
@@ -83,6 +85,38 @@ namespace PortalIswintBE.Models.ViewModels
         public static bool IsPrimaryType(this Type type)
         {
             return type.IsBooleanType() || type.IsStringType() || type.IsNumericType() || type.IsEnumType();
+        }
+
+        public static bool IsCustomEntity(this Type type)
+        {
+            return typeof(Entity).IsAssignableFrom(type);
+        }
+
+        private static readonly ConcurrentDictionary<Type, Type> CacheDictionary = new ConcurrentDictionary<Type, Type>();
+
+        public static Type GetMappingType(this Type type)
+        {
+            if (CacheDictionary.ContainsKey(type))
+            {
+                return CacheDictionary[type];
+            }
+            if (typeof(ViewModel).IsAssignableFrom(type))
+            {
+                var typeName = type.Name.Replace("ViewModel", "");
+                var reqType = Type.GetType(typeof(Entity).Namespace + "." + typeName);
+                CacheDictionary[type] = reqType;
+            }
+            else if (typeof(Entity).IsAssignableFrom(type))
+            {
+                var typeName = type.Name + "ViewModel";
+                var reqType = Type.GetType(typeof(ViewModel).Namespace + "." + typeName);
+                CacheDictionary[type] = reqType;
+            }
+            else
+            {
+                CacheDictionary[type] = null;
+            }
+            return CacheDictionary[type];
         }
 
 //        static bool IsSubclassOfRawGeneric(this Type toCheck, Type generic)

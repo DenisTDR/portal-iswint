@@ -136,9 +136,17 @@ namespace PortalIswintBE.Controllers
             {
                 propertyBag["OrganizerOnly"] = true;
             }
+            if (propertyInfo.GetCustomAttributes().Any(attr => attr is AdminOnlyAttribute))
+            {
+                propertyBag["AdminOnly"] = true;
+            }
             if (propertyInfo.GetCustomAttributes().Any(attr => attr is MainViewAttribute))
             {
                 propertyBag["MainView"] = true;
+            }
+            if (propertyInfo.GetCustomAttributes().Any(attr => attr is ForeignValueAttribute))
+            {
+                propertyBag["ForeignValue"] = true;
             }
             propertyInfo.GetCustomAttributes().Where(attr => attr is TypeNameAttribute).Cast<TypeNameAttribute>().ForEach(attr =>
             {

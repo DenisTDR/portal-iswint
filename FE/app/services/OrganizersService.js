@@ -10,8 +10,7 @@ angular.module('portal').service("OrganizersService", function ($http) {
     };
 
     this.saveProperties = function (entityId, propertyBag) {
-
-        return $http.post(thisService + entityId, propertyBag);
+        return $http.post(thisService + "UpdateProperties/" + entityId, propertyBag);
     }
 });
 

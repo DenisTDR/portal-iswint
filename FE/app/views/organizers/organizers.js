@@ -16,8 +16,9 @@ angular.module('portal.organizers',
         });
     }])
 
-    .controller('OrganizersController', function($scope, OrganizersService, $modal, $rootScope, ModelsService) {
+    .controller('OrganizersController', function($scope, OrganizersService, $uibModal, $rootScope, ModelsService) {
         $scope.isOrganizer = true;
+        $scope.isAdmin = false;
         $scope.organizers = [];
         $scope.canEdit = true;
         $scope.typeName = "organizer";
@@ -25,8 +26,7 @@ angular.module('portal.organizers',
         $scope.columnWidths = [];
         $scope.visibleProperty = [];
 
-        dynamicTable($scope, $scope.type);
-        
+
         $scope.init = function() {
             loadAll();
             console.log("loaded OrganizersController");
@@ -35,7 +35,7 @@ angular.module('portal.organizers',
 
             ModelsService.getModelType($scope.typeName, function(type) {
                 $scope.type = type;
-                $scope.type.Properties.forEachProperty(function(pName, pValue) {
+                ForEachProperty($scope.type.Properties, function(pName, pValue) {
                     pValue.visible = true;
                 });
                 //console.log(type);
@@ -48,6 +48,7 @@ angular.module('portal.organizers',
                 //console.log("got org: ", data.data);
                 $scope.organizers = data.data;
                 //console.log($scope.organizers);
+                rebuild($scope.organizers);
                 $scope.autoDisplayModal();
             }).catch(function (data) {
                 console.log("err", data);
@@ -63,7 +64,8 @@ angular.module('portal.organizers',
         $scope.showProperty = function(property) {
             return property.visible
                 && (!property.OrganizerOnly || $scope.isOrganizer)
-                && property.VisibleInTable;
+                && property.VisibleInTable
+                && (!property.AdminOnly || $scope.isAdmin);
         };
 
         $scope.showPropertyVisibleCheckbox = function(property) {
@@ -86,8 +88,9 @@ angular.module('portal.organizers',
         };
 
         $scope.organizerAction = function(item, action) {
-            var model = action == "edit" ? item.Clone() : item;
-            var modalInstance = $modal.open({
+            var model = item;
+
+            var modalInstance = $uibModal.open({
                 templateUrl: 'views/modals/viewModelModal.html',
                 controller: 'viewModelModalController',
                 size: 'lg',
@@ -103,6 +106,9 @@ angular.module('portal.organizers',
                     },
                     editing: function() {
                         return action == "edit";
+                    },
+                    isAdmin: function() {
+                        return $scope.isAdmin;
                     }
                 }
             });
@@ -110,14 +116,43 @@ angular.module('portal.organizers',
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
             }, function () {
-                //console.log('Modal dismissed at: ' + new Date());
+                console.log('Modal dismissed at: ' + new Date());
             });
+        };
+        $scope.getRoomName = function () {
+
         };
         $scope.autoDisplayModal = function () {
             if(!$scope.type || !$scope.organizers.length) {
                 return;
             }
-            $scope.organizerAction($scope.organizers[0], "edit");
+            // $scope.organizerAction($scope.organizers[0], "edit");
         };
         $scope.init();
+
+        var rebuild = function(array) {
+            var refArr = {};
+            array.forEach(function(item){
+                recMethod(item, refArr);
+            });
+            console.log(refArr);
+        };
+        var recMethod = function(obj, refArr){
+            if(obj["$id"]) {
+                refArr[obj["$id"]] = obj;
+                ForEachProperty(obj, function(propName, propValue){
+                    if(typeof obj[propName] == "object" && obj[propName]){
+
+                        if(obj[propName]["$ref"]){
+                            obj[propName] = refArr[obj[propName]["$ref"]];
+                        }
+                        else {
+                            recMethod(obj[propName], refArr);
+                        }
+                    }
+                });
+            }
+
+        };
+      
     });

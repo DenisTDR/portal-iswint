@@ -62,10 +62,12 @@ namespace PortalIswintBE.Models.ViewModels
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Room")]
+        [ForeignValue]
         public RoomViewModel Room { get; set; }
 
         [OrganizerOnly]
         [ReadOnly(true)]
+        [AdminOnly]
         public int RoomId { get; set; }
 
         [MainView]
@@ -79,9 +81,5 @@ namespace PortalIswintBE.Models.ViewModels
         [ViewName("Birth Date")]
         [TypeName("date")]
         public DateTime BirthDate { get; set; }
-
-        [MainView]
-        [VisibleInTable]
-        public Country Country { get; set; }
     }
 }

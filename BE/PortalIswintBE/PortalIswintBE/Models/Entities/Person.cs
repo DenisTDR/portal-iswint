@@ -10,7 +10,7 @@ namespace PortalIswintBE.Models.Entities
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Room Room { get; set; }
+        public virtual Room Room { get; set; }
         public ShirtSizes ShirtSize { get; set; }
         public bool ShirtGiven { get; set; }
         public bool BadgeGiven { get; set; }
