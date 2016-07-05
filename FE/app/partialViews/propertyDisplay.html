@@ -4,7 +4,7 @@
         <a href="mailto:{{item[property.Name]}}">{{item[property.Name]}}</a>
     </span>
     <span ng-switch-when="url">
-        <a ng-href="{{item[property.Name]}}">(click)</a>
+        <a ng-href="{{item[property.Name]}}" target="_blank">(click)</a>
     </span>
     <div ng-switch-when="photourl" class="profileImageWrapper">
         <img ng-src="{{item[property.Name]}}" />

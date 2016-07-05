@@ -54,7 +54,7 @@ Clone = function (obj) {
 Equals = function (obj, cmpObject) {
     //console.log(typeof this);
     //console.log(this);
-    if(obj.constructor == Date || cmpObject == Date) {
+    if(obj && obj.constructor == Date || cmpObject && cmpObject.constructor == Date) {
         return new Date(obj).getTime() == new Date(cmpObject).getTime();
     }
 

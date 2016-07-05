@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using PortalIswintBE.Attributes;
 using PortalIswintBE.Models.Entities;
+using PortalIswintBE.Models.ModelMappings;
 using PortalIswintBE.Models.ViewModels;
 using WebGrease.Css.Extensions;
 
@@ -21,6 +22,7 @@ namespace PortalIswintBE.Controllers
 
         public async Task<IHttpActionResult> Get([FromUri] string typeName)
         {
+//            return Ok(new RoomMap().ToString());
             if (availableTypes == null)
             {
                 LoadAvailableTypes();

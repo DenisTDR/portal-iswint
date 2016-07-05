@@ -1,8 +1,8 @@
 
 <div ng-switch="property.Type" >
-    <span ng-switch-when="mail">
-        <input class="form-control" type="email" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
-    </span>
+    <div ng-switch-when="mail">
+        <input class="form-control" type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
+    </div>
     <span ng-switch-when="url">
         <input class="form-control" type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
@@ -31,12 +31,9 @@
         ></select>
     </div>
     <div ng-switch-when="date">
-
-
         <div ng-include='"partialViews/propertyDateEditField.html"'></div>
     </div>
     <span ng-switch-default>
-        xxx:
         <input class="form-control" type="text" ng-model="item[property.Name]" ng-change="propertyChanged(item, property);" />
     </span>
 </div>

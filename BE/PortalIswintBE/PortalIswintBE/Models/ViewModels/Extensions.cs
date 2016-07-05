@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using PortalIswintBE.Models.Entities;
+using PortalIswintBE.Models.ModelMappings;
 
 namespace PortalIswintBE.Models.ViewModels
 {
@@ -117,6 +118,13 @@ namespace PortalIswintBE.Models.ViewModels
                 CacheDictionary[type] = null;
             }
             return CacheDictionary[type];
+        }
+
+        public static string GetBindingPropertyName()
+        {
+            RoomMap rm = new RoomMap();
+//            rm.ma
+            return null;
         }
 
 //        static bool IsSubclassOfRawGeneric(this Type toCheck, Type generic)

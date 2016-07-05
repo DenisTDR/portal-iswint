@@ -6,7 +6,7 @@ using PortalIswintBE.Models.Entities;
 
 namespace PortalIswintBE.Models.ModelMappings
 {
-    public class CountryMap:EntityMap<Country>
+    public class CountryMap : EntityMap<Country>
     {
     }
 }
