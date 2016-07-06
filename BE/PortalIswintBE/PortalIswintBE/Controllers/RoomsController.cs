@@ -16,7 +16,7 @@ namespace PortalIswintBE.Controllers
             {
                 var rooms = await db.Repo<Room>().GetAllAsync();
                 var roomsVm = Mapper.Map<List<RoomViewModel>>(rooms);
-                roomsVm.ForEach(rvm => rvm.People.Clear());
+                roomsVm.ForEach(rvm => rvm?.People?.Clear());
                 return Ok(roomsVm);
             }
         }

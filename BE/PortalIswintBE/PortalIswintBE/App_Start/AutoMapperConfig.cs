@@ -37,6 +37,9 @@ namespace PortalIswintBE.App_Start
                 cfg.CreateMap<Country, CountryViewModel>();
                 cfg.CreateMap<CountryViewModel, Country>();
 
+                cfg.CreateMap<Workshop, WorkshopViewModel>();
+                cfg.CreateMap<WorkshopViewModel, Workshop>();
+
             });
 
 

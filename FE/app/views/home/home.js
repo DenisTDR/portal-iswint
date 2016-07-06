@@ -3,26 +3,17 @@
  */
 'use strict';
 
-angular.module('portal.home', ['ngRoute'])
-
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/home', {
-            templateUrl: 'views/home/home.html',
-            controller: 'HomeController'
-        });
-    }])
-
+views
     .controller('HomeController', ['$scope', 'OrganizersService', '$rootScope', function($scope, OrganizersService, $rootScope) {
 
         $scope.init = function() {
             loadAll();
-            console.log("loaded OrganizersController");
+            console.log("loaded HomeController");
 
             $rootScope.currentView = "home";
         };
 
         var loadAll = function() {
-            console.log(OrganizersService.getAll());
         };
 
 

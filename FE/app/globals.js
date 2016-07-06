@@ -59,7 +59,6 @@ Equals = function (obj, cmpObject) {
     }
 
     if(typeof obj != "object" || IsWrapperOfPrimitive(obj)) {
-        console.log(1);
        return ComparePrimitiveWrappers(obj, cmpObject);
     }
     if(obj.length) {
@@ -84,10 +83,9 @@ Equals = function (obj, cmpObject) {
                 }
                 break;
             default:
-                if(propertyValue != cmpObject[propertyName]){
+                if(!cmpObject || propertyValue != cmpObject[propertyName]){
                     notEq = true;
                     // console.log(propertyName + " => " + propertyValue + "!=" + cmpObject[propertyName]);
-
                     return true;
                 }
                 break;

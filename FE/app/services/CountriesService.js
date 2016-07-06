@@ -15,7 +15,7 @@ angular.module('portal').service("CountriesService", function ($http) {
             }
             return;
         }
-        $http.get(thisService).then(function(data){
+        $http.get(thisService + "GetAll").then(function(data){
             //console.log("got typeModel: ", data);
             cachedCountries = data.data;
 

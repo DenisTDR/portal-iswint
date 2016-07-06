@@ -15,65 +15,76 @@ using PortalIswintBE.Models.ViewModels;
 namespace PortalIswintBE.Controllers
 {
     public class GenericController<Model, ViewModel> : ApiController
-        where Model : Entity
+        where Model : Entity, new()
         where ViewModel : Models.ViewModels.ViewModel
     {
         // GET: api/Room
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> GetAll()
         {
             using (var db = new Database())
             {
-                var rooms = await db.Repo<Model>().GetAllAsync();
-                var roomsVm = Mapper.Map<List<ViewModel>>(rooms);
-                return Ok(roomsVm);
+                var entities = await db.Repo<Model>().GetAllAsync();
+                var vms = Mapper.Map<List<ViewModel>>(entities);
+                return Ok(vms);
             }
         }
 
         // GET: api/Room/5
-        public async Task<IHttpActionResult> Get(int id)
+        public async Task<IHttpActionResult> GetById(int id)
         {
             using (var db = new Database())
             {
-                var room = await db.Repo<Model>().FindAsync(x => x.Id == id);
-                var roomVm = Mapper.Map<ViewModel>(room);
-                return Ok(roomVm);
+                var entity = await db.Repo<Model>().FindAsync(x => x.Id == id);
+                var vm = Mapper.Map<ViewModel>(entity);
+                return Ok(vm);
             }
         }
 
         // POST: api/Room
-        public async Task<IHttpActionResult> Post([FromBody] ViewModel roomVm)
+        public async Task<IHttpActionResult> AddNew([FromBody] Dictionary<string, object> propertyBag)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            roomVm.Sanitize();
-            var room = Mapper.Map<Model>(roomVm);
+            if (propertyBag == null)
+            {
+                return BadRequest("ViewModel not sent.");
+            }
+//            vm.Sanitize();
+            var entity = new Model();
             using (var db = new Database())
             {
-                await db.Repo<Model>().AddAsync(room);
+               
+                await db.Repo<Model>().AddAsync(entity);
             }
 
-            return Created("nowhere", Mapper.Map<ViewModel>(room));
+            await UpdateProperties(entity.Id, propertyBag);
+            using (var db = new Database())
+            {
+                entity = await db.Repo<Model>().GetAsync(entity.Id);
+            }
+
+            return Created("nowhere", Mapper.Map<ViewModel>(entity));
         }
 
         // PUT: api/Room/5
-        public async Task<IHttpActionResult> Put(int id, [FromBody] ViewModel roomVm)
+        public async Task<IHttpActionResult> Update(int id, [FromBody] ViewModel vm)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (id != roomVm.Id)
+            if (id != vm.Id)
             {
                 return BadRequest();
             }
-            var room = Mapper.Map<Model>(roomVm);
+            var entity = Mapper.Map<Model>(vm);
             using (var db = new Database())
             {
                 try
                 {
-                    if (await db.Repo<Model>().UpdateAsync(room) != null)
+                    if (await db.Repo<Model>().UpdateAsync(entity) != null)
                     {
                         return Ok();
                     }
@@ -89,19 +100,24 @@ namespace PortalIswintBE.Controllers
         // DELETE: api/Room/5
         public async Task<IHttpActionResult> Delete(int id)
         {
-            using (var db = new Database())
+            try
             {
-                var rez = await db.Repo<Model>().DeleteAsync(id);
-                if (rez == 0)
+                using (var db = new Database())
                 {
-                    return NotFound();
+                    var affectedRows = await db.Repo<Model>().DeleteAsync(id);
+                    if (affectedRows == 0)
+                    {
+                        return NotFound();
+                    }
+                    return Ok();
                 }
-                return Ok();
+            }
+            catch (Exception exc)
+            {
+                return BadRequest(exc.Message);
             }
         }
-
-        [ActionName("UpdateProperties")]
-
+        
         public async Task<IHttpActionResult> UpdateProperties(int id, [FromBody] Dictionary<string, object> propertyBag )
         {
             if (!ModelState.IsValid)
@@ -112,6 +128,7 @@ namespace PortalIswintBE.Controllers
             {
                 return BadRequest("no properties given");
             }
+            var updated = new List<string>();
             using (var db = new Database())
             {
                 var repo = db.Repo<Model>();
@@ -139,16 +156,10 @@ namespace PortalIswintBE.Controllers
                         }
                         else if (prop.PropertyType.IsCustomEntity())
                         {
-                            if (typeof(Room).IsAssignableFrom(prop.PropertyType))
+                            if (await UpdateCustomProperty(tmpEntity, prop, db, propertyBag))
                             {
-                                var roomVm = ((JObject) propertyBag[prop.Name]).ToObject<RoomViewModel>();
-                               //var roomX = Mapper.Map<Room>(roomVm);
-                                var propRepo = db.Repo<Room>();
-                                var room = await propRepo.FindAsync(r => r.Id == roomVm.Id);
-                                var person = (Person) (object) tmpEntity;
-                                person.Room?.People.Remove(person);
-                                room?.People?.Add(person);
                                 skipSettingProperty = true;
+                                updated.Add(prop.Name);
                             }
                         }
                         try
@@ -157,6 +168,7 @@ namespace PortalIswintBE.Controllers
                             {
                                 prop.SetValue(tmpEntity, propertyBag[prop.Name]);
                                 repo.SetModifiedProperty(tmpEntity, prop.Name);
+                                updated.Add(prop.Name);
                             }
                         }
                         catch (Exception exc)
@@ -169,7 +181,37 @@ namespace PortalIswintBE.Controllers
                 });
                 await repo.SaveChangesAsync();
             }
-            return Ok();
+            return Ok(updated);
+        }
+
+        private async Task<bool> UpdateCustomProperty(
+            Model tmpEntity, 
+            PropertyInfo prop, 
+            Database db,
+            Dictionary<string, object> propertyBag)
+        {
+            var propVm =
+                (Models.ViewModels.ViewModel)
+                    ((JObject) propertyBag[prop.Name]).ToObject(prop.PropertyType.GetMappingType());
+
+            var methodInfo = typeof(Database).GetMethods().FirstOrDefault(m => m.Name == "Repository");
+
+            methodInfo = methodInfo?.MakeGenericMethod(prop.PropertyType);
+
+            var propRepository = methodInfo?.Invoke(db, null);
+
+            var getAsyncMethodInfo = propRepository?.GetType().GetMethods().FirstOrDefault(m => m.Name == "GetAsync");
+
+            if (getAsyncMethodInfo == null)
+            {
+                return false;
+            }
+
+            var propEntity =
+                await (dynamic) getAsyncMethodInfo.Invoke(propRepository, new object[] {propVm.Id});
+
+            prop.SetValue(tmpEntity, propEntity);
+            return true;
         }
     }
 }

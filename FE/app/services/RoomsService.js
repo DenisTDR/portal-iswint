@@ -4,20 +4,21 @@
 
 
 angular.module('portal').service("RoomsService", function ($http) {
-    var thisService = backendUrl + "Rooms/";
-
+    this.endPoint = backendUrl + "Rooms/";
+    bindBasicModelService(this, $http);
+    
     this.getAllFull = function () {
-        return $http.get(thisService);
+        return $http.get(this.endPoint);
     };
 
-    var cachedRooms = null
-    this.getAll = function ( success, error, final) {
+    var cachedRooms = null;
+    this.getAllCached = function ( success, error, final) {
         if(cachedRooms) {
             if(typeof success == "function")
                 success(cachedRooms);
             return;
         }
-        $http.get(thisService + "GetWithoutPeople")
+        $http.get(this.endPoint + "GetWithoutPeople")
             .then(function (data) {
                 //console.log("got typeModel: ", data);
                 cachedRooms = data.data;

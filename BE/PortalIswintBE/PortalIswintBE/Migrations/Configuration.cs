@@ -32,13 +32,15 @@ namespace PortalIswintBE.Migrations
             };
             orgs.Add(org1);
             orgs.Add(org2);
-            var room1 = new Room
+            rooms.Add(new Room
             {
-                Name = "CIO",
-                People = new List<Person>() {org1, org2}
-            };
-            rooms.Add(room1);
-            
+                Name = "404A"
+            });
+            rooms.Add(new Room
+            {
+                Name = "504B"
+            });
+
         }
     }
 }
