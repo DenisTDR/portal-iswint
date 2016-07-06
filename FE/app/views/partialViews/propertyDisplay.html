@@ -1,0 +1,25 @@
+
+<div ng-switch="property.Type">
+    <span ng-switch-when="mail">
+        <a href="mailto:{{model[property.Name]}}">{{model[property.Name]}}</a>
+    </span>
+    <span ng-switch-when="url">
+        <a ng-href="{{model[property.Name]}}" target="_blank">(link)</a>
+    </span>
+    <div ng-switch-when="photourl" class="profileImageWrapper">
+        <img ng-src="{{model[property.Name]}}" />
+    </div>
+    <div ng-switch-when="date">
+        {{model[property.Name] | date:'dd/MM/yyyy'}}
+    </div>
+    <div ng-switch-when="room">
+        {{model[property.Name].Name}}
+    </div>
+    <div ng-switch-when="boolean" class="checkbox">
+        <input class="styled" type="checkbox" ng-model="model[property.Name]" disabled />
+        <label> </label>
+    </div>
+    <span ng-switch-default>
+        {{model[property.Name]}}
+    </span>
+</div>

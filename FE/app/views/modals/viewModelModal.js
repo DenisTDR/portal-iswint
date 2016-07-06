@@ -4,24 +4,24 @@
 
 modals
     .controller('viewModelModalController',
-        function ($scope, type, $uibModalInstance, $uibModal, item, isOrganizer, isAdmin, editing, RoomsService, OrganizersService) {
+        function ($scope, type, $uibModalInstance, $uibModal, model, isOrganizer, isAdmin, editing, RoomsService, OrganizersService) {
             console.log("viewModelModalController loaded");
             $scope.type = type;
-            $scope.item = Clone(item);
+            $scope.model = Clone(model);
             $scope.editing = editing;
             $scope.isOrganizer = isOrganizer;
             $scope.isAdmin = isAdmin;
             $scope.rooms = {allRooms: []};
             var propertyBag = {};
-            var originalItem = item;
+            var originalModel = model;
             
-            $scope.propertyChanged = function(item, property) {
+            $scope.propertyChanged = function(model, property) {
                 console.log(property.Name + " changed to ");
-                console.log(item[property.Name]);
-                console.log(originalItem[property.Name]);
-                // console.log(item);
-                if(!Equals(item[property.Name], originalItem[property.Name])) {
-                    propertyBag[property.Name] = item[property.Name];
+                console.log(model[property.Name]);
+                console.log(originalModel[property.Name]);
+                // console.log(model);
+                if(!Equals(model[property.Name], originalModel[property.Name])) {
+                    propertyBag[property.Name] = model[property.Name];
                     console.log("set new value");
                 }
                 else {
@@ -48,11 +48,11 @@ modals
 
                 var waitingModal = $scope.messageBox("", "Please wait ...", false);
 
-                OrganizersService.saveProperties(item.Id, editingObject).then(function(data) {
+                OrganizersService.saveProperties(model.Id, editingObject).then(function(data) {
                     console.log(data);
 
                     ForEachProperty(editingObject, function(propertyName, propertyValue) {
-                        originalItem[propertyName] = editingObject[propertyName];
+                        originalModel[propertyName] = editingObject[propertyName];
                         console.log("set " + propertyName + " to " + editingObject[propertyName]);
                     });
                     var successMessage =
@@ -73,10 +73,14 @@ modals
             $scope.init = function () {
                 $scope.LeftViewProperties = [];
                 $scope.RightViewProperties = [];
+                $scope.UnderImageProperties = [];
                 ForEachProperty($scope.type.Properties, function(propertyName, propertyBag) {
                     if(propertyBag.Type == "photourl") {
                         $scope.photoProperty = propertyBag;
                         //console.log(propertyBag);
+                    }
+                    else if(propertyBag.UnderImage) {
+                        $scope.UnderImageProperties.push(propertyBag);
                     }
                     else if(propertyBag.MainView){
                         $scope.LeftViewProperties.push(propertyBag);
@@ -85,11 +89,11 @@ modals
                         $scope.RightViewProperties.push(propertyBag);
                     }
                     if(propertyBag.Type == "date") {
-                        originalItem[propertyName] = new Date(originalItem[propertyName]);
-                        $scope.item[propertyName] = new Date( $scope.item[propertyName]);
+                        originalModel[propertyName] = new Date(originalModel[propertyName]);
+                        $scope.model[propertyName] = new Date( $scope.model[propertyName]);
                     }
                 });
-                RoomsService.getAll(function(rooms){
+                RoomsService.getAllCached(function(rooms){
                     $scope.rooms.allRooms = rooms;
 
                 }, function(data){
@@ -99,14 +103,6 @@ modals
 
             $scope.init();
 
-
-            $scope.popup1 = {
-                opened: false
-            };
-            $scope.model = {fku: null};
-            $scope.open1 = function() {
-                $scope.popup1.opened = true;
-            };
 
             $scope.messageBox = function(title, message, canClose, size) {
                 if(!size) {
@@ -132,10 +128,13 @@ modals
                 });
             };
 
-            ///TODO: resolve adminOnly
             $scope.showProperty = function(property) {
                 return property.visible
                     && (!property.OrganizerOnly || $scope.isOrganizer)
                     && (!property.AdminOnly || $scope.isAdmin);
+            };
+            
+            $scope.canEdit = function(property) {
+                return $scope.isOrganizer && $scope.editing && !property.ReadOnly;
             };
         });

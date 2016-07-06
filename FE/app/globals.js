@@ -84,7 +84,7 @@ Equals = function (obj, cmpObject) {
                 }
                 break;
             default:
-                if(propertyValue != cmpObject[propertyName]){
+                if(!cmpObject || propertyValue != cmpObject[propertyName]){
                     notEq = true;
                     // console.log(propertyName + " => " + propertyValue + "!=" + cmpObject[propertyName]);
 

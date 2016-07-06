@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Misc\Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
@@ -187,15 +188,25 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Attributes\AdminOnlyAttribute.cs" />
-    <Compile Include="Attributes\EditableInTableAttribute.cs" />
-    <Compile Include="Attributes\ForeignValueAttribute.cs" />
-    <Compile Include="Attributes\MainViewAttribute.cs" />
-    <Compile Include="Attributes\OrganizerOnlyAttribute.cs" />
-    <Compile Include="Attributes\ScaffoldableAttribute.cs" />
-    <Compile Include="Attributes\TypeNameAttribute.cs" />
-    <Compile Include="Attributes\ViewNameAttribute.cs" />
-    <Compile Include="Attributes\VisibleInTableAttribute.cs" />
+    <Compile Include="Migrations\201607060700471_redo.cs" />
+    <Compile Include="Migrations\201607060700471_redo.Designer.cs">
+      <DependentUpon>201607060700471_redo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607060704283_defaultValueForPhoto.cs" />
+    <Compile Include="Migrations\201607060704283_defaultValueForPhoto.Designer.cs">
+      <DependentUpon>201607060704283_defaultValueForPhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Attributes\AdminOnlyAttribute.cs" />
+    <Compile Include="Misc\Attributes\BooleanAttribute.cs" />
+    <Compile Include="Misc\Attributes\EditableInTableAttribute.cs" />
+    <Compile Include="Misc\Attributes\ForeignValueAttribute.cs" />
+    <Compile Include="Misc\Attributes\MainViewAttribute.cs" />
+    <Compile Include="Misc\Attributes\OrganizerOnlyAttribute.cs" />
+    <Compile Include="Misc\Attributes\ScaffoldableAttribute.cs" />
+    <Compile Include="Misc\Attributes\TypeNameAttribute.cs" />
+    <Compile Include="Misc\Attributes\UnderImageAttribute.cs" />
+    <Compile Include="Misc\Attributes\ViewNameAttribute.cs" />
+    <Compile Include="Misc\Attributes\VisibleInTableAttribute.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
@@ -205,68 +216,40 @@
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\ViewModelsController.cs" />
     <Compile Include="Controllers\WorkshopController.cs" />
-    <Compile Include="Data\Database.cs" />
-    <Compile Include="Data\PortalIswintContext.cs" />
-    <Compile Include="Data\Repository.cs" />
+    <Compile Include="Data\Db\Database.cs" />
+    <Compile Include="Data\Db\PortalIswintContext.cs" />
+    <Compile Include="Data\Db\Repository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JsonContentNegotiator.cs" />
-    <Compile Include="Migrations\201606260859327_firstOne.cs" />
-    <Compile Include="Migrations\201606260859327_firstOne.Designer.cs">
-      <DependentUpon>201606260859327_firstOne.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606260903203_changedPropertyName.cs" />
-    <Compile Include="Migrations\201606260903203_changedPropertyName.Designer.cs">
-      <DependentUpon>201606260903203_changedPropertyName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606262234475_moreEntities.cs" />
-    <Compile Include="Migrations\201606262234475_moreEntities.Designer.cs">
-      <DependentUpon>201606262234475_moreEntities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606282108457_someChanges.cs" />
-    <Compile Include="Migrations\201606282108457_someChanges.Designer.cs">
-      <DependentUpon>201606282108457_someChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606282359548_addedCountry.cs" />
-    <Compile Include="Migrations\201606282359548_addedCountry.Designer.cs">
-      <DependentUpon>201606282359548_addedCountry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606300616489_addedGenre.cs" />
-    <Compile Include="Migrations\201606300616489_addedGenre.Designer.cs">
-      <DependentUpon>201606300616489_addedGenre.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606300618521_addedBirthDate.cs" />
-    <Compile Include="Migrations\201606300618521_addedBirthDate.Designer.cs">
-      <DependentUpon>201606300618521_addedBirthDate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Entities\Country.cs" />
-    <Compile Include="Models\Entities\Entity.cs" />
-    <Compile Include="Models\Entities\Mentor.cs" />
-    <Compile Include="Models\Entities\Organizer.cs" />
-    <Compile Include="Models\Entities\Participant.cs" />
-    <Compile Include="Models\Entities\Person.cs" />
-    <Compile Include="Models\Entities\Room.cs" />
-    <Compile Include="Models\Entities\Workshop.cs" />
-    <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\ModelMappings\CountryMap.cs" />
-    <Compile Include="Models\ModelMappings\EntityMap.cs" />
-    <Compile Include="Models\ModelMappings\MentorMap.cs" />
-    <Compile Include="Models\ModelMappings\OrganizerMap.cs" />
-    <Compile Include="Models\ModelMappings\ParticipantMap.cs" />
-    <Compile Include="Models\ModelMappings\RoomMap.cs" />
-    <Compile Include="Models\ModelMappings\WorkshopMap.cs" />
-    <Compile Include="Models\ShirtSizes.cs" />
-    <Compile Include="Models\ViewModels\CountryViewModel.cs" />
-    <Compile Include="Models\ViewModels\Extensions.cs" />
-    <Compile Include="Models\ViewModels\MentorViewModel.cs" />
-    <Compile Include="Models\ViewModels\OrganizerViewModel.cs" />
-    <Compile Include="Models\ViewModels\ParticipantViewModel.cs" />
-    <Compile Include="Models\ViewModels\PersonViewModel.cs" />
-    <Compile Include="Models\ViewModels\RoomViewModel.cs" />
-    <Compile Include="Models\ViewModels\ViewModel.cs" />
-    <Compile Include="Models\ViewModels\WorkshopViewModel.cs" />
+    <Compile Include="Data\Models\Entities\Country.cs" />
+    <Compile Include="Data\Models\Entities\Entity.cs" />
+    <Compile Include="Data\Models\Entities\Mentor.cs" />
+    <Compile Include="Data\Models\Entities\Organizer.cs" />
+    <Compile Include="Data\Models\Entities\Participant.cs" />
+    <Compile Include="Data\Models\Entities\Person.cs" />
+    <Compile Include="Data\Models\Entities\Room.cs" />
+    <Compile Include="Data\Models\Entities\Workshop.cs" />
+    <Compile Include="Data\Models\Genre.cs" />
+    <Compile Include="Data\Models\ModelMappings\CountryMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\EntityMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\MentorMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\OrganizerMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\ParticipantMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\RoomMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\WorkshopMap.cs" />
+    <Compile Include="Data\Models\ShirtSizes.cs" />
+    <Compile Include="Data\Models\ViewModels\CountryViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\Extensions.cs" />
+    <Compile Include="Data\Models\ViewModels\MentorViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\OrganizerViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\ParticipantViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\PersonViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\RoomViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\ViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\WorkshopViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,26 +319,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606260859327_firstOne.resx">
-      <DependentUpon>201606260859327_firstOne.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607060700471_redo.resx">
+      <DependentUpon>201607060700471_redo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606260903203_changedPropertyName.resx">
-      <DependentUpon>201606260903203_changedPropertyName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606262234475_moreEntities.resx">
-      <DependentUpon>201606262234475_moreEntities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606282108457_someChanges.resx">
-      <DependentUpon>201606282108457_someChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606282359548_addedCountry.resx">
-      <DependentUpon>201606282359548_addedCountry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606300616489_addedGenre.resx">
-      <DependentUpon>201606300616489_addedGenre.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606300618521_addedBirthDate.resx">
-      <DependentUpon>201606300618521_addedBirthDate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607060704283_defaultValueForPhoto.resx">
+      <DependentUpon>201607060704283_defaultValueForPhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,23 +7,37 @@
             <div class="row" ng-if="photoProperty">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8" ng-init="property = photoProperty"
-                     ng-include='"partialViews/propertyDisplay.html"'></div>
+                     ng-include='"views/partialViews/propertyDisplay.html"'></div>
                 <div class="col-lg-2"></div>
+            </div>
+            <div class="row" ng-if="UnderImageProperties.length">
+                <div ng-if="canEdit(property)" class="row form_field" ng-repeat="property in UnderImageProperties">
+                    <div class="col-lg-5 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
+                    <div class="col-lg-7"  ng-include='"views/partialViews/propertyEditField.html"'></div>
+                </div>
+                <h2 class="row" style="text-align: center">
+                    <span class="control-label" ng-if="!canEdit(property)" ng-repeat="property in UnderImageProperties" >{{item[property.Name]}}&nbsp;</span>
+                </h2>
             </div>
             <div class="row">
                 <div class="row form_field" ng-repeat="property in LeftViewProperties" ng-if="showProperty(property)">
-                    <div class="col-lg-3 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
-                    <div class="col-lg-9" ng-if="isOrganizer && editing && !property.ReadOnly" ng-include='"partialViews/propertyEditField.html"'></div>
-                    <div class="col-lg-9" ng-if="!isOrganizer || !editing || property.ReadOnly" ng-include='"partialViews/propertyDisplay.html"'></div>
+                    <div class="col-lg-5 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
+                    <div class="col-lg-7" ng-if="canEdit(property)" ng-include='"views/partialViews/propertyEditField.html"'></div>
+                    <div class="col-lg-7" ng-if="!canEdit(property)" ng-include='"views/partialViews/propertyDisplay.html"'></div>
                 </div>
             </div>
         </div>
         <div class="col-sm-7">
             <div class="row form_field" ng-repeat="property in RightViewProperties" ng-if="showProperty(property)">
-                <div class="col-lg-3 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
-                <div class="col-lg-9" ng-if="isOrganizer && editing && !property.ReadOnly" ng-include='"partialViews/propertyEditField.html"'></div>
-                <div class="col-lg-9" ng-if="!isOrganizer || !editing || property.ReadOnly" ng-include='"partialViews/propertyDisplay.html"'></div>
+                <div class="col-lg-4 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
+                <div class="col-lg-8" ng-if="canEdit(property)" ng-include='"views/partialViews/propertyEditField.html"'></div>
+                <div class="col-lg-8" ng-if="!canEdit(property)" ng-include='"views/partialViews/propertyDisplay.html"'></div>
             </div>
+            <!--<div class="row">-->
+                <!--isAdmin:{{isAdmin}}-->
+                <!--<br>-->
+                <!--isOrganizer:{{isOrganizer}}-->
+            <!--</div>-->
         </div>
     </div>
 </div>

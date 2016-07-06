@@ -126,30 +126,14 @@ namespace PortalIswintBE.Controllers
             {
                 propertyBag["ReadOnly"] = true;
             }
-            if (propertyInfo.GetCustomAttributes().Any(attr => attr is VisibleInTableAttribute))
+            foreach (var attr in propertyInfo.GetCustomAttributes())
             {
-                propertyBag["VisibleInTable"] = true;
+                if (attr is BooleanAttribute)
+                {
+                    propertyBag[((BooleanAttribute)attr).Name] = true;
+                }
             }
-            if (propertyInfo.GetCustomAttributes().Any(attr => attr is EditableInTableAttribute))
-            {
-                propertyBag["EditableInTable"] = true;
-            }
-            if (propertyInfo.GetCustomAttributes().Any(attr => attr is OrganizerOnlyAttribute))
-            {
-                propertyBag["OrganizerOnly"] = true;
-            }
-            if (propertyInfo.GetCustomAttributes().Any(attr => attr is AdminOnlyAttribute))
-            {
-                propertyBag["AdminOnly"] = true;
-            }
-            if (propertyInfo.GetCustomAttributes().Any(attr => attr is MainViewAttribute))
-            {
-                propertyBag["MainView"] = true;
-            }
-            if (propertyInfo.GetCustomAttributes().Any(attr => attr is ForeignValueAttribute))
-            {
-                propertyBag["ForeignValue"] = true;
-            }
+           
             propertyInfo.GetCustomAttributes().Where(attr => attr is TypeNameAttribute).Cast<TypeNameAttribute>().ForEach(attr =>
             {
                 propertyBag["Type"] = attr.Name;
