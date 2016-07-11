@@ -5,4 +5,5 @@
 angular.module('portal').service("WorkshopsService", function ($http) {
     this.endPoint = backendUrl + "Workshop/";
     bindBasicModelService(this, $http);
+    
 });

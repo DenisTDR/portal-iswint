@@ -1,21 +1,27 @@
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using PortalIswintBE.Models.Entities;
 
 namespace PortalIswintBE.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PortalIswintBE.Data.PortalIswintContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Data.PortalIswintContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(PortalIswintBE.Data.PortalIswintContext context)
+        protected override void Seed(Data.PortalIswintContext context)
         {
             var orgs = context.Set<Organizer>();
             var rooms = context.Set<Room>();
+            if (orgs.Any())
+            {
+                return;
+            }
             var org1 = new Organizer
             {
                 FirstName = "FN",

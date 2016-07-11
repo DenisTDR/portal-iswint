@@ -6,7 +6,8 @@
 
 views
     .controller('TableViewController', function($scope, $uibModal, OrganizersService,
-                                                ParticipantsService, ModelsService, RoomsService, CountriesService, WorkshopsService) {
+                                                ParticipantsService, ModelsService, RoomsService,
+                                                CountriesService, WorkshopsService, MentorsService) {
         console.log("loading TableViewController with: " + $scope.typeName);
 
         $scope.isOrganizer = true;
@@ -35,6 +36,9 @@ views
                     break;
                 case "workshop":
                     Service = WorkshopsService;
+                    break;
+                case "mentor":
+                    Service = MentorsService;
                     break;
             }
             if(Service == null) {

@@ -15,6 +15,15 @@
     <div ng-switch-when="room">
         {{model[property.Name].Name}}
     </div>
+    <div ng-switch-when="country">
+        {{model[property.Name].Name}}
+    </div>
+    <div ng-switch-when="workshop">
+        {{model[property.Name].Name}}
+    </div>
+    <div ng-switch-when="organizer">
+        {{model[property.Name].LastName + ' ' + model[property.Name].FirstName}}
+    </div>
     <div ng-switch-when="boolean" class="checkbox">
         <input class="styled" type="checkbox" ng-model="model[property.Name]" disabled />
         <label> </label>

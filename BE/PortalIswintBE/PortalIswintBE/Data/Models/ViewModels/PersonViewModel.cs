@@ -64,7 +64,6 @@ namespace PortalIswintBE.Models.ViewModels
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Room")]
-        [ForeignValue]
         public RoomViewModel Room { get; set; }
 
         [OrganizerOnly]

@@ -196,10 +196,13 @@
     <Compile Include="Migrations\201607060704283_defaultValueForPhoto.Designer.cs">
       <DependentUpon>201607060704283_defaultValueForPhoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607112219233_workshopAddedProperties.cs" />
+    <Compile Include="Migrations\201607112219233_workshopAddedProperties.Designer.cs">
+      <DependentUpon>201607112219233_workshopAddedProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Attributes\AdminOnlyAttribute.cs" />
     <Compile Include="Misc\Attributes\BooleanAttribute.cs" />
     <Compile Include="Misc\Attributes\EditableInTableAttribute.cs" />
-    <Compile Include="Misc\Attributes\ForeignValueAttribute.cs" />
     <Compile Include="Misc\Attributes\MainViewAttribute.cs" />
     <Compile Include="Misc\Attributes\OrganizerOnlyAttribute.cs" />
     <Compile Include="Misc\Attributes\ScaffoldableAttribute.cs" />
@@ -324,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607060704283_defaultValueForPhoto.resx">
       <DependentUpon>201607060704283_defaultValueForPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607112219233_workshopAddedProperties.resx">
+      <DependentUpon>201607112219233_workshopAddedProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,8 +14,9 @@ views
             //$scope.modelAction($scope.models[0], "edit");
             $rootScope.currentView = "participants";
         };
-        depBag.rooms = true;
-        depBag.countries = true;
+        $scope.depBag.rooms = true;
+        $scope.depBag.countries = true;
+        $scope.depBag.workshops = true;
         $scope.init();
 
         if($scope.initParent) {

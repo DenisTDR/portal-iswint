@@ -60,12 +60,22 @@ namespace PortalIswintBE.Controllers
             }
 
             await UpdateProperties(entity.Id, propertyBag);
-            using (var db = new Database())
+            ViewModel viewModel;
+            try
             {
-                entity = await db.Repo<Model>().GetAsync(entity.Id);
+                using (var db = new Database())
+                {
+                    entity = await db.Repo<Model>().GetAsync(entity.Id);
+                    
+                    viewModel = Mapper.Map<ViewModel>(entity);
+                }
+            }
+            catch (Exception exc)
+            {
+                return InternalServerError(exc);
             }
 
-            return Created("nowhere", Mapper.Map<ViewModel>(entity));
+            return Created("nowhere", viewModel);
         }
 
         // PUT: api/Room/5
@@ -141,43 +151,51 @@ namespace PortalIswintBE.Controllers
                 repo.Attach(tmpEntity);
                 typeof(Model).GetProperties().ForEach(async prop =>
                 {
-                    if (propertyBag.ContainsKey(prop.Name))
+                    try
                     {
-                        var skipSettingProperty = false;
-                        if (prop.PropertyType.IsBooleanType())
+                        if (propertyBag.ContainsKey(prop.Name))
                         {
-                            bool value;
-                            bool.TryParse(propertyBag[prop.Name].ToString(), out value);
-                            propertyBag[prop.Name] = value;
-                        }
-                        else if (prop.PropertyType.IsEnum)
-                        {
-                            propertyBag[prop.Name] = Enum.Parse(prop.PropertyType, propertyBag[prop.Name].ToString());
-                        }
-                        else if (prop.PropertyType.IsCustomEntity())
-                        {
-                            if (await UpdateCustomProperty(tmpEntity, prop, db, propertyBag))
+                            var skipSettingProperty = false;
+                            if (prop.PropertyType.IsBooleanType())
                             {
-                                skipSettingProperty = true;
-                                updated.Add(prop.Name);
+                                bool value;
+                                bool.TryParse(propertyBag[prop.Name].ToString(), out value);
+                                propertyBag[prop.Name] = value;
                             }
-                        }
-                        try
-                        {
-                            if (!skipSettingProperty)
+                            else if (prop.PropertyType.IsEnum)
                             {
-                                prop.SetValue(tmpEntity, propertyBag[prop.Name]);
-                                repo.SetModifiedProperty(tmpEntity, prop.Name);
-                                updated.Add(prop.Name);
+                                propertyBag[prop.Name] = Enum.Parse(prop.PropertyType, propertyBag[prop.Name].ToString());
                             }
-                        }
-                        catch (Exception exc)
-                        {
-                            
-                        }
+                            else if (prop.PropertyType.IsCustomEntity())
+                            {
+                                if (await UpdateCustomProperty(tmpEntity, prop, db, propertyBag))
+                                {
+                                    skipSettingProperty = true;
+                                    updated.Add(prop.Name);
+                                }
+                            }
+                            try
+                            {
+                                if (!skipSettingProperty)
+                                {
+                                    prop.SetValue(tmpEntity, propertyBag[prop.Name]);
+                                    repo.SetModifiedProperty(tmpEntity, prop.Name);
+                                    updated.Add(prop.Name);
+                                }
+                            }
+                            catch (Exception exc)
+                            {
+
+                            }
 
 
+                        }
                     }
+                    catch (Exception exc)
+                    {
+                        
+                    }
+                
                 });
                 await repo.SaveChangesAsync();
             }

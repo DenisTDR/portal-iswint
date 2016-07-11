@@ -11,12 +11,11 @@ namespace PortalIswintBE.Models.ViewModels
     public class ParticipantViewModel : PersonViewModel
     {
 
-        [ForeignValue]
+        [VisibleInTable]
         public WorkshopViewModel Workshop { get; set; }
 
         [MainView]
         [VisibleInTable]
-        [ForeignValue]
         public CountryViewModel Country { get; set; }
         
     }

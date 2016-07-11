@@ -16,8 +16,8 @@
     cursor:pointer;
 }
 
-.table-btn:first-child {
-    padding-right: 10px;
+.table-btn:not(:last-child) {
+    padding-left: 10px;
 }
 
 .table-btn:hover {

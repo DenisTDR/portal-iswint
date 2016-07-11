@@ -15,7 +15,7 @@ namespace PortalIswintBE.Models.ViewModels
 
         [VisibleInTable]
         public string Description { get; set; }
-        public IList<Participant> Participants { get; set; }
+        public IList<ParticipantViewModel> Participants { get; set; }
 
         [VisibleInTable]
         public MentorViewModel Mentor { get; set; }

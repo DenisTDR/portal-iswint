@@ -26,7 +26,28 @@
     <div ng-switch-when="room">
         <select class="form-control"
                 ng-model="model[property.Name]"
-                ng-options="room as room.Name for room in rooms.allRooms track by room.Id"
+                ng-options="room as room.Name for room in rooms.all track by room.Id"
+                ng-change="propertyChanged(model, property);"
+        ></select>
+    </div>
+    <div ng-switch-when="country">
+        <select class="form-control"
+                ng-model="model[property.Name]"
+                ng-options="country as country.Name for country in countries.all track by country.Id"
+                ng-change="propertyChanged(model, property);"
+        ></select>
+    </div>
+    <div ng-switch-when="workshop">
+        <select class="form-control"
+                ng-model="model[property.Name]"
+                ng-options="workshop as workshop.Name for workshop in workshops.all track by workshop.Id"
+                ng-change="propertyChanged(model, property);"
+        ></select>
+    </div>
+    <div ng-switch-when="organizer">
+        <select class="form-control"
+                ng-model="model[property.Name]"
+                ng-options="organizer as (organizer.LastName + ' ' + organizer.FirstName) for organizer in organizers.all track by organizer.Id"
                 ng-change="propertyChanged(model, property);"
         ></select>
     </div>

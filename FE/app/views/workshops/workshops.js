@@ -19,6 +19,7 @@ views
             $rootScope.currentView = "workshops";
         };
 
+        $scope.depBag.organizers = true;
         $scope.init();
 
         if($scope.initParent) {

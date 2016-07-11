@@ -31,6 +31,7 @@ namespace PortalIswintBE.App_Start
                 {
                     pvm.RoomId = p.Room?.Id ?? 0;
                     pvm.Room?.People?.Clear();
+                    pvm.Workshop?.Participants?.Clear();
                 });
                 cfg.CreateMap<ParticipantViewModel, Participant>();
 
@@ -39,6 +40,9 @@ namespace PortalIswintBE.App_Start
 
                 cfg.CreateMap<Workshop, WorkshopViewModel>();
                 cfg.CreateMap<WorkshopViewModel, Workshop>();
+
+                cfg.CreateMap<Mentor, MentorViewModel>();
+                cfg.CreateMap<MentorViewModel, Mentor>();
 
             });
 

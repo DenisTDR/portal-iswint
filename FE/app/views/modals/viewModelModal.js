@@ -4,7 +4,7 @@
 
 modals
     .controller('viewModelModalController',
-        function ($scope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService) {
+        function ($scope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService, WorkshopsService, OrganizersService) {
             console.log("viewModelModalController loaded");
             $scope.type = bag.type;
             $scope.model = Clone(bag.model ? bag.model : {});
@@ -13,6 +13,8 @@ modals
             $scope.isAdmin = bag.isAdmin;
             $scope.rooms = {all: []};
             $scope.countries = {all: []};
+            $scope.workshops = {all: []};
+            $scope.organizers = {all: []};
             $scope.bag = bag;
             var ModelService = bag.Service;
             var propertyBag = {};
@@ -49,8 +51,8 @@ modals
             };
 
             var saveNewModel = function () {
-                console.log("saving");
-                console.log($scope.model);
+                // console.log("saving");
+                // console.log($scope.model);
                 var newModel = Clone($scope.model);
                 normalizeDates(newModel);
 
@@ -81,10 +83,10 @@ modals
             };
 
             var updateModel = function () {
-                console.log(propertyBag);
+                // console.log(propertyBag);
                 var editingObject = Clone(propertyBag);
-                console.log(editingObject);
-                console.log(propertyBag);
+                // console.log(editingObject);
+                // console.log(propertyBag);
 
                 normalizeDates(editingObject);
 
@@ -141,22 +143,66 @@ modals
                 if(bag.depBag.countries){
                     loadCountries();
                 }
+                if(bag.depBag.workshops) {
+                    loadWorkshops();
+                }
+                if(bag.depBag.organizers) {
+                    loadOrganizers();
+                }
+                if(bag.depBag.mentors) {
+                    loadMentors();
+                }
 
             };
 
 
             var loadRooms = function(){
+                console.log("loading rooms");
                 RoomsService.getAllCached(function(rooms){
-                    $scope.rooms.allRooms = rooms;
+                    $scope.rooms.all = rooms;
+                    console.log("got rooms", rooms);
                 }, function(data){
                     console.log("err getting rooms", data);
                 });
             };
             var loadCountries = function(){
-                CountriesService.getAllCached(function(countries){
+                console.log("loading countries");
+                CountriesService.getAll(function(countries){
                     $scope.countries.all = countries;
+                    console.log("got countries", countries);
                 }, function(data){
                     console.log("err getting countries", data);
+                });
+            };
+            var loadOrganizers = function(){
+                console.log("loading organizers");
+                OrganizersService.getAll().then(function(data){
+                    console.log("got organizers", data.data);
+                    $scope.organizers.all = data.data;
+                }).catch(function(data){
+                    console.log("err getting organizers", data);
+                });
+            };
+            var loadWorkshops = function(){
+                console.log("loading workshops");
+                WorkshopsService.getAll().then(function(data){
+                    console.log("got workshops", data.data);
+                    $scope.workshops.all = data.data;
+                }).catch(function(data){
+                    console.log("err getting workshops", data);
+                }).finally(function() {
+                    // console.log("finally getting workshops");
+                });
+            };
+            var loadMentors = function(){
+                console.log("loading mentors");
+                WorkshopsService.getAll().then(function(data){
+                    console.log("got mentors", data.data);
+                    $scope.mentors.all = data.data;
+                }).catch(function(data){
+                    console.log("err getting mentors", data);
+                }).finally(function() {
+                    // console.log("finally getting mentors");
                 });
             };
 

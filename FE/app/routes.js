@@ -25,6 +25,10 @@ portal
             templateUrl: 'views/workshops/workshops.html',
             controller: 'WorkshopsController'
         });
+        $routeProvider.when('/mentors', {
+            templateUrl: 'views/mentors/mentors.html',
+            controller: 'MentorsController'
+        });
     }])
     .config(['$locationProvider', '$routeProvider',
         function ($locationProvider, $routeProvider) {

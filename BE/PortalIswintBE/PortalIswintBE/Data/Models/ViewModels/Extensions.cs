@@ -18,6 +18,14 @@ namespace PortalIswintBE.Models.ViewModels
                 ((RoomViewModel)viewModel).People?.Clear();
             }
         }
+        public static void Sanitize(this Entity entity)
+        {
+            var type = entity.GetType();
+            if (type == typeof(Workshop))
+            {
+                ((Workshop)entity).Participants?.Clear();
+            }
+        }
 
         public static bool IsEnumType(this Type type)
         {
