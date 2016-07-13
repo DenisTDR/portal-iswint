@@ -51,6 +51,13 @@
                 ng-change="propertyChanged(model, property);"
         ></select>
     </div>
+    <div ng-switch-when="mentor">
+        <select class="form-control"
+                ng-model="model[property.Name]"
+                ng-options="mentor as (mentor.LastName + ' ' + mentor.FirstName) for mentor in mentors.all track by mentor.Id"
+                ng-change="propertyChanged(model, property);"
+        ></select>
+    </div>
     <div ng-switch-when="date">
         <div ng-include='"views/partialViews/propertyDateEditField.html"'></div>
     </div>

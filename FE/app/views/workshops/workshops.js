@@ -20,6 +20,7 @@ views
         };
 
         $scope.depBag.organizers = true;
+        $scope.depBag.mentors = true;
         $scope.init();
 
         if($scope.initParent) {

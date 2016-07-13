@@ -4,7 +4,8 @@
 
 modals
     .controller('viewModelModalController',
-        function ($scope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService, WorkshopsService, OrganizersService) {
+        function ($scope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService,
+                  WorkshopsService, OrganizersService, MentorsService) {
             console.log("viewModelModalController loaded");
             $scope.type = bag.type;
             $scope.model = Clone(bag.model ? bag.model : {});
@@ -15,6 +16,7 @@ modals
             $scope.countries = {all: []};
             $scope.workshops = {all: []};
             $scope.organizers = {all: []};
+            $scope.mentors = {all: []};
             $scope.bag = bag;
             var ModelService = bag.Service;
             var propertyBag = {};
@@ -196,7 +198,7 @@ modals
             };
             var loadMentors = function(){
                 console.log("loading mentors");
-                WorkshopsService.getAll().then(function(data){
+                MentorsService.getAll().then(function(data){
                     console.log("got mentors", data.data);
                     $scope.mentors.all = data.data;
                 }).catch(function(data){

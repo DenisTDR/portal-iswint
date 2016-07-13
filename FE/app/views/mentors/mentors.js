@@ -14,6 +14,7 @@ views
             $rootScope.currentView = "mentors";
         };
         $scope.depBag.workshops = true;
+        $scope.depBag.rooms = true;
         $scope.init();
 
         if($scope.initParent) {

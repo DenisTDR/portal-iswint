@@ -38,10 +38,22 @@ namespace PortalIswintBE.App_Start
                 cfg.CreateMap<Country, CountryViewModel>();
                 cfg.CreateMap<CountryViewModel, Country>();
 
-                cfg.CreateMap<Workshop, WorkshopViewModel>();
+                cfg.CreateMap<Workshop, WorkshopViewModel>().AfterMap((w, wvm) =>
+                {
+                    if (wvm.Mentor != null)
+                    {
+                        wvm.Mentor.Workshop = null;
+                    }
+                });
                 cfg.CreateMap<WorkshopViewModel, Workshop>();
 
-                cfg.CreateMap<Mentor, MentorViewModel>();
+                cfg.CreateMap<Mentor, MentorViewModel>().AfterMap((m, mvm) =>
+                {
+                    if (mvm.Workshop != null)
+                    {
+                        mvm.Workshop.Mentor = null;
+                    }
+                });
                 cfg.CreateMap<MentorViewModel, Mentor>();
 
             });

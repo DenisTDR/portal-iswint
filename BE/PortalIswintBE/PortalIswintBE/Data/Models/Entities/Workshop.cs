@@ -10,7 +10,7 @@ namespace PortalIswintBE.Models.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual IList<Participant> Participants { get; set; }
-        public Mentor Mentor { get; set; }
-        public Organizer Wanted { get; set; }
+        public virtual Mentor Mentor { get; set; }
+        public virtual Organizer Wanted { get; set; }
     }
 }

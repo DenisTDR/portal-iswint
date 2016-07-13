@@ -76,7 +76,7 @@ Equals = function (obj, cmpObject) {
     ForEachProperty(obj, function(propertyName, propertyValue){
         switch(typeof propertyValue){
             case "object":
-                if(!Equals(propertyValue, cmpObject[propertyName])){
+                if(!cmpObject || !Equals(propertyValue, cmpObject[propertyName])){
                     notEq = true;
                     // console.log(propertyName);
                     return true;

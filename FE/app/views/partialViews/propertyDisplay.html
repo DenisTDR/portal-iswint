@@ -24,6 +24,9 @@
     <div ng-switch-when="organizer">
         {{model[property.Name].LastName + ' ' + model[property.Name].FirstName}}
     </div>
+    <div ng-switch-when="mentor">
+        {{model[property.Name].LastName + ' ' + model[property.Name].FirstName}}
+    </div>
     <div ng-switch-when="boolean" class="checkbox">
         <input class="styled" type="checkbox" ng-model="model[property.Name]" disabled />
         <label> </label>
