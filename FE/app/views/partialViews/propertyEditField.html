@@ -59,7 +59,7 @@
         ></select>
     </div>
     <div ng-switch-when="date">
-        <div ng-include='"views/partialViews/propertyDateEditField.html"'></div>
+        <div ng-include='"views/partialViews/propertyTypes/edit/" + property.Type + ".html"'></div>
     </div>
     <span ng-switch-default>
         <input class="form-control" type="text" ng-model="model[property.Name]" ng-change="propertyChanged(model, property);" />
