@@ -4,7 +4,7 @@
         <a href="mailto:{{model[property.Name]}}">{{model[property.Name]}}</a>
     </span>
     <span ng-switch-when="url">
-        <a ng-href="{{model[property.Name]}}" target="_blank">(link)</a>
+        <a href="{{model[property.Name]}}">(link)</a>
     </span>
     <div ng-switch-when="photourl" class="profileImageWrapper">
         <img ng-src="{{model[property.Name]}}" />
@@ -28,8 +28,7 @@
         {{model[property.Name].LastName + ' ' + model[property.Name].FirstName}}
     </div>
     <div ng-switch-when="boolean" class="checkbox">
-        <input class="styled" type="checkbox" ng-model="model[property.Name]" disabled />
-        <label> </label>
+        <input class="styled" type="checkbox" ng-model="model[property.Name]" disabled/>
     </div>
     <span ng-switch-default>
         {{model[property.Name]}}

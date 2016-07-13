@@ -29,6 +29,10 @@ portal
             templateUrl: 'views/mentors/mentors.html',
             controller: 'MentorsController'
         });
+        $routeProvider.when('/schedule', {
+            templateUrl: 'views/schedule/schedule.html',
+            controller: 'ScheduleController'
+        });
     }])
     .config(['$locationProvider', '$routeProvider',
         function ($locationProvider, $routeProvider) {
