@@ -14,3 +14,141 @@
  .right-content{
      text-align: right;
  }
+
+/*Fonts*/
+@font-face {
+    font-family: Roboto-Light;
+    src: url('/styles/fonts/Roboto-Light_0.ttf');
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url('/styles/fonts/Roboto-Regular_0.ttf');
+}
+
+@font-face {
+    font-family: Roboto-Thin;
+    src: url('/styles/fonts/Roboto-Thin_0.ttf');
+}
+
+body {
+    font-family: Roboto-Light;
+}
+
+ /*Navigation menu*/
+ .navbar {
+ 	background-color:#28702a;
+ 	color:#ffdf00;
+ 	border:0px;
+ 	border-radius: 0; 
+ }
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+ 	color:#ffdf00;
+ 	background:#215d23;
+ }
+
+ .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+ 	color:#ffdf00;
+ 	background:transparent;
+ }
+
+ .navbar-inverse .navbar-nav>li>a {
+ 	color:#ffdf00;
+ 	background:transparent;
+ }
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+ 	color:#ffdf00;
+ 	background:transparent;
+ }
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+	border:0px;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+	background: transparent;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+ 	background:#ffdf00;
+}
+ .navbar-inverse .navbar-toggle {
+ 	border-color: transparent;
+ 	color:#ffdf00;
+ }
+
+ /*Buttons*/
+ .green-yellow {
+    color: #ffdf00;
+    background-color: #28702a;
+    border-color: #28702a;
+ }
+
+ .green-yellow:hover, .green-yellow:active, .green-yellow:focus  {
+    color: #ffdf00;
+    background-color: #215d23;
+    border-color: #215d23;
+ }
+
+ /*Font*/
+ .bold {
+ 	font-family: Roboto-Regular;
+ }
+
+ .thin {
+ 	font-family: Roboto-Thin;
+ }
+
+ /*Table View*/
+ #pageTitle {
+ 	 margin-top:0;
+ 	 margin-bottom:0;
+ }
+
+ #newButton {
+ 	 margin-top:10px; 
+ 	 margin-bottom: 7px;
+ }
+
+ #advancedFilters {
+ 	margin-top:5px;
+ }
+
+ #advancedButtons {
+ 	margin-top:10px; 
+ 	margin-bottom:10px;
+ }
+
+ #table-element {
+ 	vertical-align:middle; !important
+ 	padding:0; 
+ 	padding-left:8px;
+ }
+
+ .sortorder:after {
+  content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+.sortorder.reverse:after {
+  content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+}
+
+/*Tab on Details*/
+.nav > .current a {
+    color: #ffdf00;
+    background: #28702a;
+    border-bottom: 2px solid #28702a;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.nav > .current a:hover {
+    color: #ffdf00;
+    background: #28702a;
+}
+
+.nav > li > a, .nav > li > a:hover {
+    color: inherit;
+    background: transparent;
+}

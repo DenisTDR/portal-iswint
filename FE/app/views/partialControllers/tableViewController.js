@@ -2,13 +2,14 @@
  * Created by NM on 7/6/2016.
  */
 
-
-
 views
     .controller('TableViewController', function($scope, $uibModal, OrganizersService,
                                                 ParticipantsService, ModelsService, RoomsService,
                                                 CountriesService, WorkshopsService, MentorsService) {
         console.log("loading TableViewController with: " + $scope.typeName);
+
+        $scope.pageTitle = "";
+        $scope.advancedFiltersAreShown = false;
 
         $scope.isOrganizer = true;
         $scope.isAdmin = false;
@@ -19,6 +20,10 @@ views
         $scope.canEdit = true;
         $scope.visibleProperty = [];
 
+        // Sorting
+        $scope.propertyName = 'FirstName';
+        $scope.reverse = true;
+
         $scope.depBag = {};
 
         var Service = null;
@@ -27,6 +32,7 @@ views
             switch ($scope.typeName) {
                 case "organizer":
                     Service = OrganizersService;
+                    $scope.pageTitle = "Organizers";
                     break;
                 case "participant":
                     Service = ParticipantsService;
@@ -89,6 +95,7 @@ views
             });
             console.log(refArr);
         };
+
         var recMethod = function(obj, refArr){
             if(obj["$id"]) {
                 refArr[obj["$id"]] = obj;
@@ -184,4 +191,8 @@ views
             });
         };
 
+        $scope.sortBy = function(propertyName) {
+            $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+            $scope.propertyName = propertyName;
+        };
     });
