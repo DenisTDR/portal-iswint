@@ -2,7 +2,7 @@
     <h3 class="modal-title"> <span style="font-size: 0.8em">({{type.Name}})</span></h3>
 </div>
 <div class="modal-body profile">
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-sm-5">
             <div class="row" ng-if="photoProperty">
                 <div class="col-lg-2"></div>
@@ -33,30 +33,30 @@
                 <div class="col-lg-8" ng-if="canEdit(property)" ng-include='"views/partialViews/propertyEditField.html"'></div>
                 <div class="col-lg-8" ng-if="!canEdit(property)" ng-include='"views/partialViews/propertyDisplay.html"'></div>
             </div>
-            <!--<div class="row">-->
-            <!--isAdmin:{{isAdmin}}-->
-            <!--<br>-->
-            <!--isOrganizer:{{isOrganizer}}-->
-            <!--</div>
-        </div>
-    </div> -->
-        <div class="col-md-12">
             <div class="row">
-                <ul class="nav nav-justified">
-    <!--            <li ng-repeat="tab in tabs" style="cursor:pointer">
-                        <a ng-click="">{{level.Description}}</a>
-                    </li> -->
-                    <li ng-class="{current: true}" style="cursor:pointer"><a ng-click="changeTab(1)">Personal</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(2)">Residence</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Logistic</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Arrive and Departure</a></li>
-                </ul>
-            <div class="tab-content">
-                <div>
-                    Tab 1
-                </div>
+            isAdmin:{{isAdmin}}
+            <br>
+            isOrganizer:{{isOrganizer}}
             </div>
-        </div>   
+        </div>
+    </div>
+        <!--<div class="col-md-12">-->
+            <!--<div class="row">-->
+                <!--<ul class="nav nav-justified">-->
+    <!--&lt;!&ndash;            <li ng-repeat="tab in tabs" style="cursor:pointer">-->
+                        <!--<a ng-click="">{{level.Description}}</a>-->
+                    <!--</li> &ndash;&gt;-->
+                    <!--<li ng-class="{current: true}" style="cursor:pointer"><a ng-click="changeTab(1)">Personal</a></li>-->
+                    <!--<li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(2)">Residence</a></li>-->
+                    <!--<li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Logistic</a></li>-->
+                    <!--<li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Arrive and Departure</a></li>-->
+                <!--</ul>-->
+            <!--<div class="tab-content">-->
+                <!--<div>-->
+                    <!--Tab 1-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>   -->
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="save()" ng-if="isOrganizer && bag.action != 'view'" ng-enabled="!saving">Save</button>

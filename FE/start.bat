@@ -1,3 +1,1 @@
-cd app
-live-server --wait=1000
-cd ..
+cd app && live-server --wait=450 && cd ..

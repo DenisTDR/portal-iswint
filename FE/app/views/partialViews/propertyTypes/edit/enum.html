@@ -1,0 +1,5 @@
+<select ng-model="model[property.Name]" ng-change="propertyChanged(model, property)" class="form-control">
+    <option ng-repeat="enumValue in property.Values" value="{{enumValue}}">
+        {{enumValue}}
+    </option>
+</select>

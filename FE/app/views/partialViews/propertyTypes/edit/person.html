@@ -1,0 +1,6 @@
+<select class="form-control"
+        ng-model="model[property.Name]"
+        ng-if="getCustomEntityListName(property)"
+        ng-options="{{'pers as (pers.LastName + \' \' + pers.FirstName) for pers in ' + getCustomEntityListName(property) + '.all track by pers.Id'}}"
+        ng-change="propertyChanged(model, property);"
+></select>

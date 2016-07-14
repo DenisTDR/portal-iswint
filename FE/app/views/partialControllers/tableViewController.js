@@ -187,7 +187,7 @@ views
                     }
                 }
             }).catch(function(data){
-                console.log("err ", data);
+                console.log("err removing ", data);
             });
         };
 

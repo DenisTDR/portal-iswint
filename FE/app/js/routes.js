@@ -6,33 +6,35 @@
 portal
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/home', {
-            templateUrl: 'views/home/home.html',
+            templateUrl: '../views/home/home.html',
             controller: 'HomeController'
         });
-        $routeProvider.when('/organizers', {
-            templateUrl: 'views/organizers/organizers.html',
+
+        $routeProvider.when('/organizers/:Id?', {
+            templateUrl: '../views/organizers/organizers.html',
             controller: 'OrganizersController'
         });
         $routeProvider.when('/participants', {
-            templateUrl: 'views/participants/participants.html',
+            templateUrl: '../views/participants/participants.html',
             controller: 'ParticipantsController'
         });
         $routeProvider.when('/rooms', {
-            templateUrl: 'views/rooms/rooms.html',
+            templateUrl: '../views/rooms/rooms.html',
             controller: 'RoomsController'
         });
         $routeProvider.when('/workshops', {
-            templateUrl: 'views/workshops/workshops.html',
+            templateUrl: '../views/workshops/workshops.html',
             controller: 'WorkshopsController'
         });
         $routeProvider.when('/mentors', {
-            templateUrl: 'views/mentors/mentors.html',
+            templateUrl: '../views/mentors/mentors.html',
             controller: 'MentorsController'
         });
         $routeProvider.when('/schedule', {
-            templateUrl: 'views/schedule/schedule.html',
+            templateUrl: '../views/schedule/schedule.html',
             controller: 'ScheduleController'
         });
+        // console.log($stateProvider);
     }])
     .config(['$locationProvider', '$routeProvider',
         function ($locationProvider, $routeProvider) {
