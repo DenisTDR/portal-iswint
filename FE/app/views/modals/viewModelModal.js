@@ -18,6 +18,7 @@ modals
             $scope.organizers = {all: []};
             $scope.mentors = {all: []};
             $scope.bag = bag;
+            $scope.currentTab = 1;
             var ModelService = bag.Service;
             var propertyBag = {};
             var originalModel = bag.model ? bag.model : {};
@@ -243,6 +244,13 @@ modals
             };
 
             $scope.PropertyService = PropertyService;
+            $scope.getCurrentTab = function(tab) {
+                return (tab == $scope.currentTab);
+            }
+
+            $scope.changeTab = function (tab) {
+                $scope.currentTab = tab;
+            }
             
             $scope.init();
 
