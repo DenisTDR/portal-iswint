@@ -45,6 +45,9 @@ portal.run(function($rootScope) {
         if (ObjectTypes.indexOf(property.Type) !== -1) {
             return "object";
         }
+        if(property.Type == "list") {
+            return "list";
+        }
         console.log("invalid property type: " + property.Type);
         return property.Type;
     };
