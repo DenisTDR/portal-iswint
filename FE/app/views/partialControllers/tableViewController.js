@@ -3,7 +3,7 @@
  */
 
 views
-    .controller('TableViewController', function($scope, $uibModal, OrganizersService,
+    .controller('TableViewController', function($scope, $window, $uibModal, OrganizersService,
                                                 ParticipantsService, ModelsService, RoomsService,
                                                 CountriesService, WorkshopsService, MentorsService) {
         console.log("loading TableViewController with: " + $scope.typeName);
@@ -36,15 +36,19 @@ views
                     break;
                 case "participant":
                     Service = ParticipantsService;
+                    $scope.pageTitle = "Participants";
                     break;
                 case "room":
                     Service = RoomsService;
+                    $scope.pageTitle = "Rooms";
                     break;
                 case "workshop":
                     Service = WorkshopsService;
+                    $scope.pageTitle = "Workshops";
                     break;
                 case "mentor":
                     Service = MentorsService;
+                    $scope.pageTitle = "Mentors";
                     break;
             }
             if(Service == null) {
@@ -77,11 +81,16 @@ views
         var loadType = function () {
             ModelsService.getModelType($scope.typeName, function(type) {
                 $scope.type = type;
-                ForEachProperty($scope.type.Properties, function(pName, pValue) {
-                    pValue.visible = true;
-                });
+                var typeFromStorage = angular.fromJson($window.localStorage[$scope.typeName + "_propertyVisibility"]);
+                if(typeFromStorage != null) {
+                    $scope.type.Properties = typeFromStorage;
+                }
+                else {
+                    ForEachProperty($scope.type.Properties, function(pName, pValue) {
+                        pValue.visible = true;
+                    });
+                }
                 console.log("got type: ", type);
-
             });
         };
         
@@ -125,6 +134,9 @@ views
                 && property.VisibleInTable;
         };
 
+        $scope.propertyVisibleChanged = function(property) {
+            $window.localStorage[$scope.typeName + "_propertyVisibility"] = angular.toJson($scope.type.Properties);
+        }
 
         $scope.propertyChanged = function(item, property) {
             console.log("changed " + property.Name + " to " + item[property.Name]);
