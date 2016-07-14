@@ -99,7 +99,7 @@ namespace PortalIswintBE.Controllers
                                .ForEach(attr => rez.Add(attr["Name"].ToString(), attr));
                 var genericTypeBag = new Dictionary<string, object>
                 {
-                    ["Name"] = propertyInfo.PropertyType.GenericTypeArguments[0].Name.Replace("ViewModel", ""),
+                    ["Type"] = propertyInfo.PropertyType.GenericTypeArguments[0].Name.Replace("ViewModel", "").ToLower(),
                     ["Properties"] = rez
                 };
                 propertyBag["GenericType"] = genericTypeBag;

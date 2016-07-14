@@ -2,7 +2,7 @@
  * Created by tdr on 03/07/16.
  */
 
-angular.module('portal').service("CountriesService", function ($http) {
+portal.service("CountriesService", function ($http) {
     var thisService = backendUrl + "Country/";
 
     var cachedCountries = null;

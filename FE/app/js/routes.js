@@ -4,41 +4,44 @@
 
 
 portal
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/home', {
+    .config(['$stateProvider', '$urlRouterProvider',
+        function($stateProvider, $urlRouterProvider) {
+
+        $stateProvider.state('home', {
+            url: '/home',
             templateUrl: '../views/home/home.html',
             controller: 'HomeController'
         });
 
-        $routeProvider.when('/organizers/:Id?', {
+        $stateProvider.state('organizers', {
+            url: '/organizers?&Id&Action',
             templateUrl: '../views/organizers/organizers.html',
             controller: 'OrganizersController'
         });
-        $routeProvider.when('/participants', {
+        $stateProvider.state('participants', {
+            url: '/participants?&Id&Action',
             templateUrl: '../views/participants/participants.html',
             controller: 'ParticipantsController'
         });
-        $routeProvider.when('/rooms', {
+        $stateProvider.state('rooms', {
+            url: '/rooms?&Id&Action',
             templateUrl: '../views/rooms/rooms.html',
             controller: 'RoomsController'
         });
-        $routeProvider.when('/workshops', {
+        $stateProvider.state('workshops', {
+            url: '/workshops?&Id&Action',
             templateUrl: '../views/workshops/workshops.html',
             controller: 'WorkshopsController'
         });
-        $routeProvider.when('/mentors', {
+        $stateProvider.state('mentors', {
+            url: '/mentors?&Id&Action',
             templateUrl: '../views/mentors/mentors.html',
             controller: 'MentorsController'
         });
-        $routeProvider.when('/schedule', {
+        $stateProvider.state('schedule', {
+            url: '/schedule',
             templateUrl: '../views/schedule/schedule.html',
             controller: 'ScheduleController'
         });
-        // console.log($stateProvider);
-    }])
-    .config(['$locationProvider', '$routeProvider',
-        function ($locationProvider, $routeProvider) {
-        // $locationProvider.hashPrefix('!!!');
-
-        $routeProvider.otherwise({redirectTo: '/home'});
+        $urlRouterProvider.otherwise('/home');
     }]);

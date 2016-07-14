@@ -3,7 +3,7 @@
  */
 
 
-angular.module('portal').service("ModelsService", function ($http) {
+portal.service("ModelsService", function ($http) {
     var thisService = backendUrl + "ViewModels/";
     var cachedModels = {};
     this.getModelType = function(typeName, success, error, final){

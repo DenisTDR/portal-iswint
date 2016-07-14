@@ -3,7 +3,7 @@
  */
 
 
-angular.module('portal').service("RoomsService", function ($http) {
+portal.service("RoomsService", function ($http) {
     this.endPoint = backendUrl + "Rooms/";
     bindBasicModelService(this, $http);
     

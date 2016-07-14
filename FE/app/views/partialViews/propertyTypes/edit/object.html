@@ -1,6 +1,6 @@
 <select class="form-control"
         ng-model="model[property.Name]"
-        ng-if="getCustomEntityListName(property)"
-        ng-options="{{'obj as obj.Name for obj in ' + getCustomEntityListName(property) + '.all track by obj.Id'}}"
+        ng-if="PropertyService.getCustomEntityListName(property)"
+        ng-options="{{'obj as obj.Name for obj in ' + PropertyService.getCustomEntityListName(property) + '.all track by obj.Id'}}"
         ng-change="propertyChanged(model, property);"
 ></select>

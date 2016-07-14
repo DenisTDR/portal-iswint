@@ -1,0 +1,8 @@
+
+<div ng-init="property = propertyInfo.GenericType" >
+    <div ng-if="!entity[propertyInfo.Name] || !entity[propertyInfo.Name].length">
+        None
+    </div>
+    <div ng-repeat="model in entity[propertyInfo.Name]" ng-include='"views/partialViews/propertyTypes/display/" + PropertyService.getPropertyFileName(property, false) + "Model.html"'>
+    </div>
+</div>

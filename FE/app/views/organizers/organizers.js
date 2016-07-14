@@ -5,7 +5,7 @@
 'use strict';
 
 views
-    .controller('OrganizersController', function($scope, $controller, $uibModal, $rootScope) {
+    .controller('OrganizersController', function($scope, $controller, $uibModal, $rootScope, $state, $stateParams) {
 
         $scope.typeName = "organizer";
         $controller('TableViewController', {$scope: $scope});

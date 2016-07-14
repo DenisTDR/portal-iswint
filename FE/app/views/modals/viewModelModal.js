@@ -5,7 +5,7 @@
 modals
     .controller('viewModelModalController',
         function ($scope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService,
-                  WorkshopsService, OrganizersService, MentorsService) {
+                  WorkshopsService, OrganizersService, MentorsService, PropertyService) {
             console.log("viewModelModalController loaded");
             $scope.type = bag.type;
             $scope.model = Clone(bag.model ? bag.model : {});
@@ -242,7 +242,8 @@ modals
                 return $scope.isOrganizer && $scope.editing && !property.ReadOnly;
             };
 
-
+            $scope.PropertyService = PropertyService;
+            
             $scope.init();
 
         });

@@ -6,7 +6,7 @@
 
 console.log("menu controller imported");
 
-angular.module('portal.menu', ['ngRoute'])
+angular.module('portal.menu', [])
     .controller('MenuController', function($scope) {
 
         $scope.navCollapsed = true;

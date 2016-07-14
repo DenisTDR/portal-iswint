@@ -3,11 +3,13 @@
  */
 
 views
-    .controller('TableViewController', function($scope, $uibModal, OrganizersService,
-                                                ParticipantsService, ModelsService, RoomsService,
-                                                CountriesService, WorkshopsService, MentorsService) {
+    .controller('TableViewController',
+        function($scope, $uibModal, OrganizersService,
+                 ParticipantsService, ModelsService, RoomsService,
+                 CountriesService, WorkshopsService, MentorsService,
+                 PropertyService, $stateParams) {
         console.log("loading TableViewController with: " + $scope.typeName);
-
+        $scope.PropertyService = PropertyService;
         $scope.pageTitle = "";
         $scope.advancedFiltersAreShown = false;
 
@@ -67,6 +69,8 @@ views
                 console.log("got models: ", data.data);
                 $scope.models = data.data;
                 rebuild($scope.models);
+
+                checkAutoOpenModal();
             }).catch(function (data) {
                 console.log("err", data);
             }).finally(function () {
@@ -81,6 +85,7 @@ views
                     pValue.visible = true;
                 });
                 console.log("got type: ", type);
+                checkAutoOpenModal();
 
             });
         };
@@ -110,6 +115,22 @@ views
                         }
                     }
                 });
+            }
+        };
+
+        var checkAutoOpenModal = function (){
+            if(!$scope.loaded()) {
+                return;
+            }
+            if($stateParams.Id) {
+                for(var i = 0; i < $scope.models.length; i++) {
+                    if($scope.models[i].Id == $stateParams.Id) {
+                        var action = $stateParams.Action?$stateParams.Action:"view";
+                        console.log(action + " to " + $stateParams.Id);
+                        $scope.modelAction($scope.models[i], action);
+                        break;
+                    }
+                }
             }
         };
 
@@ -144,6 +165,10 @@ views
 
             if(action == "remove") {
                 removeModel(model);
+                return;
+            }
+            if(action != "edit" && action != "view") {
+                console.log("invalid action: ", action);
                 return;
             }
 

@@ -28,7 +28,7 @@
     <div class="row" ng-include='"views/menu/menu.html"'></div>
 
     <div class="row" >
-        <div class="container" ng-view></div>
+        <div class="container" ui-view></div>
     </div>
 
 </div>
@@ -41,22 +41,12 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>-->
 
-<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>-->
 <script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>-->
-<!--<script src="components/ui-bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>-->
 
-<!--<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>-->
-
-<!--<script src="bower_components/moment/min/moment-with-locales.min.js"></script>-->
-<!--<script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>-->
-<!--<script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>-->
-
-<script src="bower_components/angular-route/angular-route.js"></script>
 
 <script src="js/globals.js"></script>
 <script src="js/app.js"></script>
@@ -70,6 +60,7 @@
 <script src="services/CountriesService.js"></script>
 <script src="services/WorkshopsService.js"></script>
 <script src="services/MentorsService.js"></script>
+<script src="services/PropertyService.js"></script>
 
 <script src="views/menu/menu.js"></script>
 <script src="views/home/home.js"></script>
@@ -84,7 +75,7 @@
 <script src="views/modals/messageModal.js"></script>
 <script src="views/modals/viewModelModal.js"></script>
 
-<script src="directives/tdrEntityView.js"></script>
+<script src="directives/listView.js"></script>
 
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
