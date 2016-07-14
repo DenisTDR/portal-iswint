@@ -1,8 +1,8 @@
 <div class="modal-header">
-    <h3 class="modal-title"> <span style="font-size: 0.8em">({{type.Name}})</span></h3>
+    <h3 class="modal-title"> <span class="bold" style="font-size: 0.8em">{{model.FirstName}} {{model.LastName}}</span> <small>({{type.Name}})</small></h3>
 </div>
-<div class="modal-body profile">
-    <div class="row">
+<div class="modal-body">
+    <!-- <div class="row">
         <div class="col-sm-5">
             <div class="row" ng-if="photoProperty">
                 <div class="col-lg-2"></div>
@@ -39,26 +39,26 @@
             isOrganizer:{{isOrganizer}}
             </div>
         </div>
-    </div>
-        <!--<div class="col-md-12">-->
-            <!--<div class="row">-->
-                <!--<ul class="nav nav-justified">-->
-    <!--&lt;!&ndash;            <li ng-repeat="tab in tabs" style="cursor:pointer">-->
-                        <!--<a ng-click="">{{level.Description}}</a>-->
-                    <!--</li> &ndash;&gt;-->
-                    <!--<li ng-class="{current: true}" style="cursor:pointer"><a ng-click="changeTab(1)">Personal</a></li>-->
-                    <!--<li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(2)">Residence</a></li>-->
-                    <!--<li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Logistic</a></li>-->
-                    <!--<li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Arrive and Departure</a></li>-->
-                <!--</ul>-->
-            <!--<div class="tab-content">-->
-                <!--<div>-->
-                    <!--Tab 1-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>   -->
-</div>
+    </div> 
+</div>-->
+    <div class="row">
+        <ul class="nav nav-justified">
+            <li ng-repeat="tab in tabs" style="cursor:pointer">
+                <a ng-click="">{{level.Description}}</a>
+            </li>
+            <li ng-class="{current: getCurrentTab(1)}" style="cursor:pointer"><a ng-click="changeTab(1)">Personal</a></li>
+            <li ng-class="{current: getCurrentTab(2)}" style="cursor:pointer"><a ng-click="changeTab(2)">Residence</a></li>
+            <li ng-class="{current: getCurrentTab(3)}" style="cursor:pointer"><a ng-click="changeTab(3)">Logistic</a></li>
+            <li ng-class="{current: getCurrentTab(4)}" style="cursor:pointer"><a ng-click="changeTab(4)">Arrive and Departure</a></li>
+        </ul>
+        <div class="tab-content">
+            <div>
+                Tab {{currentTab}}
+            </div>
+        </div>
+    </div>   
+</div>  
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save()" ng-if="isOrganizer && bag.action != 'view'" ng-enabled="!saving">Save</button>
-    <button class="btn btn-warning" ng-click="cancel()" ng-enabled="!saving">Cancel</button>
-</div>
+    <button class="btn btn-default" ng-click="cancel()" ng-enabled="!saving">Cancel</button>
+    <button class="btn green-yellow" ng-click="save()" ng-if="isOrganizer && bag.action != 'view'" ng-enabled="!saving">Save</button>
+</div>    
