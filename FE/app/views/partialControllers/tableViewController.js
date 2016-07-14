@@ -48,6 +48,9 @@ views
                 case "mentor":
                     Service = MentorsService;
                     break;
+                case "country":
+                    Service = CountriesService;
+                    break;
             }
             if(Service == null) {
                 console.log("invalid type in TableViewController: " + $scope.typeName);

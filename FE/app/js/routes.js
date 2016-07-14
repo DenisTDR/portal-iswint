@@ -38,6 +38,11 @@ portal
             templateUrl: '../views/mentors/mentors.html',
             controller: 'MentorsController'
         });
+        $stateProvider.state('countries', {
+            url: '/countries?&Id&Action',
+            templateUrl: '../views/countries/countries.html',
+            controller: 'CountriesService'
+        });
         $stateProvider.state('schedule', {
             url: '/schedule',
             templateUrl: '../views/schedule/schedule.html',
