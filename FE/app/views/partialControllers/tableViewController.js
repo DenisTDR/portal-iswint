@@ -7,7 +7,7 @@ views
         function($scope, $uibModal, OrganizersService,
                  ParticipantsService, ModelsService, RoomsService,
                  CountriesService, WorkshopsService, MentorsService,
-                 PropertyService, $stateParams) {
+                 PropertyService, $stateParams, $window) {
         console.log("loading TableViewController with: " + $scope.typeName);
         $scope.PropertyService = PropertyService;
         $scope.pageTitle = "";
