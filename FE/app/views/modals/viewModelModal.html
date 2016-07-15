@@ -1,34 +1,42 @@
 <div class="modal-header">
     <h3 class="modal-title"> <span class="bold" style="font-size: 0.8em">{{model.FirstName}} {{model.LastName}}</span> <small>({{type.Name}})</small></h3>
 </div>
-<div class="modal-body">
-    <!-- <div class="row">
+<div class="modal-body modalView">
+    <div class="row" ng-if="!type.TabbedModal">
         <div class="col-sm-5">
-            <div class="row" ng-if="photoProperty">
+            <div class="row" ng-if="propDefaultView.photoProperty">
                 <div class="col-lg-2"></div>
-                <div class="col-lg-8" ng-init="property = photoProperty"
+                <div class="col-lg-8" ng-init="property = propDefaultView.photoProperty"
                      ng-include='"views/partialViews/propertyDisplay.html"'></div>
                 <div class="col-lg-2"></div>
             </div>
-            <div class="row" ng-if="UnderImageProperties.length">
-                <div ng-if="canEdit(property)" class="row form_field" ng-repeat="property in UnderImageProperties">
-                    <div class="col-lg-5 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
-                    <div class="col-lg-7"  ng-include='"views/partialViews/propertyEditField.html"'></div>
+            <div class="row" ng-if="propDefaultView.UnderImageProperties.length">
+                <div ng-if="canEdit(property)"
+                     class="row form_field"
+                     ng-repeat="property in propDefaultView.UnderImageProperties">
+                    <div class="col-lg-5 label_inline">
+                        <label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label>
+                    </div>
+                    <div class="col-lg-7" ng-include='"views/partialViews/propertyEditField.html"'></div>
                 </div>
                 <h2 class="row" style="text-align: center">
-                    <span class="control-label" ng-if="!canEdit(property)" ng-repeat="property in UnderImageProperties" >{{item[property.Name]}}&nbsp;</span>
+                    <span class="control-label"
+                          ng-if="!canEdit(property)"
+                          ng-repeat="property in propDefaultView.UnderImageProperties" >{{item[property.Name]}}&nbsp;</span>
                 </h2>
             </div>
             <div class="row">
-                <div class="row form_field" ng-repeat="property in LeftViewProperties" ng-if="showProperty(property)">
-                    <div class="col-lg-5 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
+                <div class="row form_field" ng-repeat="property in propDefaultView.LeftViewProperties" ng-if="showProperty(property)">
+                    <div class="col-lg-5 label_inline">
+                        <label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label>
+                    </div>
                     <div class="col-lg-7" ng-if="canEdit(property)" ng-include='"views/partialViews/propertyEditField.html"'></div>
                     <div class="col-lg-7" ng-if="!canEdit(property)" ng-include='"views/partialViews/propertyDisplay.html"'></div>
                 </div>
             </div>
         </div>
         <div class="col-sm-7">
-            <div class="row form_field" ng-repeat="property in RightViewProperties" ng-if="showProperty(property)">
+            <div class="row form_field" ng-repeat="property in propDefaultView.RightViewProperties" ng-if="showProperty(property)">
                 <div class="col-lg-4 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>
                 <div class="col-lg-8" ng-if="canEdit(property)" ng-include='"views/partialViews/propertyEditField.html"'></div>
                 <div class="col-lg-8" ng-if="!canEdit(property)" ng-include='"views/partialViews/propertyDisplay.html"'></div>
@@ -39,25 +47,36 @@
             isOrganizer:{{isOrganizer}}
             </div>
         </div>
-    </div> 
-</div>-->
-    <div class="row">
+    </div>
+    <div class="row tabbedView" ng-if="type.TabbedModal">
         <ul class="nav nav-justified">
-            <li ng-repeat="tab in tabs" style="cursor:pointer">
-                <a ng-click="">{{level.Description}}</a>
+            <li ng-repeat="tab in propTabbedView.tabs" style="cursor:pointer" ng-class="{current: isCurrentTab(tab)}">
+                <a ng-click="setCurrentTab(tab)">{{tab.Name}}</a>
             </li>
-            <li ng-class="{current: getCurrentTab(1)}" style="cursor:pointer"><a ng-click="changeTab(1)">Personal</a></li>
-            <li ng-class="{current: getCurrentTab(2)}" style="cursor:pointer"><a ng-click="changeTab(2)">Residence</a></li>
-            <li ng-class="{current: getCurrentTab(3)}" style="cursor:pointer"><a ng-click="changeTab(3)">Logistic</a></li>
-            <li ng-class="{current: getCurrentTab(4)}" style="cursor:pointer"><a ng-click="changeTab(4)">Arrive and Departure</a></li>
         </ul>
         <div class="tab-content">
-            <div>
-                Tab {{currentTab}}
+            <div ng-repeat="tab in propTabbedView.tabs" ng-show="isCurrentTab(tab)">
+                <div>
+                    <div class="row form_field" ng-repeat="property in tab.props" ng-if="showProperty(property)">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 label_inline">
+                            <label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label>
+                        </div>
+                        <div class="col-lg-6"
+                             ng-if="canEdit(property)"
+                             ng-include='"views/partialViews/propertyEditField.html"'></div>
+                        <div class="col-lg-6"
+                             ng-if="!canEdit(property)"
+                             ng-include='"views/partialViews/propertyDisplay.html"'></div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>   
-</div>  
+    </div>
+</div>
+
+
 <div class="modal-footer">
     <button class="btn btn-default" ng-click="cancel()" ng-enabled="!saving">Cancel</button>
     <button class="btn green-yellow" ng-click="save()" ng-if="isOrganizer && bag.action != 'view'" ng-enabled="!saving">Save</button>

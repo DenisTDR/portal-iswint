@@ -3,7 +3,7 @@ using PortalIswintBE.Misc.Attributes;
 
 namespace PortalIswintBE.Data.Models.ViewModels
 {
-
+    [TabbedModal]
     [Scaffoldable]
     public class ParticipantViewModel : PersonViewModel
     {
@@ -25,12 +25,13 @@ namespace PortalIswintBE.Data.Models.ViewModels
 
         [VisibleInTable]
         [ViewName("Arrival Time")]
-        [Tab("ArrivalAndDeparture")]
+        [TypeName("date")]
+        [Tab("Arrival And Departure")]
         public DateTime ArrivalTime { get; set; }
 
         [VisibleInTable]
         [ViewName("Arrival Location")]
-        [Tab("ArrivalAndDeparture")]
+        [Tab("Arrival And Departure")]
         public string ArrivalLocation { get; set; }
 
 

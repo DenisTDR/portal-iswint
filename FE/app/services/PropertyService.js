@@ -55,4 +55,58 @@ portal.service("PropertyService", function () {
         }
         return "#/" + this.getCustomEntityListName(propertyInfo) + "?Id=" + model.Id;
     };
+    this.splitIntoDefaultView = function (type, propDefaultView) {
+        propDefaultView.UnderImageProperties = [];
+        propDefaultView.LeftViewProperties = [];
+        propDefaultView.RightViewProperties = [];
+        
+        ForEachProperty(type.Properties, function(propertyName, propertyBag) {
+            if(propertyBag.Type == "photourl") {
+                propDefaultView.photoProperty = propertyBag;
+            }
+            else if(propertyBag.UnderImage) {
+                propDefaultView.UnderImageProperties.push(propertyBag);
+            }
+            else if(propertyBag.MainView){
+                propDefaultView.LeftViewProperties.push(propertyBag);
+            }
+            else {
+                propDefaultView.RightViewProperties.push(propertyBag);
+            }
+        });
+    };
+    this.splitIntoTabs = function (type, propTabbedView, showProperty) {
+        propTabbedView.tabs = {};
+        ForEachProperty(type.Properties, function (propertyName, propertyBag) {
+            var tabName = propertyBag.Tab ? propertyBag.Tab : "Others";
+            if(!showProperty(propertyBag)){
+                return;
+            }
+            if(!propTabbedView.tabs[tabName]){
+                propTabbedView.tabs[tabName] = {props:[], Name: tabName};
+                if(!propTabbedView.firstTab) {
+                    propTabbedView.firstTab = tabName;
+                }
+            }
+            propTabbedView.tabs[tabName].props.push(propertyBag);            
+        });
+
+    };
+    
+    this.convertDatePropertiesToDateObject = function(obj, type) {
+        ForEachProperty(type.Properties, function(propertyName, propertyBag) {
+            if(propertyBag.Type == "date") {
+                obj[propertyName] = new Date(obj[propertyName]);
+            }
+        });
+    };
+    this.convertDatePropertiesToString = function (obj, type) {
+        ForEachProperty(type.Properties, function(propertyName, propertyBag) {
+            if(propertyBag.Type == "date" && obj[propertyName]
+                && obj[propertyName].constructor == Date){
+                obj[propertyName] = obj[propertyName].toISOString();
+            }
+        });
+    }
+    
 });

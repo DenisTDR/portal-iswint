@@ -19,6 +19,10 @@ modals
             $scope.mentors = {all: []};
             $scope.bag = bag;
             $scope.currentTab = 1;
+
+            $scope.propDefaultView = {};
+            $scope.propTabbedView = {};
+            
             var ModelService = bag.Service;
             var propertyBag = {};
             var originalModel = bag.model ? bag.model : {};
@@ -57,7 +61,7 @@ modals
                 // console.log("saving");
                 // console.log($scope.model);
                 var newModel = Clone($scope.model);
-                normalizeDates(newModel);
+                PropertyService.convertDatePropertiesToString(newModel, $scope.type);
 
                 var waitingModal = $scope.messageBox("", "Please wait ...", false);
 
@@ -77,21 +81,13 @@ modals
                 });
             };
 
-            var normalizeDates = function (obj) {
-                ForEachProperty($scope.type.Properties, function(propertyName, propertyBag) {
-                    if(propertyBag.Type == "date" && obj[propertyName] && obj[propertyName].constructor == Date){
-                        obj[propertyName] = obj[propertyName].toISOString();
-                    }
-                });
-            };
-
             var updateModel = function () {
                 // console.log(propertyBag);
                 var editingObject = Clone(propertyBag);
                 // console.log(editingObject);
                 // console.log(propertyBag);
 
-                normalizeDates(editingObject);
+                PropertyService.convertDatePropertiesToString(editingObject, $scope.type);
 
                 var waitingModal = $scope.messageBox("", "Please wait ...", false);
 
@@ -107,7 +103,7 @@ modals
                     setTimeout(function(){
                         successMessage.close();
                         $uibModalInstance.close(originalModel, bag.action);
-                    }, 2000);
+                    }, 1000);
                 }).catch(function(data){
                     console.log(data);
                     $scope.messageBox("Error", "The server says: " + data.data.Message, true);
@@ -117,28 +113,18 @@ modals
             };
 
             $scope.init = function () {
-                $scope.LeftViewProperties = [];
-                $scope.RightViewProperties = [];
-                $scope.UnderImageProperties = [];
-                ForEachProperty($scope.type.Properties, function(propertyName, propertyBag) {
-                    if(propertyBag.Type == "photourl") {
-                        $scope.photoProperty = propertyBag;
-                        //console.log(propertyBag);
-                    }
-                    else if(propertyBag.UnderImage) {
-                        $scope.UnderImageProperties.push(propertyBag);
-                    }
-                    else if(propertyBag.MainView){
-                        $scope.LeftViewProperties.push(propertyBag);
-                    }
-                    else {
-                        $scope.RightViewProperties.push(propertyBag);
-                    }
-                    if(propertyBag.Type == "date") {
-                        originalModel[propertyName] = new Date(originalModel[propertyName]);
-                        $scope.model[propertyName] = new Date( $scope.model[propertyName]);
-                    }
-                });
+
+                PropertyService.convertDatePropertiesToDateObject(originalModel, $scope.type);
+                PropertyService.convertDatePropertiesToDateObject($scope.model, $scope.type);
+
+                if(!$scope.type.TabbedModal){
+                    PropertyService.splitIntoDefaultView($scope.type, $scope.propDefaultView);
+                }
+                else {
+                    PropertyService.splitIntoTabs($scope.type, $scope.propTabbedView, $scope.showProperty);
+                    $scope.currentTab = $scope.propTabbedView.firstTab;
+                    console.log($scope.propTabbedView);
+                }
 
                 if(bag.depBag.rooms){
                     loadRooms();
@@ -234,8 +220,7 @@ modals
             };
 
             $scope.showProperty = function(property) {
-                return property.visible
-                    && (!property.OrganizerOnly || $scope.isOrganizer)
+                return (!property.OrganizerOnly || $scope.isOrganizer)
                     && (!property.AdminOnly || $scope.isAdmin);
             };
             
@@ -244,13 +229,13 @@ modals
             };
 
             $scope.PropertyService = PropertyService;
-            $scope.getCurrentTab = function(tab) {
-                return (tab == $scope.currentTab);
-            }
+            $scope.isCurrentTab = function(tab) {
+                return (tab.Name == $scope.currentTab);
+            };
 
-            $scope.changeTab = function (tab) {
-                $scope.currentTab = tab;
-            }
+            $scope.setCurrentTab = function (tab) {
+                $scope.currentTab = tab.Name;
+            };
             
             $scope.init();
 

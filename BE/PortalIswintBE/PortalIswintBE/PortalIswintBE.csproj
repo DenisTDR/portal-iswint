@@ -160,6 +160,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Data\Models\Entities\Account.cs" />
     <Compile Include="Migrations\201607060700471_redo.cs" />
     <Compile Include="Migrations\201607060700471_redo.Designer.cs">
       <DependentUpon>201607060700471_redo.cs</DependentUpon>
@@ -183,6 +185,7 @@
     <Compile Include="Misc\Attributes\OrganizerOnlyAttribute.cs" />
     <Compile Include="Misc\Attributes\ScaffoldableAttribute.cs" />
     <Compile Include="Misc\Attributes\TabAttribute.cs" />
+    <Compile Include="Misc\Attributes\TabbedAttribute.cs" />
     <Compile Include="Misc\Attributes\TypeNameAttribute.cs" />
     <Compile Include="Misc\Attributes\UnderImageAttribute.cs" />
     <Compile Include="Misc\Attributes\ViewNameAttribute.cs" />

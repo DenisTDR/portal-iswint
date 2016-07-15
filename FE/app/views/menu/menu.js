@@ -20,6 +20,9 @@ angular.module('portal.menu', [])
             console.log("loaded menu controller");
         };
 
-
+        $scope.clearLocalStorage = function () {
+            localStorage.clear();
+            console.log("cleared localStorage")
+        };
         $scope.init();
     });

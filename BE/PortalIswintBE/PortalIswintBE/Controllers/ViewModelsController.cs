@@ -46,6 +46,11 @@ namespace PortalIswintBE.Controllers
                 ["Name"] = selectedType.Name.Replace("ViewModel", ""),
                 ["Properties"] = rez
             };
+            var tabbedAttr = selectedType.GetCustomAttributes().FirstOrDefault(attr => attr is TabbedModalAttribute);
+            if (tabbedAttr != null)
+            {
+                typeBag["TabbedModal"] = true;
+            }
 
             return Ok(typeBag);
         }
@@ -68,10 +73,7 @@ namespace PortalIswintBE.Controllers
             var propName = propertyInfo.Name;
             var propertyBag = new Dictionary<string, object>();
             AddAttributes(propertyInfo, propertyBag);
-            if (propName == "People")
-            {
-                
-            }
+
             if (propertyBag.ContainsKey("Type")) return propertyBag;
 
             if (propertyInfo.PropertyType.IsBooleanType())

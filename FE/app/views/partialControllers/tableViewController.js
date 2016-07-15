@@ -160,10 +160,10 @@ views
 
         $scope.propertyVisibleChanged = function(property) {
             $window.localStorage[$scope.typeName + "_propertyVisibility"] = angular.toJson($scope.type.Properties);
-        }
+        };
 
         $scope.propertyChanged = function(item, property) {
-            console.log("changed " + property.Name + " to " + item[property.Name]);
+            console.log("changed " + property.Name + " to ", item[property.Name]);
             // console.log(this);
             var propBag = {};
             propBag[property.Name] = item[property.Name];
@@ -182,7 +182,7 @@ views
                 removeModel(model);
                 return;
             }
-            if(action != "edit" && action != "view") {
+            if(action != "edit" && action != "view" && action != "new") {
                 console.log("invalid action: ", action);
                 return;
             }
