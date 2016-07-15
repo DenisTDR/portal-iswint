@@ -1,4 +1,4 @@
-﻿namespace PortalIswintBE.Models.Entities
+﻿namespace PortalIswintBE.Data.Models.Entities
 {
     public abstract class Entity
     {

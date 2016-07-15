@@ -6,10 +6,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using PortalIswintBE.Data;
-using PortalIswintBE.Models.Entities;
+using PortalIswintBE.Data.Models.Entities;
 
-namespace LogisticsAPI.DataAccess
+namespace PortalIswintBE.Data.Db
 {
     public class Repository<T> where T : Entity
     {

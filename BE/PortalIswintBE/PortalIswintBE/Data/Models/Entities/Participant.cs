@@ -1,6 +1,7 @@
-﻿using PortalIswintBE.Attributes;
+﻿using System;
+using PortalIswintBE.Misc.Attributes;
 
-namespace PortalIswintBE.Models.Entities
+namespace PortalIswintBE.Data.Models.Entities
 {
 
     [Scaffoldable]
@@ -8,5 +9,10 @@ namespace PortalIswintBE.Models.Entities
     {
         public virtual Workshop Workshop { get; set; }
         public virtual Country Country { get; set; }
+        public bool NeedVisa { get; set; }
+        public DateTime ArrivalTime { get; set; }
+        public string ArrivalLocation { get; set; }
+        public bool Paid { get; set; }
+        public string FoodPreferences { get; set; }
     }
 }

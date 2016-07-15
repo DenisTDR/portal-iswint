@@ -1,6 +1,6 @@
-﻿using PortalIswintBE.Attributes;
+﻿using PortalIswintBE.Misc.Attributes;
 
-namespace PortalIswintBE.Models.Entities
+namespace PortalIswintBE.Data.Models.Entities
 {
 
     [Scaffoldable]

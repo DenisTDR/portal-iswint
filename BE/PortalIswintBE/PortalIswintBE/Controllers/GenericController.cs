@@ -9,14 +9,15 @@ using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PortalIswintBE.Data;
-using PortalIswintBE.Models.Entities;
-using PortalIswintBE.Models.ViewModels;
+using PortalIswintBE.Data.Db;
+using PortalIswintBE.Data.Models.Entities;
+using PortalIswintBE.Data.Models.ViewModels;
 
 namespace PortalIswintBE.Controllers
 {
     public class GenericController<Model, ViewModel> : ApiController
         where Model : Entity, new()
-        where ViewModel : Models.ViewModels.ViewModel
+        where ViewModel : Data.Models.ViewModels.ViewModel
     {
         // GET: api/Room
         public async Task<IHttpActionResult> GetAll()
@@ -209,7 +210,7 @@ namespace PortalIswintBE.Controllers
             Dictionary<string, object> propertyBag)
         {
             var propVm =
-                (Models.ViewModels.ViewModel)
+                (Data.Models.ViewModels.ViewModel)
                     ((JObject) propertyBag[prop.Name]).ToObject(prop.PropertyType.GetMappingType());
 
             var methodInfo = typeof(Database).GetMethods().FirstOrDefault(m => m.Name == "Repository");

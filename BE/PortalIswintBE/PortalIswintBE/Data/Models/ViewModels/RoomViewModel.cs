@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using PortalIswintBE.Attributes;
+using PortalIswintBE.Misc.Attributes;
 
-namespace PortalIswintBE.Models.ViewModels
+namespace PortalIswintBE.Data.Models.ViewModels
 {
 
     [Scaffoldable]

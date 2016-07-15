@@ -1,7 +1,7 @@
 ﻿
-using PortalIswintBE.Attributes;
+using PortalIswintBE.Misc.Attributes;
 
-namespace PortalIswintBE.Models.ViewModels
+namespace PortalIswintBE.Data.Models.ViewModels
 {
     [Scaffoldable]
     public class MentorViewModel : PersonViewModel

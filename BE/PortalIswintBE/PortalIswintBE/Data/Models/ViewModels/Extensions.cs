@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using PortalIswintBE.Models.Entities;
-using PortalIswintBE.Models.ModelMappings;
+using PortalIswintBE.Data.Models.Entities;
+using PortalIswintBE.Data.Models.ModelMappings;
 
-namespace PortalIswintBE.Models.ViewModels
+namespace PortalIswintBE.Data.Models.ViewModels
 {
     public static class Extensions
     {

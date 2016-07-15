@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PortalIswintBE.Models.Entities;
-using PortalIswintBE.Models.ViewModels;
+using PortalIswintBE.Data.Models.Entities;
+using PortalIswintBE.Data.Models.ViewModels;
 
 namespace PortalIswintBE.Controllers
 {

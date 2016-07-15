@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using PortalIswintBE.Models.Entities;
+using PortalIswintBE.Data.Models.Entities;
 
-namespace PortalIswintBE.Models.ModelMappings
+namespace PortalIswintBE.Data.Models.ModelMappings
 {
     public class ParticipantMap : EntityTypeConfiguration<Participant>
     {

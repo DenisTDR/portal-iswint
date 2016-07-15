@@ -172,12 +172,17 @@
     <Compile Include="Migrations\201607112219233_workshopAddedProperties.Designer.cs">
       <DependentUpon>201607112219233_workshopAddedProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607151034520_someProperties.cs" />
+    <Compile Include="Migrations\201607151034520_someProperties.Designer.cs">
+      <DependentUpon>201607151034520_someProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Attributes\AdminOnlyAttribute.cs" />
     <Compile Include="Misc\Attributes\BooleanAttribute.cs" />
     <Compile Include="Misc\Attributes\EditableInTableAttribute.cs" />
     <Compile Include="Misc\Attributes\MainViewAttribute.cs" />
     <Compile Include="Misc\Attributes\OrganizerOnlyAttribute.cs" />
     <Compile Include="Misc\Attributes\ScaffoldableAttribute.cs" />
+    <Compile Include="Misc\Attributes\TabAttribute.cs" />
     <Compile Include="Misc\Attributes\TypeNameAttribute.cs" />
     <Compile Include="Misc\Attributes\UnderImageAttribute.cs" />
     <Compile Include="Misc\Attributes\ViewNameAttribute.cs" />
@@ -283,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607112219233_workshopAddedProperties.resx">
       <DependentUpon>201607112219233_workshopAddedProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607151034520_someProperties.resx">
+      <DependentUpon>201607151034520_someProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

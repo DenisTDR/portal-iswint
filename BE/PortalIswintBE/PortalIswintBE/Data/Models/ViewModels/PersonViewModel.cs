@@ -2,10 +2,9 @@
 using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using PortalIswintBE.Attributes;
-using PortalIswintBE.Models.Entities;
+using PortalIswintBE.Misc.Attributes;
 
-namespace PortalIswintBE.Models.ViewModels
+namespace PortalIswintBE.Data.Models.ViewModels
 {
     public class PersonViewModel: ViewModel
     {
@@ -13,11 +12,13 @@ namespace PortalIswintBE.Models.ViewModels
         [VisibleInTable]
         [ViewName("First name")]
         [UnderImage]
+        [Tab("Personal")]
         public string FirstName { get; set; }
 
         [VisibleInTable]
         [ViewName("Last name")]
         [UnderImage]
+        [Tab("Personal")]
         public string LastName { get; set; }
 
         [MainView]
@@ -25,28 +26,33 @@ namespace PortalIswintBE.Models.ViewModels
         [OrganizerOnly]
         [ViewName("Shirt size")]
         [JsonConverter(typeof(StringEnumConverter))]
+        [Tab("Logistic")]
         public ShirtSizes ShirtSize { get; set; }
 
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Shirt given")]
         [EditableInTable]
+        [Tab("Logistic")]
         public bool ShirtGiven { get; set; }
 
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Badge given")]
         [EditableInTable]
+        [Tab("Logistic")]
         public bool BadgeGiven { get; set; }
 
         [MainView]
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Phone number")]
+        [Tab("Personal")]
         public string PhoneNumber { get; set; }
 
         [ViewName("Photo")]
         [TypeName("photourl")]
+        [Tab("Personal")]
         public string PhotoUrl { get; set; }
 
         [MainView]
@@ -54,33 +60,39 @@ namespace PortalIswintBE.Models.ViewModels
         [OrganizerOnly]
         [ViewName("Email")]
         [TypeName("mail")]
+        [Tab("Personal")]
         public string EMail { get; set; }
 
         [VisibleInTable]
         [ViewName("Facebook")]
         [TypeName("url")]
+        [Tab("Personal")]
         public string FacebookUrl { get; set; }
 
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Room")]
+        [Tab("Logistic")]
         public RoomViewModel Room { get; set; }
-
-        [OrganizerOnly]
+        
         [ReadOnly(true)]
         [AdminOnly]
+        [Tab("Logistic")]
         public int RoomId { get; set; }
 
         [MainView]
         [VisibleInTable]
         [ViewName("Genre")]
         [JsonConverter(typeof(StringEnumConverter))]
+        [Tab("Personal")]
         public Genre Genre { get; set; }
 
         [MainView]
         [VisibleInTable]
         [ViewName("Birth Date")]
         [TypeName("date")]
+        [Tab("Personal")]
         public DateTime BirthDate { get; set; }
+
     }
 }

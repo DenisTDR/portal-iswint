@@ -1,10 +1,7 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
-using PortalIswintBE.Attributes;
-using PortalIswintBE.Models.Entities;
+﻿using System.Collections.Generic;
+using PortalIswintBE.Misc.Attributes;
 
-namespace PortalIswintBE.Models.ViewModels
+namespace PortalIswintBE.Data.Models.ViewModels
 {
 
     [Scaffoldable]

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Web.Razor;
-using PortalIswintBE.Attributes;
+using PortalIswintBE.Misc.Attributes;
 
-namespace PortalIswintBE.Models.Entities
+namespace PortalIswintBE.Data.Models.Entities
 {
     [Scaffoldable]
     public abstract class Person : Entity

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using LogisticsAPI.DataAccess;
 using MySql.Data.MySqlClient;
-using PortalIswintBE.Models.Entities;
+using PortalIswintBE.Data.Models.Entities;
 
-namespace PortalIswintBE.Data
+namespace PortalIswintBE.Data.Db
 {
     public class Database:IDisposable
     {

@@ -1,13 +1,13 @@
-﻿using MySql.Data.Entity;
-using System;
+﻿using System;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Reflection;
-using PortalIswintBE.Models.Entities;
+using MySql.Data.Entity;
+using PortalIswintBE.Data.Models.Entities;
 
-namespace PortalIswintBE.Data
+namespace PortalIswintBE.Data.Db
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
 

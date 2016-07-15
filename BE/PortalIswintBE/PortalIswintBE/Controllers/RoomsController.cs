@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using PortalIswintBE.Data;
-using PortalIswintBE.Models.Entities;
-using PortalIswintBE.Models.ViewModels;
+using PortalIswintBE.Data.Db;
+using PortalIswintBE.Data.Models.Entities;
+using PortalIswintBE.Data.Models.ViewModels;
 
 namespace PortalIswintBE.Controllers
 {

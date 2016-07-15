@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using PortalIswintBE.Models.Entities;
-using PortalIswintBE.Models.ViewModels;
+using PortalIswintBE.Data.Models.Entities;
+using PortalIswintBE.Data.Models.ViewModels;
 
-namespace PortalIswintBE.App_Start
+namespace PortalIswintBE
 {
     public static class AutoMapperConfig
     {

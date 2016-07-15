@@ -2,7 +2,6 @@
 
 // Declare app level module which depends on views, and components
 var portal = angular.module('portal', [
-    'portal.version',
     'portal.views',
     'portal.menu',
     'portal.modals',

@@ -8,10 +8,8 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Http;
-using PortalIswintBE.Attributes;
-using PortalIswintBE.Models.Entities;
-using PortalIswintBE.Models.ModelMappings;
-using PortalIswintBE.Models.ViewModels;
+using PortalIswintBE.Data.Models.ViewModels;
+using PortalIswintBE.Misc.Attributes;
 using WebGrease.Css.Extensions;
 
 namespace PortalIswintBE.Controllers
@@ -119,24 +117,29 @@ namespace PortalIswintBE.Controllers
                 propertyBag["Type"] = "enum";
                 propertyBag["Values"] = from object value in Enum.GetValues(propertyInfo.PropertyType) select value.ToString();
             }
-            if (
-                propertyInfo.GetCustomAttributes()
-                    .Any(attr => attr is ReadOnlyAttribute && ((ReadOnlyAttribute)attr).IsReadOnly))
-            {
-                propertyBag["ReadOnly"] = true;
-            }
+
             foreach (var attr in propertyInfo.GetCustomAttributes())
             {
                 if (attr is BooleanAttribute)
                 {
                     propertyBag[((BooleanAttribute)attr).Name] = true;
                 }
+                else if (attr is ReadOnlyAttribute)
+                {
+                    if (((ReadOnlyAttribute) attr).IsReadOnly)
+                    {
+                        propertyBag["ReadOnly"] = true;
+                    }
+                }
+                else if (attr is TypeNameAttribute)
+                {
+                    propertyBag["Type"] = (attr as TypeNameAttribute).Name;
+                }
+                else if (attr is TabAttribute)
+                {
+                    propertyBag["Tab"] = (attr as TabAttribute).Tab;
+                }
             }
-           
-            propertyInfo.GetCustomAttributes().Where(attr => attr is TypeNameAttribute).Cast<TypeNameAttribute>().ForEach(attr =>
-            {
-                propertyBag["Type"] = attr.Name;
-            });
 
             propertyInfo.GetCustomAttributes()
                 .Where(attr => attr is ViewNameAttribute)
