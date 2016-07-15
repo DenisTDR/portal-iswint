@@ -7,7 +7,8 @@ var portal = angular.module('portal', [
     'portal.modals',
     'ui.bootstrap',
     'ngAnimate',
-    'ui.router'
+    'ui.router',
+    'LocalStorageModule'
 ]);
 
 portal.run(function($rootScope) {

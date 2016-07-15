@@ -1,7 +1,7 @@
 
-<!-- <div class="text-center" ng-if="!loaded()">
+<div class="text-center" ng-if="!loaded()">
     <i class="fa fa-cog fa-spin" style="font-size:48px" ></i>
-</div> -->
+</div>
 <div class="container" ng-if="type != null || models">
     <div class="row">
         <div class="col-md-9"><h1 class="bold" id="pageTitle">{{pageTitle}}</h1></div>
@@ -54,8 +54,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="model in models | filter: searchText | orderBy: propertyName: reverse">
-                    <td id="table-element" class="bold">{{$index + 1}}</td>
-                    <td id="table-element" ng-repeat="property in type.Properties" ng-if="showProperty(property)">
+                    <td class="bold table-element">{{$index + 1}}</td>
+                    <td class="table-element" ng-repeat="property in type.Properties" ng-if="showProperty(property)">
                         <span ng-include='"views/partialViews/propertyDisplay.html"'
                         ng-if="!property.EditableInTable"></span>
                         <span ng-include='"views/partialViews/propertyEditField.html"'

@@ -131,7 +131,7 @@ body {
  	margin-bottom:10px;
  }
 
- #table-element {
+ .table-element {
  	vertical-align:middle; !important
  	padding:0; 
  	padding-left:8px;
@@ -161,4 +161,11 @@ body {
 .nav > li > a, .nav > li > a:hover {
     color: inherit;
     background: transparent;
+}
+
+.tabbedView .tab-content {
+    padding-top: 30px;
+}
+.modalView .form_field {
+    margin-top: 10px;
 }
