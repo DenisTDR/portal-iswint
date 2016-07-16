@@ -81,12 +81,21 @@ body {
 	background: transparent;
 }
 
+.navbar-inverse .navbar-nav>.active>a:hover {
+    color:#ffdf00 !important;
+}
+
 .navbar-inverse .navbar-toggle .icon-bar {
  	background:#ffdf00;
 }
  .navbar-inverse .navbar-toggle {
  	border-color: transparent;
  	color:#ffdf00;
+ }
+
+ /*Cog*/
+ .fa-gear:before, .fa-cog:before { 
+    color:#28702a;
  }
 
  /*Buttons*/

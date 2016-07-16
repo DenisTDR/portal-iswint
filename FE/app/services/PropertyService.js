@@ -100,13 +100,25 @@ portal.service("PropertyService", function () {
             }
         });
     };
+    
     this.convertDatePropertiesToString = function (obj, type) {
         ForEachProperty(type.Properties, function(propertyName, propertyBag) {
             if(propertyBag.Type == "date" && obj[propertyName]
                 && obj[propertyName].constructor == Date){
                 obj[propertyName] = obj[propertyName].toISOString();
             }
-        });
+        });x
     }
-    
+
+    this.getTitleForModal = function(type, model) {
+        type.Type = type.Name;
+        var what;
+        if(this.getPropertyFileName(type) == "person"){
+            what = model.FirstName + " " + model.LastName;
+        }
+        else {
+            what =  model.Name;
+        }
+        return what;
+    }
 });

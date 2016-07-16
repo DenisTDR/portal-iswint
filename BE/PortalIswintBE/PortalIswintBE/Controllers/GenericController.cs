@@ -20,6 +20,8 @@ namespace PortalIswintBE.Controllers
         where ViewModel : Data.Models.ViewModels.ViewModel
     {
         // GET: api/Room
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
             using (var db = new Database())
@@ -30,6 +32,7 @@ namespace PortalIswintBE.Controllers
             }
         }
 
+        [HttpGet]
         // GET: api/Room/5
         public async Task<IHttpActionResult> GetById(int id)
         {
@@ -42,6 +45,7 @@ namespace PortalIswintBE.Controllers
         }
 
         // POST: api/Room
+        [HttpPost]
         public async Task<IHttpActionResult> AddNew([FromBody] Dictionary<string, object> propertyBag)
         {
             if (!ModelState.IsValid)
@@ -80,6 +84,7 @@ namespace PortalIswintBE.Controllers
         }
 
         // PUT: api/Room/5
+        [HttpPut]
         public async Task<IHttpActionResult> Update(int id, [FromBody] ViewModel vm)
         {
             if (!ModelState.IsValid)
@@ -109,6 +114,7 @@ namespace PortalIswintBE.Controllers
         }
 
         // DELETE: api/Room/5
+        [HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
             try
@@ -128,7 +134,8 @@ namespace PortalIswintBE.Controllers
                 return BadRequest(exc.Message);
             }
         }
-        
+
+        [HttpPost]
         public async Task<IHttpActionResult> UpdateProperties(int id, [FromBody] Dictionary<string, object> propertyBag )
         {
             if (!ModelState.IsValid)

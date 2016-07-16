@@ -165,6 +165,7 @@
     <Compile Include="Data\Models\Entities\Auth\Session.cs" />
     <Compile Include="Data\Models\ModelMappings\Auth\AccountMap.cs" />
     <Compile Include="Data\Models\ModelMappings\Auth\SessionMap.cs" />
+    <Compile Include="Data\Models\ViewModels\ArrivalViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\Auth\LoginRequest.cs" />
     <Compile Include="Data\Models\ViewModels\Auth\TokenResponse.cs" />
     <Compile Include="Migrations\201607060700471_redo.cs" />
