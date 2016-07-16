@@ -34,7 +34,6 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [Tab("Arrival And Departure")]
         public string ArrivalLocation { get; set; }
 
-
         [VisibleInTable]
         [Tab("Logistic")]
         [ViewName("He paid?")]
