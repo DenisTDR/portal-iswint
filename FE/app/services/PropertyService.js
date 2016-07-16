@@ -29,10 +29,10 @@ portal.service("PropertyService", function () {
             case "date":
                 return "date";
         }
-        if (PersonTypes.indexOf(property.Type) !== -1) {
+        if (PersonTypes.indexOf(property.Type.toLowerCase()) !== -1) {
             return "person";
         }
-        if (ObjectTypes.indexOf(property.Type) !== -1) {
+        if (ObjectTypes.indexOf(property.Type.toLowerCase()) !== -1) {
             return "object";
         }
         if(property.Type == "list") {

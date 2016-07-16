@@ -4,7 +4,7 @@
 
 views
     .controller('TableViewController',
-        function($scope, $uibModal, OrganizersService,
+        function($scope, $rootScope, $uibModal, OrganizersService,
                  ParticipantsService, ModelsService, RoomsService,
                  CountriesService, WorkshopsService, MentorsService,
                  PropertyService, $stateParams, $window) {
@@ -218,16 +218,37 @@ views
 
         var removeModel = function (model) {
             console.log("removing");
-            Service.removeModel(model.Id).then(function(data){
-                console.log("removed ", data);
-                for(var i = 0; i < $scope.models.length; i++){
-                    if($scope.models[i].Id == model.Id){
-                        $scope.models.splice(i, 1);
-                        return;
+
+            var removeModalInstance = $uibModal.open({
+                templateUrl: 'views/modals/confirm/confirm.html',
+                controller: 'ConfirmInstanceController',
+                size: 'md',
+                resolve: {
+                    model: function() {
+                        return model;
+                    },
+                    type: function() {
+                        return $scope.type;
                     }
                 }
-            }).catch(function(data){
-                console.log("err removing ", data);
+            });
+
+            removeModalInstance.result.then(function () {
+                Service.removeModel(model.Id).then(function(data){
+                    console.log("removed ", data);
+                    $rootScope.messageBox("Success!", "Removed!", true, "sm");
+                    for(var i = 0; i < $scope.models.length; i++){
+                        if($scope.models[i].Id == model.Id){
+                            $scope.models.splice(i, 1);
+                            return;
+                        }
+                    }
+                }).catch(function(data){
+                    $rootScope.messageBox("Error!", "Couldn't remove that object ...", true, "sm");
+                    console.log("err removing ", data);
+                });
+            }, function () {
+                console.log('not deleting');
             });
         };
 

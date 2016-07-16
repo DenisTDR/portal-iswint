@@ -4,7 +4,7 @@
 
 modals
     .controller('viewModelModalController',
-        function ($scope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService,
+        function ($scope, $rootScope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService,
                   WorkshopsService, OrganizersService, MentorsService, PropertyService) {
             console.log("viewModelModalController loaded");
             $scope.type = bag.type;
@@ -63,13 +63,13 @@ modals
                 var newModel = Clone($scope.model);
                 PropertyService.convertDatePropertiesToString(newModel, $scope.type);
 
-                var waitingModal = $scope.messageBox("", "Please wait ...", false);
+                var waitingModal = $rootScope.messageBox("", "Please wait ...", false);
 
                 ModelService.addNew(newModel).then(function(data) {
                    console.log("ok", data);
                     newModel.Id = data.data.Id;
                     var successMessage =
-                        $scope.messageBox("Success!", "Saved!", true, "sm");
+                        $rootScope.messageBox("Success!", "Saved!", true, "sm");
                     setTimeout(function(){
                         successMessage.close();
                         $uibModalInstance.close(newModel);
@@ -89,7 +89,7 @@ modals
 
                 PropertyService.convertDatePropertiesToString(editingObject, $scope.type);
 
-                var waitingModal = $scope.messageBox("", "Please wait ...", false);
+                var waitingModal = $rootScope.messageBox("", "Please wait ...", false);
 
                 ModelService.saveProperties($scope.model.Id, editingObject).then(function(data) {
                     console.log(data);
@@ -99,14 +99,14 @@ modals
                         console.log("set " + propertyName + " to " + editingObject[propertyName]);
                     });
                     var successMessage =
-                        $scope.messageBox("Success!", "Saved!", true, "sm");
+                        $rootScope.messageBox("Success!", "Saved!", true, "sm");
                     setTimeout(function(){
                         successMessage.close();
                         $uibModalInstance.close(originalModel, bag.action);
                     }, 1000);
                 }).catch(function(data){
                     console.log(data);
-                    $scope.messageBox("Error", "The server says: " + data.data.Message, true);
+                    $rootScope.messageBox("Error", "The server says: " + data.data.Message, true);
                 }).finally(function() {
                     waitingModal.close();
                 });
@@ -195,29 +195,7 @@ modals
                 });
             };
 
-            $scope.messageBox = function(title, message, canClose, size) {
-                if(!size) {
-                    size = "sm";
-                }
-                return $uibModal.open({
-                    templateUrl: 'views/modals/messageModal.html',
-                    controller: 'messageModalController',
-                    backdrop: 'static',
-                    size: size,
-                    keyboard: false,
-                    resolve: {
-                        title: function() {
-                            return title;
-                        },
-                        message: function() {
-                            return message;
-                        },
-                        canClose: function() {
-                            return canClose;
-                        }
-                    }
-                });
-            };
+
 
             $scope.showProperty = function(property) {
                 return (!property.OrganizerOnly || $scope.isOrganizer)

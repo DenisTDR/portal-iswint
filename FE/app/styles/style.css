@@ -28,17 +28,17 @@
 /*Fonts*/
 @font-face {
     font-family: Roboto-Light;
-    src: url('/styles/fonts/Roboto-Light_0.ttf');
+    src: url('fonts/Roboto-Light_0.ttf');
 }
 
 @font-face {
     font-family: Roboto-Regular;
-    src: url('/styles/fonts/Roboto-Regular_0.ttf');
+    src: url('fonts/Roboto-Regular_0.ttf');
 }
 
 @font-face {
     font-family: Roboto-Thin;
-    src: url('/styles/fonts/Roboto-Thin_0.ttf');
+    src: url('fonts/Roboto-Thin_0.ttf');
 }
 
 body {
