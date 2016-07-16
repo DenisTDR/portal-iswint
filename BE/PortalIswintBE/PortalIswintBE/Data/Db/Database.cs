@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Web.Configuration;
 using MySql.Data.MySqlClient;
 using PortalIswintBE.Data.Models.Entities;
 
@@ -17,13 +18,12 @@ namespace PortalIswintBE.Data.Db
 
         public Database()
         {
-#if DEBUG
-            _connection =
-                new MySqlConnection(ConfigurationManager.ConnectionStrings["PortalIswintContextDebug"].ConnectionString);
-#else
-            _connection =
-                new MySqlConnection(ConfigurationManager.ConnectionStrings["PortalIswintContextRelease"].ConnectionString);
-#endif
+            var debugging = WebConfigurationManager.AppSettings["Debugging"];
+            _connection = debugging == "true"
+                ? new MySqlConnection(
+                    ConfigurationManager.ConnectionStrings["PortalIswintContextDebug"].ConnectionString)
+                : new MySqlConnection(
+                    ConfigurationManager.ConnectionStrings["PortalIswintContextRelease"].ConnectionString);
 
             _connection.Open();
             _context = new PortalIswintContext(_connection, false);

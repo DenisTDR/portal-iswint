@@ -2,24 +2,22 @@
  * Created by tdr on 03/07/16.
  */
 
-portal.service("CountriesService", function ($http, localStorageService) {
+portal.service("CountriesService", function ($http, CachingService) {
     this.endPoint = backendUrl + "Country/";
 
-    bindBasicModelService(this, $http, localStorageService);
-
-    var cachedCountries = null;
-
+    bindBasicModelService(this, $http, CachingService);
 
     this.getAllCached = function (success, error, final) {
-        if(cachedCountries) {
+        var cacheKey = "countries";
+        if(CachingService.contains(cacheKey)) {
             if(typeof success == "function") {
-                success(cachedCountries);
+                success(CachingService.get(cacheKey));
             }
             return;
         }
         $http.get(this.endPoint + "GetAll").then(function(data){
             //console.log("got typeModel: ", data);
-            cachedCountries = data.data;
+            CachingService.set(cacheKey, data.data);
 
             if(typeof success == "function") {
                 success(data.data);
@@ -35,5 +33,4 @@ portal.service("CountriesService", function ($http, localStorageService) {
             }
         });
     };
-
 });

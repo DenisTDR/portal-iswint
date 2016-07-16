@@ -3,10 +3,13 @@
  */
 
 
-var bindBasicModelService = function(service, $http, localStorageService) {
-    //if($httpProvider.defaults.headers.common.Authorization)
-    var session = localStorageService.get("session");
-    $http.defaults.headers.common.Authorization = "Basic " + (session?session.Token:"none");
+var bindBasicModelService = function(service, $http, CachingService) {
+    
+    var session = CachingService.get("session", true);
+
+    if(session) {
+        $http.defaults.headers.common.Authorization = "Basic " + session.Token;
+    }
 
     service.getAll = function() {
         return $http.get(service.endPoint + "GetAll");

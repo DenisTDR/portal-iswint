@@ -48,7 +48,7 @@
                     <th ng-repeat="property in type.Properties" ng-if="showProperty(property)" class="bold" style="cursor:pointer">
                         <a ng-click="sortBy(property.Name)">{{property.ViewName?property.ViewName:property.Name}}&nbsp;<span class="sortorder" ng-show="propertyName === property.Name" ng-class="{reverse: reverse}"></span></a>
                     </th>
-                    <th class="right-content"></th>
+                    <th class="right-content" ng-if="!type.NoActions"></th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@
                         <span ng-include='"views/partialViews/propertyEditField.html"'
                         ng-if="property.EditableInTable"></span>
                     </td>
-                    <td class="right-content">
+                    <td class="right-content" ng-if="!type.NoActions">
                         <button class="btn green-yellow" ng-click="modelAction(model, 'edit');"
                         ng-if="isOrganizer"><span class="glyphicon glyphicon-edit"
                         ></span></button>

@@ -12,7 +12,7 @@ views
             $scope.init = function() {
                 console.log("loaded ArrivalsController");
                 //$scope.modelAction($scope.models[0], "edit");
-                $rootScope.currentView = "rooms";
+                $rootScope.currentView = "arrivals";
             };
 
             $scope.init();

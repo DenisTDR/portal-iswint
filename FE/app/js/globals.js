@@ -2,21 +2,13 @@
  * Created by tdr on 19/06/16.
  */
 
-var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
+var migrationCount = 2;
+var debugging = false;
+
+// var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
 // var backendUrl = "http://api.portal.iswint.ro/api/";
-// var backendUrl = "http://timer.labs.ligaac.ro/api/";
+var backendUrl = "http://portal.iswint.ro/api/";
 
-
-//
-// Object.prototype.numberOfProperties = function() {
-//     var number = 0;
-//     for (var property in this) {
-//         if (this.hasOwnProperty(property)) {
-//             number++;
-//         }
-//     }
-//     return number;
-// };
 
 var ForEachProperty = function (obj, fct) {
     for (var propertyName in obj) {

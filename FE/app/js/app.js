@@ -11,17 +11,20 @@ var portal = angular.module('portal', [
     'LocalStorageModule'
 ]);
 
-portal.run(function($rootScope, localStorageService, $uibModal) {
+portal.run(function($rootScope, $uibModal, CachingService) {
     $rootScope.isLoggedIn = function () {
-       return localStorageService.get("session") != null;
+       return CachingService.get("session", true) != null;
     };
     $rootScope.getSession = function () {
-        return localStorageService.get("session");
+        return CachingService.get("session", true);
     };
 
-    $rootScope.messageBox = function(title, message, canClose, size) {
+    $rootScope.messageBox = function(title, message, canClose, size, autoCloseIn) {
         if(!size) {
             size = "sm";
+        }
+        if(!autoCloseIn) {
+            autoCloseIn = 1000;
         }
         return $uibModal.open({
             templateUrl: 'views/modals/messageModal.html',
@@ -38,10 +41,16 @@ portal.run(function($rootScope, localStorageService, $uibModal) {
                 },
                 canClose: function() {
                     return canClose;
+                },
+                autoCloseIn: function () {
+                    return autoCloseIn;
                 }
             }
         });
     };
+
+    CachingService.validateCache();
+
 });
 
 var modals = angular.module('portal.modals', ['ui.router']);

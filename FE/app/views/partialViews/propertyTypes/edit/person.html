@@ -2,6 +2,6 @@
         ng-model="model[property.Name]"
         ng-if="PropertyService.getCustomEntityListName(property)"
         ng-init="listName = PropertyService.getCustomEntityListName(property)"
-        ng-options="{{'pers as (pers.LastName + pers.FirstName) for pers in ' + listName + '.all track by pers.Id'}}"
+        ng-options="{{'pers as (pers.LastName + \' \' + pers.FirstName) for pers in ' + listName + '.all track by pers.Id'}}"
         ng-change="propertyChanged(model, property);"
 ></select>

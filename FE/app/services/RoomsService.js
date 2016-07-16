@@ -3,9 +3,9 @@
  */
 
 
-portal.service("RoomsService", function ($http, localStorageService) {
+portal.service("RoomsService", function ($http, CachingService) {
     this.endPoint = backendUrl + "Rooms/";
-    bindBasicModelService(this, $http, localStorageService);
+    bindBasicModelService(this, $http, CachingService);
     
     var cachedRooms = null;
     this.getAllCached = function ( success, error, final) {

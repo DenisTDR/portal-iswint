@@ -3,28 +3,28 @@
  */
 
 
-portal.service("ModelsService", function ($http) {
+portal.service("ModelsService", function ($http, CachingService) {
     var thisService = backendUrl + "ViewModels/";
-    var cachedModels = {};
     this.getModelType = function(typeName, success, error, final){
         typeName = typeName.toLowerCase();
-        if(cachedModels[typeName]){
+        var cacheKey = "type_" + typeName;
+        if(CachingService.contains(cacheKey)){
             //console.log("cached. getting from cache");
             if(typeof success == "function") {
-                success(cachedModels[typeName]);
+                success(CachingService.get(cacheKey));
             }
             return;
         }
         // console.log("not cached. getting from be");
         $http.get(thisService + "?typeName=" + typeName).then(function(data){
             //console.log("got typeModel: ", data);
-            cachedModels[typeName] = data.data;
+            CachingService.set(cacheKey, data.data);
 
             if(typeof success == "function") {
                 success(data.data);
             }
         }).catch(function (data) {
-            //console.log("err", data);
+            console.log("err", data);
             if(typeof error == "function") {
                 error(data);
             }

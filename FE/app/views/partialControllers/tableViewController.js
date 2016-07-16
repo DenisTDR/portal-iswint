@@ -4,7 +4,7 @@
 
 views
     .controller('TableViewController',
-        function($scope, $rootScope, $uibModal, $stateParams, $window,
+        function($scope, $rootScope, $uibModal, $stateParams, CachingService,
                  OrganizersService, ArrivalsService, PropertyService,
                  ParticipantsService, ModelsService, RoomsService,
                  CountriesService, WorkshopsService, MentorsService) {
@@ -20,7 +20,6 @@ views
         $scope.type = null;
 
         $scope.canEdit = true;
-        $scope.visibleProperty = [];
 
         // Sorting
         $scope.propertyName = 'FirstName';
@@ -76,7 +75,7 @@ views
 
         var loadModels = function () {
             Service.getAll().then(function (data) {
-                console.log("got models: ", data.data);
+                // console.log("got models: ", data.data);
                 $scope.models = data.data;
                 rebuild($scope.models);
 
@@ -91,16 +90,16 @@ views
         var loadType = function () {
             ModelsService.getModelType($scope.typeName, function(type) {
                 $scope.type = type;
-                var typeFromStorage = angular.fromJson($window.localStorage[$scope.typeName + "_propertyVisibility"]);
-                if(typeFromStorage != null) {
-                    $scope.type.Properties = typeFromStorage;
+                var cacheKey = "prop_visibility_" + $scope.typeName;
+                if(CachingService.contains(cacheKey)) {
+                    $scope.type.Properties = CachingService.get(cacheKey);
                 }
                 else {
                     ForEachProperty($scope.type.Properties, function(pName, pValue) {
                         pValue.visible = true;
                     });
                 }
-                console.log("got type: ", type);
+                // console.log("got type: ", type);
                 checkAutoOpenModal();
             });
         };
@@ -113,7 +112,7 @@ views
             array.forEach(function(item){
                 recMethod(item, refArr);
             });
-            console.log(refArr);
+            // console.log(refArr);
         };
 
         var recMethod = function(obj, refArr){
@@ -158,11 +157,13 @@ views
 
         $scope.showPropertyVisibleCheckbox = function(property) {
             return (!property.OrganizerOnly || $scope.isOrganizer)
-                && property.VisibleInTable;
+                && property.VisibleInTable
+                && (!property.AdminOnly || $scope.isAdmin);
         };
 
         $scope.propertyVisibleChanged = function(property) {
-            $window.localStorage[$scope.typeName + "_propertyVisibility"] = angular.toJson($scope.type.Properties);
+            var cacheKey = "prop_visibility_" + $scope.typeName;
+            CachingService.set(cacheKey, $scope.type.Properties);
         };
 
         $scope.propertyChanged = function(item, property) {
@@ -239,7 +240,7 @@ views
             removeModalInstance.result.then(function () {
                 Service.removeModel(model.Id).then(function(data){
                     console.log("removed ", data);
-                    $rootScope.messageBox("Success!", "Removed!", true, "sm");
+                    $rootScope.messageBox("Success!", "Removed!", true, "sm", 1000);
                     for(var i = 0; i < $scope.models.length; i++){
                         if($scope.models[i].Id == model.Id){
                             $scope.models.splice(i, 1);

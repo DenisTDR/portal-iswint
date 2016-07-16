@@ -6,7 +6,7 @@ console.log("loading messageModal controller");
 
 modals
     .controller('messageModalController',
-        function ($scope, $uibModalInstance, message, title, canClose) {
+        function ($scope, $uibModalInstance, message, title, canClose, autoCloseIn) {
             $scope.message = message;
             $scope.title = title;
             $scope.canClose = canClose;
@@ -15,5 +15,11 @@ modals
             $scope.close = function () {
                 $uibModalInstance.dismiss('cancel');
             };
+
+            if(autoCloseIn) {
+                setTimeout(function () {
+                    $scope.close();
+                }, autoCloseIn);
+            }
 
         });

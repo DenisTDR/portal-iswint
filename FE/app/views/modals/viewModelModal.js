@@ -150,10 +150,10 @@ modals
 
             var loadRooms = function(){
                 console.log("loading rooms");
-                RoomsService.getAll(function(rooms){
-                    $scope.rooms.all = rooms;
-                    console.log("got rooms", rooms);
-                }, function(data){
+                RoomsService.getAll().then(function(data){
+                    $scope.rooms.all = data.data;
+                    // console.log("got rooms", rooms);
+                }).catch(function(data){
                     console.log("err getting rooms", data);
                 });
             };
