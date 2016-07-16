@@ -163,16 +163,16 @@ views
         };
 
         $scope.propertyChanged = function(item, property) {
-            console.log("changed " + property.Name + " to ", item[property.Name]);
+            // console.log("changed " + property.Name + " to ", item[property.Name]);
             // console.log(this);
             var propBag = {};
             propBag[property.Name] = item[property.Name];
             Service.saveProperties(item.Id, propBag).then(function (data) {
-                console.log("changed?");
+                // console.log("changed?");
             }).catch(function(data){
-                console.log("err", data);
+                // console.log("err", data);
             }).finally(function () {
-                console.log("finally");
+                // console.log("finally");
             });
         };
 

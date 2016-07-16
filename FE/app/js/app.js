@@ -11,8 +11,13 @@ var portal = angular.module('portal', [
     'LocalStorageModule'
 ]);
 
-portal.run(function($rootScope) {
-   
+portal.run(function($rootScope, localStorageService) {
+    $rootScope.isLoggedIn = function () {
+       return localStorageService.get("session") != null;
+    };
+    $rootScope.getSession = function () {
+        return localStorageService.get("session");
+    }
 });
 
 var modals = angular.module('portal.modals', ['ui.router']);

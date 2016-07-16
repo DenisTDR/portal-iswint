@@ -169,3 +169,9 @@ body {
 .modalView .form_field {
     margin-top: 10px;
 }
+.navbar .navbar-nav>li:hover {
+    background: #ffdf00;
+}
+ .navbar .navbar-nav>li:hover>a {
+     color: #28702a !important;
+ }

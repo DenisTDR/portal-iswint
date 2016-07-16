@@ -3,9 +3,9 @@
  */
 
 
-portal.service("RoomsService", function ($http) {
+portal.service("RoomsService", function ($http, localStorageService) {
     this.endPoint = backendUrl + "Rooms/";
-    bindBasicModelService(this, $http);
+    bindBasicModelService(this, $http, localStorageService);
     
     this.getAllFull = function () {
         return $http.get(this.endPoint);

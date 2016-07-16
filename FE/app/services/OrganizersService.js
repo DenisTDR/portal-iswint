@@ -3,8 +3,8 @@
  */
 
 
-portal.service("OrganizersService", function ($http) {
+portal.service("OrganizersService", function ($http, localStorageService) {
     this.endPoint = backendUrl + "Organizers/";
-    bindBasicModelService(this, $http);
+    bindBasicModelService(this, $http, localStorageService);
 });
 

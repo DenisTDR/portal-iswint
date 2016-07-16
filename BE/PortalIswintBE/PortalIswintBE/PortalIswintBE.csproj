@@ -161,7 +161,12 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Data\Models\Entities\Account.cs" />
+    <Compile Include="Data\Models\Entities\Auth\Account.cs" />
+    <Compile Include="Data\Models\Entities\Auth\Session.cs" />
+    <Compile Include="Data\Models\ModelMappings\Auth\AccountMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\Auth\SessionMap.cs" />
+    <Compile Include="Data\Models\ViewModels\Auth\LoginRequest.cs" />
+    <Compile Include="Data\Models\ViewModels\Auth\TokenResponse.cs" />
     <Compile Include="Migrations\201607060700471_redo.cs" />
     <Compile Include="Migrations\201607060700471_redo.Designer.cs">
       <DependentUpon>201607060700471_redo.cs</DependentUpon>
@@ -177,6 +182,22 @@
     <Compile Include="Migrations\201607151034520_someProperties.cs" />
     <Compile Include="Migrations\201607151034520_someProperties.Designer.cs">
       <DependentUpon>201607151034520_someProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607152150342_accounts.cs" />
+    <Compile Include="Migrations\201607152150342_accounts.Designer.cs">
+      <DependentUpon>201607152150342_accounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607152155007_sessions.cs" />
+    <Compile Include="Migrations\201607152155007_sessions.Designer.cs">
+      <DependentUpon>201607152155007_sessions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607152156187_sessionExpiration.cs" />
+    <Compile Include="Migrations\201607152156187_sessionExpiration.Designer.cs">
+      <DependentUpon>201607152156187_sessionExpiration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607152314002_accountName.cs" />
+    <Compile Include="Migrations\201607152314002_accountName.Designer.cs">
+      <DependentUpon>201607152314002_accountName.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\Attributes\AdminOnlyAttribute.cs" />
     <Compile Include="Misc\Attributes\BooleanAttribute.cs" />
@@ -233,6 +254,7 @@
     <Compile Include="Data\Models\ViewModels\RoomViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\ViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\WorkshopViewModel.cs" />
+    <Compile Include="Misc\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,6 +316,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607151034520_someProperties.resx">
       <DependentUpon>201607151034520_someProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607152150342_accounts.resx">
+      <DependentUpon>201607152150342_accounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607152155007_sessions.resx">
+      <DependentUpon>201607152155007_sessions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607152156187_sessionExpiration.resx">
+      <DependentUpon>201607152156187_sessionExpiration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607152314002_accountName.resx">
+      <DependentUpon>201607152314002_accountName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

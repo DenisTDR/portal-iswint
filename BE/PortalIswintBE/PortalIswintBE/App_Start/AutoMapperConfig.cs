@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using PortalIswintBE.Data.Models.Entities;
+using PortalIswintBE.Data.Models.Entities.Auth;
 using PortalIswintBE.Data.Models.ViewModels;
+using PortalIswintBE.Data.Models.ViewModels.Auth;
 
 namespace PortalIswintBE
 {
@@ -55,6 +57,9 @@ namespace PortalIswintBE
                     }
                 });
                 cfg.CreateMap<MentorViewModel, Mentor>();
+
+                cfg.CreateMap<Session, TokenResponse>();
+                cfg.CreateMap<TokenResponse, Session>();
 
             });
 
