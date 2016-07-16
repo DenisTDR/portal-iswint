@@ -17,8 +17,14 @@ namespace PortalIswintBE.Data.Db
 
         public Database()
         {
+#if DEBUG
             _connection =
-                new MySqlConnection(ConfigurationManager.ConnectionStrings["PortalIswintContext"].ConnectionString);
+                new MySqlConnection(ConfigurationManager.ConnectionStrings["PortalIswintContextDebug"].ConnectionString);
+#else
+            _connection =
+                new MySqlConnection(ConfigurationManager.ConnectionStrings["PortalIswintContextRelease"].ConnectionString);
+#endif
+
             _connection.Open();
             _context = new PortalIswintContext(_connection, false);
         }

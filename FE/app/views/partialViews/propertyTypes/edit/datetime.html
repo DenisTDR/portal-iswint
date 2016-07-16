@@ -1,0 +1,27 @@
+<div class="row" style="display: flex; align-items: center;">
+    <div class="col-sm-6">
+        <div class="input-group">
+            <input type="text"
+                   class="form-control"
+                   uib-datepicker-popup="dd/MM/yyyy"
+                   ng-model="model[property.Name]"
+                   is-open="dateTimePopupOpened"
+                   datepicker-options="dateTimeOptions"
+                   ng-required="true"
+                   close-text="Close"
+                   alt-input-formats=""
+                   ng-change="propertyChanged(model, property);" />
+              <span class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default"
+                        ng-click="dateTimePopupOpened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <uib-timepicker ng-model="model[property.Name]" ng-change="propertyChanged(model, property);" hour-step="1" minute-step="15" show-meridian="true"></uib-timepicker>
+    </div>
+</div>
+
+

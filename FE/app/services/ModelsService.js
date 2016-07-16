@@ -15,7 +15,7 @@ portal.service("ModelsService", function ($http) {
             }
             return;
         }
-        console.log("not cached. getting from be");
+        // console.log("not cached. getting from be");
         $http.get(thisService + "?typeName=" + typeName).then(function(data){
             //console.log("got typeModel: ", data);
             cachedModels[typeName] = data.data;

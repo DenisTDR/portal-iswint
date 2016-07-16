@@ -1,5 +1,7 @@
  .modal-body .form_field {
-     margin:0px 0px;
+     margin:5px 0px;
+     display: flex;
+     align-items: center;
  }
 
  .modal-header {
@@ -175,9 +177,7 @@ body {
 .tabbedView .tab-content {
     padding-top: 30px;
 }
-.modalView .form_field {
-    margin-top: 10px;
-}
+
 .navbar .navbar-nav>li:hover {
     background: #ffdf00;
 }

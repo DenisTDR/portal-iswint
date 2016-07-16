@@ -28,6 +28,8 @@ portal.service("PropertyService", function () {
                 return "email";
             case "date":
                 return "date";
+            case "datetime":
+                return "datetime";
         }
         if (PersonTypes.indexOf(property.Type.toLowerCase()) !== -1) {
             return "person";
@@ -95,15 +97,15 @@ portal.service("PropertyService", function () {
     
     this.convertDatePropertiesToDateObject = function(obj, type) {
         ForEachProperty(type.Properties, function(propertyName, propertyBag) {
-            if(propertyBag.Type == "date") {
-                obj[propertyName] = new Date(obj[propertyName]);
+            if(propertyBag.Type == "date" || propertyBag.Type == "datetime") {
+                obj[propertyName] = obj[propertyName]?new Date(obj[propertyName]):new Date();
             }
         });
     };
     
     this.convertDatePropertiesToString = function (obj, type) {
         ForEachProperty(type.Properties, function(propertyName, propertyBag) {
-            if(propertyBag.Type == "date" && obj[propertyName]
+            if((propertyBag.Type == "date" || propertyBag.Type == "datetime") && obj[propertyName]
                 && obj[propertyName].constructor == Date){
                 obj[propertyName] = obj[propertyName].toISOString();
             }

@@ -117,6 +117,7 @@ modals
                 PropertyService.convertDatePropertiesToDateObject(originalModel, $scope.type);
                 PropertyService.convertDatePropertiesToDateObject($scope.model, $scope.type);
 
+                console.log("type = ", $scope.type);
                 if(!$scope.type.TabbedModal){
                     PropertyService.splitIntoDefaultView($scope.type, $scope.propDefaultView);
                 }
@@ -143,12 +144,13 @@ modals
                 }
 
                 $scope.title = PropertyService.getTitleForModal($scope.type, $scope.model);
+                
             };
 
 
             var loadRooms = function(){
                 console.log("loading rooms");
-                RoomsService.getAllCached(function(rooms){
+                RoomsService.getAll(function(rooms){
                     $scope.rooms.all = rooms;
                     console.log("got rooms", rooms);
                 }, function(data){

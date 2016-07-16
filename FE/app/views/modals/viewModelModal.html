@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body modalView">
     <div class="row" ng-if="!type.TabbedModal">
-        <!--<div class="col-sm-5">
+        <div class="col-sm-5" ng-if="propDefaultView.photoProperty || propDefaultView.UnderImageProperties.length || propDefaultView.LeftViewProperties.length">
             <div class="row" ng-if="propDefaultView.photoProperty">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8" ng-init="property = propDefaultView.photoProperty"
@@ -34,7 +34,7 @@
                     <div class="col-lg-7" ng-if="!canEdit(property)" ng-include='"views/partialViews/propertyDisplay.html"'></div>
                 </div>
             </div>
-        </div>-->
+        </div>
         <div class="col-sm-7">
             <div class="row form_field" ng-repeat="property in propDefaultView.RightViewProperties" ng-if="showProperty(property)">
                 <div class="col-lg-4 label_inline"><label class="control-label">{{property.ViewName?property.ViewName:property.Name}}:</label></div>

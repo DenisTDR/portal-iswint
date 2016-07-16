@@ -2,20 +2,22 @@
  * Created by tdr on 03/07/16.
  */
 
-portal.service("CountriesService", function ($http) {
-    var thisService = backendUrl + "Country/";
+portal.service("CountriesService", function ($http, localStorageService) {
+    this.endPoint = backendUrl + "Country/";
+
+    bindBasicModelService(this, $http, localStorageService);
 
     var cachedCountries = null;
 
 
-    this.getAll = function (success, error, final) {
+    this.getAllCached = function (success, error, final) {
         if(cachedCountries) {
             if(typeof success == "function") {
                 success(cachedCountries);
             }
             return;
         }
-        $http.get(thisService + "GetAll").then(function(data){
+        $http.get(this.endPoint + "GetAll").then(function(data){
             //console.log("got typeModel: ", data);
             cachedCountries = data.data;
 

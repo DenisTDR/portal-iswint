@@ -25,7 +25,6 @@ namespace PortalIswintBE.Data.Models.ViewModels
 
         [VisibleInTable]
         [ViewName("Arrival Time")]
-        [TypeName("date")]
         [Tab("Arrival And Departure")]
         public DateTime ArrivalTime { get; set; }
 

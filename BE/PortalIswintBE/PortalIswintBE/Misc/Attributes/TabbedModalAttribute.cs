@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PortalIswintBE.Misc.Attributes
 {
-    public class TabbedModalAttribute : Attribute
+    public class TabbedModalAttribute : BooleanAttribute
     {
     }
 }

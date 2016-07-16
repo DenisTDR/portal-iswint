@@ -204,10 +204,11 @@
     <Compile Include="Misc\Attributes\BooleanAttribute.cs" />
     <Compile Include="Misc\Attributes\EditableInTableAttribute.cs" />
     <Compile Include="Misc\Attributes\MainViewAttribute.cs" />
+    <Compile Include="Misc\Attributes\NoActionsAttribute.cs" />
     <Compile Include="Misc\Attributes\OrganizerOnlyAttribute.cs" />
     <Compile Include="Misc\Attributes\ScaffoldableAttribute.cs" />
     <Compile Include="Misc\Attributes\TabAttribute.cs" />
-    <Compile Include="Misc\Attributes\TabbedAttribute.cs" />
+    <Compile Include="Misc\Attributes\TabbedModalAttribute.cs" />
     <Compile Include="Misc\Attributes\TypeNameAttribute.cs" />
     <Compile Include="Misc\Attributes\UnderImageAttribute.cs" />
     <Compile Include="Misc\Attributes\ViewNameAttribute.cs" />

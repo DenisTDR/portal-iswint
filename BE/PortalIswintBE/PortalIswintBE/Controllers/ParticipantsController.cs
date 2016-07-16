@@ -24,7 +24,12 @@ namespace PortalIswintBE.Controllers
                 {
                     list.Add(new ArrivalViewModel
                     {
-                        Participant = Mapper.Map<ParticipantViewModel>(part),
+                        Participant = new ParticipantViewModel
+                        {
+                            Id = part.Id,
+                            FirstName = part.FirstName,
+                            LastName = part.LastName
+                        },
                         ArrivalLocation = part.ArrivalLocation,
                         ArrivalTime = part.ArrivalTime
                     });

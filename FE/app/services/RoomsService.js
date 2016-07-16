@@ -7,10 +7,6 @@ portal.service("RoomsService", function ($http, localStorageService) {
     this.endPoint = backendUrl + "Rooms/";
     bindBasicModelService(this, $http, localStorageService);
     
-    this.getAllFull = function () {
-        return $http.get(this.endPoint);
-    };
-
     var cachedRooms = null;
     this.getAllCached = function ( success, error, final) {
         if(cachedRooms) {

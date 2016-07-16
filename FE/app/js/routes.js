@@ -41,7 +41,12 @@ portal
             $stateProvider.state('countries', {
                 url: '/countries?Id&Action',
                 templateUrl: 'views/countries/countries.html',
-                controller: 'CountriesService'
+                controller: 'CountriesController'
+            });
+            $stateProvider.state('arrivals', {
+                url: '/arrivals',
+                templateUrl: 'views/arrivals/arrivals.html',
+                controller: 'ArrivalsController'
             });
             $stateProvider.state('schedule', {
                 url: '/schedule',

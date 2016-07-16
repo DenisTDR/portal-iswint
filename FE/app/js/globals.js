@@ -2,12 +2,9 @@
  * Created by tdr on 19/06/16.
  */
 
-var ShirtSizes = ["XS", "S", "M", "L", "XL"];
-var Genres = ["M", "F", "Unknown"];
-
-// var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
+var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
 // var backendUrl = "http://api.portal.iswint.ro/api/";
-var backendUrl = "http://timer.labs.ligaac.ro/api/";
+// var backendUrl = "http://timer.labs.ligaac.ro/api/";
 
 
 //

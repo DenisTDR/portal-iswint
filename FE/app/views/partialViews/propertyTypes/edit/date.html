@@ -1,10 +1,10 @@
 <p class="input-group">
     <input type="text"
            class="form-control"
-           uib-datepicker-popup="{{format}}"
+           uib-datepicker-popup="dd/MM/yyyy"
            ng-model="model[property.Name]"
-           is-open="dateTimePopupOpened"
-           datepicker-options="dateOptions"
+           is-open="datePopupOpened"
+           datepicker-options=""
            ng-required="true"
            close-text="Close"
            alt-input-formats="altInputFormats"
@@ -12,6 +12,6 @@
               <span class="input-group-btn">
                 <button type="button"
                         class="btn btn-default"
-                        ng-click="dateTimePopupOpened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        ng-click="datePopupOpened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
 </p>
