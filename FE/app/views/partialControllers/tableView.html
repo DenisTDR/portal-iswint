@@ -1,7 +1,3 @@
-
-<div class="text-center" ng-if="!loaded()">
-    <i class="fa fa-cog fa-spin" style="font-size:48px" ></i>
-</div>
 <div class="container" ng-if="type != null || models">
     <div class="row">
         <div class="col-md-9"><h1 class="bold" id="pageTitle">{{pageTitle}}</h1></div>
@@ -40,8 +36,11 @@
             <button class="btn btn-default" ng-show="!advancedFiltersAreShown" ng-click="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-down"></i>&nbsp;Show Advanced Options</button>
             <button class="btn btn-default" ng-show="advancedFiltersAreShown" ng-click="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-up"></i>&nbsp;Hide Advanced Options</button>
         </div>
+    </div>   
+    <div class="text-center" ng-if="!loaded()">
+        <i class="fa fa-cog fa-spin" style="font-size:48px; color:" ></i>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" ng-if="loaded()">
         <table class="table">
             <thead>
                 <tr>

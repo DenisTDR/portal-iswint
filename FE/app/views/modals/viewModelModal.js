@@ -126,7 +126,7 @@ modals
                     console.log($scope.propTabbedView);
                 }
 
-                if(bag.depBag.rooms){
+                if(bag.depBag.rooms){ 
                     loadRooms();
                 }
                 if(bag.depBag.countries){
@@ -142,6 +142,7 @@ modals
                     loadMentors();
                 }
 
+                $scope.title = PropertyService.getTitleForModal($scope.type, $scope.model);
             };
 
 
