@@ -107,8 +107,8 @@ portal.service("PropertyService", function () {
                 && obj[propertyName].constructor == Date){
                 obj[propertyName] = obj[propertyName].toISOString();
             }
-        });x
-    }
+        });
+    };
 
     this.getTitleForModal = function(type, model) {
         type.Type = type.Name;
