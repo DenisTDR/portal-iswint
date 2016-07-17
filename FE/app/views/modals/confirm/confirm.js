@@ -9,6 +9,7 @@ modals.controller('ConfirmInstanceController', function ($scope, $uibModalInstan
     $scope.PropertyService = PropertyService;
 
     $scope.ok = function () {
+        $scope.loading = true;
         $uibModalInstance.close();
     };
 

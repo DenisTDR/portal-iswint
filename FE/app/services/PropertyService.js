@@ -4,7 +4,7 @@
 
 portal.service("PropertyService", function () {
     var PersonTypes = ["organizer", "mentor", "participant"];
-    var ObjectTypes = ["room", "country", "workshop"];
+    var ObjectTypes = ["room", "country", "workshop", "santinel"];
     this.getPropertyFileName = function(property, editable){
         if(editable) {
             switch (property.Type) {

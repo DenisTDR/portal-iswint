@@ -5,7 +5,7 @@
 modals
     .controller('viewModelModalController',
         function ($scope, $rootScope, $uibModalInstance, $uibModal, bag, RoomsService, CountriesService,
-                  WorkshopsService, OrganizersService, MentorsService, PropertyService) {
+                  WorkshopsService, OrganizersService, MentorsService, PropertyService,Notification) {
             console.log("viewModelModalController loaded");
             $scope.type = bag.type;
             $scope.model = Clone(bag.model ? bag.model : {});
@@ -60,25 +60,29 @@ modals
             var saveNewModel = function () {
                 // console.log("saving");
                 // console.log($scope.model);
+               
+                
                 var newModel = Clone($scope.model);
                 PropertyService.convertDatePropertiesToString(newModel, $scope.type);
 
-                var waitingModal = $rootScope.messageBox("", "Please wait ...", false);
+               // var waitingModal = $rootScope.messageBox("", "Please wait ...", false);
 
                 ModelService.addNew(newModel).then(function(data) {
                    console.log("ok", data);
                     newModel.Id = data.data.Id;
                     var successMessage =
-                        $rootScope.messageBox("Success!", "Saved!", true, "sm");
+                         Notification.success({message: 'Success'});
                     setTimeout(function(){
-                        successMessage.close();
-                        $uibModalInstance.close(newModel);
-                    }, 2000);
+                       // successMessage.close();
+                        
+                    }, 0);
                 }).catch(function(data){
-                    console.log("err", data);
+                    Notification.error({message: 'Error'});
                 }).finally(function(){
-                    waitingModal.close();
+                    $uibModalInstance.close(newModel);
+                
                 });
+    
             };
 
             var updateModel = function () {
