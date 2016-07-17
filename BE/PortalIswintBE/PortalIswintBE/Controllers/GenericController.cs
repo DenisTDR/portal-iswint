@@ -12,6 +12,9 @@ using PortalIswintBE.Data;
 using PortalIswintBE.Data.Db;
 using PortalIswintBE.Data.Models.Entities;
 using PortalIswintBE.Data.Models.ViewModels;
+using PortalIswintBE.Misc;
+using PortalIswintBE.Misc.Attributes;
+using PortalIswintBE.Misc.Filters;
 
 namespace PortalIswintBE.Controllers
 {
@@ -19,8 +22,6 @@ namespace PortalIswintBE.Controllers
         where Model : Entity, new()
         where ViewModel : Data.Models.ViewModels.ViewModel
     {
-        // GET: api/Room
-
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
@@ -33,7 +34,6 @@ namespace PortalIswintBE.Controllers
         }
 
         [HttpGet]
-        // GET: api/Room/5
         public async Task<IHttpActionResult> GetById(int id)
         {
             using (var db = new Database())
@@ -43,8 +43,8 @@ namespace PortalIswintBE.Controllers
                 return Ok(vm);
             }
         }
-
-        // POST: api/Room
+        
+        [Auth(Role.Organizer)]
         [HttpPost]
         public async Task<IHttpActionResult> AddNew([FromBody] Dictionary<string, object> propertyBag)
         {
@@ -82,36 +82,36 @@ namespace PortalIswintBE.Controllers
 
             return Created("nowhere", viewModel);
         }
-
-        // PUT: api/Room/5
-        [HttpPut]
-        public async Task<IHttpActionResult> Update(int id, [FromBody] ViewModel vm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            if (id != vm.Id)
-            {
-                return BadRequest();
-            }
-            var entity = Mapper.Map<Model>(vm);
-            using (var db = new Database())
-            {
-                try
-                {
-                    if (await db.Repo<Model>().UpdateAsync(entity) != null)
-                    {
-                        return Ok();
-                    }
-                    return NotFound();
-                }
-                catch (Exception exc)
-                {
-                    return InternalServerError(exc);
-                }
-            }
-        }
+        
+//        [Auth(Role.Organizer)]
+//        [HttpPut]
+//        public async Task<IHttpActionResult> Update(int id, [FromBody] ViewModel vm)
+//        {
+//            if (!ModelState.IsValid)
+//            {
+//                return BadRequest(ModelState);
+//            }
+//            if (id != vm.Id)
+//            {
+//                return BadRequest();
+//            }
+//            var entity = Mapper.Map<Model>(vm);
+//            using (var db = new Database())
+//            {
+//                try
+//                {
+//                    if (await db.Repo<Model>().UpdateAsync(entity) != null)
+//                    {
+//                        return Ok();
+//                    }
+//                    return NotFound();
+//                }
+//                catch (Exception exc)
+//                {
+//                    return InternalServerError(exc);
+//                }
+//            }
+//        }
 
         // DELETE: api/Room/5
         [HttpDelete]
@@ -126,6 +126,7 @@ namespace PortalIswintBE.Controllers
                     {
                         return NotFound();
                     }
+                    await Task.Delay(2000);
                     return Ok();
                 }
             }
@@ -136,6 +137,7 @@ namespace PortalIswintBE.Controllers
         }
 
         [HttpPost]
+        [Auth(Role.Organizer)]
         public async Task<IHttpActionResult> UpdateProperties(int id, [FromBody] Dictionary<string, object> propertyBag )
         {
             if (!ModelState.IsValid)

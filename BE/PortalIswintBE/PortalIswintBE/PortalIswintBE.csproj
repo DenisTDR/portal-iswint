@@ -151,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Misc\Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
@@ -161,13 +160,17 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SantinelController.cs" />
     <Compile Include="Data\Models\Entities\Auth\Account.cs" />
     <Compile Include="Data\Models\Entities\Auth\Session.cs" />
+    <Compile Include="Data\Models\Entities\Santinel.cs" />
     <Compile Include="Data\Models\ModelMappings\Auth\AccountMap.cs" />
     <Compile Include="Data\Models\ModelMappings\Auth\SessionMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\SantinelMap.cs" />
     <Compile Include="Data\Models\ViewModels\ArrivalViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\Auth\LoginRequest.cs" />
     <Compile Include="Data\Models\ViewModels\Auth\TokenResponse.cs" />
+    <Compile Include="Data\Models\ViewModels\SantinelViewModel.cs" />
     <Compile Include="Migrations\201607060700471_redo.cs" />
     <Compile Include="Migrations\201607060700471_redo.Designer.cs">
       <DependentUpon>201607060700471_redo.cs</DependentUpon>
@@ -200,7 +203,16 @@
     <Compile Include="Migrations\201607152314002_accountName.Designer.cs">
       <DependentUpon>201607152314002_accountName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607171425255_santinel.cs" />
+    <Compile Include="Migrations\201607171425255_santinel.Designer.cs">
+      <DependentUpon>201607171425255_santinel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607172140029_roleToAccount.cs" />
+    <Compile Include="Migrations\201607172140029_roleToAccount.Designer.cs">
+      <DependentUpon>201607172140029_roleToAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Attributes\AdminOnlyAttribute.cs" />
+    <Compile Include="Misc\Filters\AuthAttribute.cs" />
     <Compile Include="Misc\Attributes\BooleanAttribute.cs" />
     <Compile Include="Misc\Attributes\EditableInTableAttribute.cs" />
     <Compile Include="Misc\Attributes\MainViewAttribute.cs" />
@@ -256,6 +268,8 @@
     <Compile Include="Data\Models\ViewModels\RoomViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\ViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\WorkshopViewModel.cs" />
+    <Compile Include="Misc\Filters\HeaderTransportFilterAttribute.cs" />
+    <Compile Include="Misc\Role.cs" />
     <Compile Include="Misc\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -330,6 +344,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607152314002_accountName.resx">
       <DependentUpon>201607152314002_accountName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607171425255_santinel.resx">
+      <DependentUpon>201607171425255_santinel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607172140029_roleToAccount.resx">
+      <DependentUpon>201607172140029_roleToAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

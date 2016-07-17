@@ -159,10 +159,10 @@ modals
             };
             var loadCountries = function(){
                 console.log("loading countries");
-                CountriesService.getAll(function(countries){
-                    $scope.countries.all = countries;
-                    console.log("got countries", countries);
-                }, function(data){
+                CountriesService.getAll().then(function(data){
+                    $scope.countries.all = data.data;
+                    console.log("got countries");
+                }).catch(function(data){
                     console.log("err getting countries", data);
                 });
             };

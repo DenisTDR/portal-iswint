@@ -4,9 +4,11 @@
 
 views
     .controller('LoginController',
-        function($scope, $state, localStorageService, AccountService) {
+        function($scope, $rootScope, $state, localStorageService, AccountService) {
             $scope.model = { };
 
+            $rootScope.currentView = "login";
+            
             $scope.state = 0;
             $scope.states = ["", "Logged in", "", "Please wait", "An error occurred."];
 

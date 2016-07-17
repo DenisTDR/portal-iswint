@@ -25,7 +25,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-                    <li ng-if="!isLoggedIn()"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;&nbsp;Login</a></li>
+                    <li ng-if="!isLoggedIn()" ng-class="{'active': currentView=='login'}"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;&nbsp;Login</a></li>
                     <li ng-if="isLoggedIn()"><a href="#/login"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;{{getSession().Name}}</a></li>
                     <li ng-if="isLoggedIn()"><a href="#/login?Action=logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
 

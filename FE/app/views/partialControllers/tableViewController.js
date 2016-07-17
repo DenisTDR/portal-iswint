@@ -88,8 +88,9 @@ views
         };
 
         var loadType = function () {
-            ModelsService.getModelType($scope.typeName, function(type) {
-                $scope.type = type;
+            console.log("getting type: " + $scope.typeName + " from:", ModelsService);
+            ModelsService.getModelType($scope.typeName).then(function(data) {
+                $scope.type = data.data;
                 var cacheKey = "prop_visibility_" + $scope.typeName;
                 if(CachingService.contains(cacheKey)) {
                     $scope.type.Properties = CachingService.get(cacheKey);

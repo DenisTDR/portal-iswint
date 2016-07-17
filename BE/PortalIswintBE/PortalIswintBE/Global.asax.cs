@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -22,6 +23,7 @@ namespace PortalIswintBE
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
             config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling =
                 PreserveReferencesHandling.Objects;
+            
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

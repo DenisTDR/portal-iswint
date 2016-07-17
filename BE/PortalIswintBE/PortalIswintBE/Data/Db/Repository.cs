@@ -162,7 +162,7 @@ namespace PortalIswintBE.Data.Db
 
         public async Task<T> FindAsync(Expression<Func<T, bool>> match)
         {
-            return await _context.Set<T>().SingleOrDefaultAsync(match);
+            return await _context.Set<T>().FirstOrDefaultAsync(match);
         }
 
         public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match)

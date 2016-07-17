@@ -61,6 +61,9 @@ namespace PortalIswintBE
                 cfg.CreateMap<Session, TokenResponse>();
                 cfg.CreateMap<TokenResponse, Session>();
 
+                cfg.CreateMap<Santinel, SantinelViewModel>();
+                cfg.CreateMap<SantinelViewModel, Santinel>();
+
             });
 
 
