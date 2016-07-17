@@ -73,7 +73,7 @@ modals
                     var successMessage =
                          Notification.success({message: 'Success'});
                     setTimeout(function(){
-                        successMessage.close();
+                       // successMessage.close();
                         
                     }, 0);
                 }).catch(function(data){

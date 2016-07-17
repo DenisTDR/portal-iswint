@@ -5,9 +5,9 @@
 var migrationCount = 2;
 var debugging = false;
 
-// var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
+var backendUrl = "http://api.portal.iswint.tdr/api/";
 // var backendUrl = "http://api.portal.iswint.ro/api/";
-var backendUrl = "http://portal.iswint.ro/api/";
+//var backendUrl = "http://portal.iswint.ro/api/";
 
 
 var ForEachProperty = function (obj, fct) {

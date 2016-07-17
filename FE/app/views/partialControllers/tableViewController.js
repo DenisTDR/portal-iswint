@@ -7,7 +7,7 @@ views
         function($scope, $rootScope, $uibModal, $stateParams, CachingService,
                  OrganizersService, ArrivalsService, PropertyService,
                  ParticipantsService, ModelsService, RoomsService,
-                 CountriesService, WorkshopsService, MentorsService, SantinelService) {
+                 CountriesService, WorkshopsService, MentorsService, SantinelService, Notification) {
         console.log("loading TableViewController with: " + $scope.typeName);
         $scope.PropertyService = PropertyService;
         $scope.pageTitle = "";
@@ -240,11 +240,11 @@ views
                     }
                 }
             });
-
             removeModalInstance.result.then(function () {
                 Service.removeModel(model.Id).then(function(data){
                     console.log("removed ", data);
-                    $rootScope.messageBox("Success!", "Removed!", true, "sm", 1000);
+                    //$rootScope.messageBox("Success!", "Removed!", true, "sm", 1000);
+                    Notification.success({message: 'Success'});
                     for(var i = 0; i < $scope.models.length; i++){
                         if($scope.models[i].Id == model.Id){
                             $scope.models.splice(i, 1);
