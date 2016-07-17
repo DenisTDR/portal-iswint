@@ -184,3 +184,11 @@ body {
  .navbar .navbar-nav>li:hover>a {
      color: #28702a !important;
  }
+
+ /*Notification*/
+/*
+ .ui-notification.success
+{
+    color: #fff;
+    background: #28702a;
+}*/

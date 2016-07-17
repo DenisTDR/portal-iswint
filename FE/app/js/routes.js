@@ -58,5 +58,10 @@ portal
                 templateUrl: 'views/account/login/login.html',
                 controller: 'LoginController'
             });
+            $stateProvider.state('santinel',{
+                url:'/santinel',
+                templateUrl:'views/santinel/santinel.html',
+                controller:'SantinelController'
+            });
             $urlRouterProvider.otherwise('/home');
         }]);

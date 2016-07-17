@@ -7,7 +7,7 @@ views
         function($scope, $rootScope, $uibModal, $stateParams, CachingService,
                  OrganizersService, ArrivalsService, PropertyService,
                  ParticipantsService, ModelsService, RoomsService,
-                 CountriesService, WorkshopsService, MentorsService) {
+                 CountriesService, WorkshopsService, MentorsService, SantinelService) {
         console.log("loading TableViewController with: " + $scope.typeName);
         $scope.PropertyService = PropertyService;
         $scope.pageTitle = "";
@@ -56,6 +56,10 @@ views
                     break;
                 case "arrival":
                     Service = ArrivalsService;
+                    break;
+                case "santinel":
+                    Service = SantinelService;
+                    $scope.pageTitle = "Santinel Schedule"
                     break;
             }
             if(Service == null) {
