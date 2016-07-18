@@ -4,12 +4,11 @@
 
 modals.controller('ConfirmInstanceController', function ($scope, $uibModalInstance, model, type, PropertyService) {
 
-    console.log(type);
+    // console.log(type);
     $scope.what = "plm";
     $scope.PropertyService = PropertyService;
 
     $scope.ok = function () {
-        $scope.loading = true;
         $uibModalInstance.close();
     };
 

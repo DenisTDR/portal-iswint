@@ -10,8 +10,6 @@ modals
             $scope.type = bag.type;
             $scope.model = Clone(bag.model ? bag.model : {});
             $scope.editing = bag.action != "view";
-            $scope.isOrganizer = bag.isOrganizer;
-            $scope.isAdmin = bag.isAdmin;
             $scope.rooms = {all: []};
             $scope.countries = {all: []};
             $scope.workshops = {all: []};
@@ -26,7 +24,8 @@ modals
             var ModelService = bag.Service;
             var propertyBag = {};
             var originalModel = bag.model ? bag.model : {};
-            
+            var modifiedPropertiesCount = 0;
+
             $scope.propertyChanged = function(model, property) {
                 // console.log(property.Name + " changed to ");
                 // console.log(model[property.Name]);
@@ -60,7 +59,6 @@ modals
             var saveNewModel = function () {
                 // console.log("saving");
                 // console.log($scope.model);
-               
                 
                 var newModel = Clone($scope.model);
                 PropertyService.convertDatePropertiesToString(newModel, $scope.type);
@@ -86,6 +84,10 @@ modals
             };
 
             var updateModel = function () {
+                if(CountProperties(propertyBag) == 0) {
+                    console.log("nothing to save ...");
+                    $rootScope.messageBox("...", "Nothing to save ...", true, "md", 100 * 1000);
+                }
                 // console.log(propertyBag);
                 var editingObject = Clone(propertyBag);
                 // console.log(editingObject);
@@ -110,7 +112,7 @@ modals
                     }, 1000);
                 }).catch(function(data){
                     console.log(data);
-                    $rootScope.messageBox("Error", "The server says: " + data.data.Message, true);
+                    $rootScope.messageBox("Error", "The server says: " + data.data.Message, true, "md", 100 * 1000);
                 }).finally(function() {
                     waitingModal.close();
                 });
@@ -205,12 +207,12 @@ modals
 
 
             $scope.showProperty = function(property) {
-                return (!property.OrganizerOnly || $scope.isOrganizer)
-                    && (!property.AdminOnly || $scope.isAdmin);
+                return (!property.OrganizerOnly || $rootScope.isOrganizer)
+                    && (!property.AdminOnly || $rootScope.isAdmin);
             };
             
             $scope.canEdit = function(property) {
-                return $scope.isOrganizer && $scope.editing && !property.ReadOnly;
+                return ($rootScope.isAdmin || $rootScope.isOrganizer) && $scope.editing && !property.ReadOnly;
             };
 
             $scope.PropertyService = PropertyService;

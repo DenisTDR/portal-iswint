@@ -25,7 +25,7 @@ portal.config(function(NotificationProvider) {
         });
     });
 
-portal.run(function($rootScope, $uibModal, CachingService) {
+portal.run(function($rootScope, $uibModal, $http, CachingService) {
     $rootScope.isLoggedIn = function () {
        return CachingService.get("session", true) != null;
     };
@@ -34,6 +34,7 @@ portal.run(function($rootScope, $uibModal, CachingService) {
     };
 
     $rootScope.messageBox = function(title, message, canClose, size, autoCloseIn) {
+
         if(!size) {
             size = "sm";
         }
@@ -65,7 +66,19 @@ portal.run(function($rootScope, $uibModal, CachingService) {
 
     CachingService.validateCache();
 
+    var tokenModel = CachingService.get("session", true);
+    // console.log("session=", session);
+    if(tokenModel) {
+        // console.log("set Authorization: "+ session.Token);
+        $http.defaults.headers.common.Authorization = "Please " + tokenModel.Token;
+    }
+    $rootScope.isAdmin = tokenModel && tokenModel.Role == "Admin";
+    $rootScope.isOrganizer = tokenModel && (tokenModel.Role == "Admin" || tokenModel.Role == "Organizer");
+
+
 });
+
+
 
 var modals = angular.module('portal.modals', ['ui.router']);
 var views = angular.module('portal.views', ['ui.router']);

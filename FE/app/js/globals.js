@@ -2,13 +2,18 @@
  * Created by tdr on 19/06/16.
  */
 
-var migrationCount = 5;
+var migrationCount = 6;
 var debugging = false;
 
 var backendUrl = "http://dev.api.portal.iswint.tdr/api/";
 // var backendUrl = "http://api.portal.iswint.ro/api/";
 // var backendUrl = "http://portal.iswint.ro/api/";
 
+var CountProperties = function (obj) {
+    var cnt = 0;
+    ForEachProperty(obj, function(){ cnt++; });
+    return cnt;
+};
 
 var ForEachProperty = function (obj, fct) {
     for (var propertyName in obj) {

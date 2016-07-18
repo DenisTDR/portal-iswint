@@ -40,6 +40,7 @@ namespace PortalIswintBE.Controllers
                 var tokenResponse = Mapper.Map<TokenResponse>(session);
                 tokenResponse.Name = session.Account.Name;
                 tokenResponse.Username = session.Account.Username;
+                tokenResponse.Role = session.Account.Role;
                 await db.Repo<Session>().AddAsync(session);
                 return Ok(new {Status = "success", Session = tokenResponse});
             }

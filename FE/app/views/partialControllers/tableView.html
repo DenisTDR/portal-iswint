@@ -61,11 +61,10 @@
                         ng-if="property.EditableInTable"></span>
                     </td>
                     <td class="right-content" ng-if="!type.NoActions">
-                        <button class="btn green-yellow" ng-click="modelAction(model, 'edit');"
-                        ng-if="isOrganizer"><span class="glyphicon glyphicon-edit"
-                        ></span></button>
                         <button class="btn green-yellow" ng-click="modelAction(model, 'view');"><span class="glyphicon glyphicon-eye-open"></span></button>
-                        <button class="btn green-yellow" ng-click="modelAction(model, 'remove');"><span class="glyphicon glyphicon-trash"
+
+                        <button class="btn green-yellow" ng-click="modelAction(model, 'edit');" ng-if="isOrganizer || isAdmin"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button class="btn green-yellow" ng-click="modelAction(model, 'remove');" ng-if="isOrganizer || isAdmin"><span class="glyphicon glyphicon-trash"
                         ></span></button>
                     </td>
                 </tr>

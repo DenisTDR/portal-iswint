@@ -4,7 +4,7 @@
 
 views
     .controller('LoginController',
-        function($scope, $rootScope, $state, localStorageService, AccountService) {
+        function($scope, $rootScope, $state, $http, localStorageService, AccountService) {
             $scope.model = { };
 
             $rootScope.currentView = "login";
@@ -37,6 +37,11 @@ views
             $scope.loggedIn = function (tokenModel) {
                 console.log(tokenModel);
                 localStorageService.set("session", tokenModel);
+
+                $rootScope.isAdmin = tokenModel.Role == "Admin";
+                $rootScope.isOrganizer = tokenModel.Role == "Admin" || tokenModel.Role == "Organizer";
+                
+                $http.defaults.headers.common.Authorization = "Please " + tokenModel.Token;
             };
 
             $scope.init = function () {
@@ -44,6 +49,7 @@ views
                     localStorageService.remove("session");
                     console.log($state.params.Action);
                     $state.go("home");
+                    $http.defaults.headers.common.Authorization = null;
                 }
             };
             $scope.init();

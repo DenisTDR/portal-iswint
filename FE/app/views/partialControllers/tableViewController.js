@@ -13,9 +13,6 @@ views
         $scope.pageTitle = "";
         $scope.advancedFiltersAreShown = false;
 
-        $scope.isOrganizer = true;
-        $scope.isAdmin = false;
-
         $scope.models = null;
         $scope.type = null;
 
@@ -155,15 +152,15 @@ views
 
         $scope.showProperty = function(property) {
             return property.visible
-                && (!property.OrganizerOnly || $scope.isOrganizer)
+                && (!property.OrganizerOnly || $rootScope.isOrganizer)
                 && property.VisibleInTable
-                && (!property.AdminOnly || $scope.isAdmin);
+                && (!property.AdminOnly || $rootScope.isAdmin);
         };
 
         $scope.showPropertyVisibleCheckbox = function(property) {
-            return (!property.OrganizerOnly || $scope.isOrganizer)
+            return (!property.OrganizerOnly || $rootScope.isOrganizer)
                 && property.VisibleInTable
-                && (!property.AdminOnly || $scope.isAdmin);
+                && (!property.AdminOnly || $rootScope.isAdmin);
         };
 
         $scope.propertyVisibleChanged = function(property) {
@@ -205,9 +202,7 @@ views
                         return {
                             type: $scope.type,
                             model: model,
-                            isOrganizer: $scope.isOrganizer,
                             action: action,
-                            isAdmin: $scope.isAdmin,
                             depBag: $scope.depBag,
                             Service: Service
                         };
@@ -230,7 +225,7 @@ views
 
             var removeModalInstance = $uibModal.open({
                 templateUrl: 'views/modals/confirm/confirm.html',
-                controller: 'ConfirmInstanceController',
+                controller: 'RemoveConfirmInstanceController',
                 size: 'md',
                 resolve: {
                     model: function() {
@@ -238,13 +233,18 @@ views
                     },
                     type: function() {
                         return $scope.type;
+                    },
+                    Service: function() {
+                        return Service;
                     }
                 }
             });
             removeModalInstance.result.then(function () {
+                var waitingNotification = Notification.info({message: 'Deleting ...'});
+                console.log(waitingNotification);
                 Service.removeModel(model.Id).then(function(data){
                     console.log("removed ", data);
-                    //$rootScope.messageBox("Success!", "Removed!", true, "sm", 1000);
+
                     Notification.success({message: 'Success'});
                     for(var i = 0; i < $scope.models.length; i++){
                         if($scope.models[i].Id == model.Id){
@@ -252,9 +252,6 @@ views
                             return;
                         }
                     }
-                }).catch(function(data){
-                    $rootScope.messageBox("Error!", "Couldn't remove that object ...", true, "sm");
-                    console.log("err removing ", data);
                 });
             }, function () {
                 console.log('not deleting');

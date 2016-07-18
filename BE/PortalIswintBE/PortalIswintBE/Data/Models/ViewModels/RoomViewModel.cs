@@ -9,12 +9,6 @@ namespace PortalIswintBE.Data.Models.ViewModels
     public class RoomViewModel: ViewModel
     {
         [VisibleInTable]
-        [ReadOnly(true)]
-        [ViewName("ID")]
-        [AdminOnly]
-        public override int Id { get; set; }
-
-        [VisibleInTable]
         public string Name { get; set; }
         public virtual IList<PersonViewModel> People { get; set; }
     }

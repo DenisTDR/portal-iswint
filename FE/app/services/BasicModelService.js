@@ -5,11 +5,7 @@
 
 var bindBasicModelService = function(service, $http, CachingService) {
     
-    var session = CachingService.get("session", true);
 
-    if(session) {
-        $http.defaults.headers.common.Authorization = "Basic " + session.Token;
-    }
 
     service.getAll = function() {
         return $http.get(service.endPoint + "GetAll");
