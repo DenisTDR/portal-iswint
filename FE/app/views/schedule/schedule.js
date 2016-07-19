@@ -368,18 +368,18 @@
  		},
  		{
  			"startHour": "14:30",
- 			"endHour": "20:30",
+ 			"endHour": "19:30",
  			"name": "International Night preparation",
  			"content": "No details"
  		},
  		{
- 			"startHour": "20:30",
- 			"endHour": "21:30",
+ 			"startHour": "19:30",
+ 			"endHour": "21:00",
  			"name": "Free time",
  			"content": "No details"
  		},
  		{
- 			"startHour": "21:30",
+ 			"startHour": "21:00",
  			"endHour": "24:00",
  			"name": "International Night",
  			"content": "No details"

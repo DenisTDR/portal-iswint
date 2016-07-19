@@ -21,6 +21,7 @@ views
                         if(data.data.Status == "success") {
                             $scope.state = 1;
                             $scope.loggedIn(data.data.Session);
+                            $state.go('home');
                         }
                         else {
                             $scope.state = 2;

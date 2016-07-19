@@ -53,10 +53,11 @@ views
                     break;
                 case "arrival":
                     Service = ArrivalsService;
+                    $scope.pageTitle = "Arrivals Schedule";
                     break;
                 case "santinel":
                     Service = SantinelService;
-                    $scope.pageTitle = "Santinel Schedule"
+                    $scope.pageTitle = "Santinel Schedule";
                     break;
             }
             if(Service == null) {
