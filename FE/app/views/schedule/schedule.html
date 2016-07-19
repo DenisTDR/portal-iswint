@@ -6,44 +6,29 @@
     <div class="col-md-12">
             <div class="row">
                 <ul class="nav nav-justified">
-                    <li ng-class="{current: true}" style="cursor:pointer"><a ng-click="changeTab(1)">Monday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(2)">Tuesday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Wednesday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(1)">Thursday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(2)">Friday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Saturday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(1)">Sunday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(2)">Monday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Tuesday</a></li>
-                    <li ng-class="{current: false}" style="cursor:pointer"><a ng-click="changeTab(3)">Wednesday</a></li>
+                    <li ng-class="{current: isCurrentTab(1)}" style="cursor:pointer"><a ng-click="setCurrentTab(1)">Monday 25.07.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(2)}" style="cursor:pointer"><a ng-click="setCurrentTab(2)">Tuesday 26.07.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(3)}" style="cursor:pointer"><a ng-click="setCurrentTab(3)">Wednesday 27.07.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(4)}" style="cursor:pointer"><a ng-click="setCurrentTab(4)">Thursday 28.07.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(5)}" style="cursor:pointer"><a ng-click="setCurrentTab(5)">Friday 29.07.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(6)}" style="cursor:pointer"><a ng-click="setCurrentTab(6)">Saturday 30.07.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(7)}" style="cursor:pointer"><a ng-click="setCurrentTab(7)">Sunday 31.07.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(8)}" style="cursor:pointer"><a ng-click="setCurrentTab(8)">Monday 01.08.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(9)}" style="cursor:pointer"><a ng-click="setCurrentTab(9)">Tuesday 02.08.2016</a></li>
+                    <li ng-class="{current: isCurrentTab(10)}" style="cursor:pointer"><a ng-click="setCurrentTab(10)">Wednesday 03.08.2016</a></li>
                 </ul>
             <div class="tab-content">
-                <div style="margin-top:10px;">
-                    <div class="col-md-12">
-                    	<div class="col-md-2 bold">8:50 - 9:00</div>
-                    	<div class="col-md-10">Wake-up time and road to workshop location</div>
-
-                    	<div class="col-md-2 bold">9:30 - 13:30</div>
-                    	<div class="col-md-10">Coffee break and city strolling</div>
-
-                    	<div class="col-md-2 bold">14:00 - 14:30</div>
-                    	<div class="col-md-10">Lunch</div>
-
-                    	<div class="col-md-2 bold">15:00 - 15:30</div>
-                    	<div class="col-md-10">Free time</div>
-
-                    	<div class="col-md-2 bold">16:00 - 19:30</div>
-                    	<div class="col-md-10">Openning Ceremony</div>
-
-                    	<div class="col-md-2 bold">20:00 - 20:30</div>
-                    	<div class="col-md-10">Dinner</div>
-
-                    	<div class="col-md-2 bold">21:00 - 21:30</div>
-                    	<div class="col-md-10">Free time</div>
-
-                    	<div class="col-md-2 bold">22:00 ++</div>
-                    	<div class="col-md-10">Get to know party</div>
-                    </div>
+                <!-- Monday - 25.07.2016 -->
+                <div ng-repeat="day in schedule" ng-if="isCurrentTab($index + 1)" style="margin-top:10px;">
+                    <ul class="timeline">
+                        <li ng-repeat="item in day.items" class="timeline-milestone {{item.class}}">
+                            <div class="timeline-action">
+                                <span class="title bold">{{item.name}}</span>
+                                <span class="date bold">{{item.startHour}} - {{item.endHour}} <i class="light" ng-if="item.hourToEvent != ''">({{item.hourToEvent}} hours left)</i></span>
+                                <span class="content">{{item.content}}</span>  
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>   

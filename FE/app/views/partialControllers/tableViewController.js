@@ -20,7 +20,7 @@ views
 
         // Sorting
         $scope.propertyName = 'FirstName';
-        $scope.reverse = true;
+        $scope.reverse = false;
 
         $scope.depBag = {};
 
