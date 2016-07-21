@@ -29,6 +29,11 @@ namespace PortalIswintBE.Controllers
             {
                 var entities = await db.Repo<Model>().GetAllAsync();
                 var vms = Mapper.Map<List<ViewModel>>(entities);
+                if (vms.Count > 0 && vms.FirstOrDefault().GetType().GetProperties().Any(prop => prop.Name == "Name"))
+                {
+                    vms.Sort(
+                        (m1, m2) => string.Compare(((dynamic) m1).Name.ToString(), ((dynamic) m2).Name.ToString()));
+                }
                 return Ok(vms);
             }
         }

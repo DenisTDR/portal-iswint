@@ -160,17 +160,26 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LostOrFoundController.cs" />
     <Compile Include="Controllers\SantinelController.cs" />
+    <Compile Include="Controllers\TrasPeCurController.cs" />
+    <Compile Include="Data\Models\Departament.cs" />
     <Compile Include="Data\Models\Entities\Auth\Account.cs" />
     <Compile Include="Data\Models\Entities\Auth\Session.cs" />
+    <Compile Include="Data\Models\Entities\LostOrFound.cs" />
     <Compile Include="Data\Models\Entities\Santinel.cs" />
+    <Compile Include="Data\Models\Entities\TrasPeCur.cs" />
     <Compile Include="Data\Models\ModelMappings\Auth\AccountMap.cs" />
     <Compile Include="Data\Models\ModelMappings\Auth\SessionMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\LostOrFoundMap.cs" />
     <Compile Include="Data\Models\ModelMappings\SantinelMap.cs" />
+    <Compile Include="Data\Models\ModelMappings\TrasPeCurMap.cs" />
     <Compile Include="Data\Models\ViewModels\ArrivalViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\Auth\LoginRequest.cs" />
     <Compile Include="Data\Models\ViewModels\Auth\TokenResponse.cs" />
+    <Compile Include="Data\Models\ViewModels\LostOrFoundViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\SantinelViewModel.cs" />
+    <Compile Include="Data\Models\ViewModels\TrasPeCurViewModel.cs" />
     <Compile Include="Migrations\201607060700471_redo.cs" />
     <Compile Include="Migrations\201607060700471_redo.Designer.cs">
       <DependentUpon>201607060700471_redo.cs</DependentUpon>
@@ -210,6 +219,18 @@
     <Compile Include="Migrations\201607172140029_roleToAccount.cs" />
     <Compile Include="Migrations\201607172140029_roleToAccount.Designer.cs">
       <DependentUpon>201607172140029_roleToAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607182149454_departamentToOrganiser.cs" />
+    <Compile Include="Migrations\201607182149454_departamentToOrganiser.Designer.cs">
+      <DependentUpon>201607182149454_departamentToOrganiser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607190553330_lostOrFound.cs" />
+    <Compile Include="Migrations\201607190553330_lostOrFound.Designer.cs">
+      <DependentUpon>201607190553330_lostOrFound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607190817064_trasPeCur.cs" />
+    <Compile Include="Migrations\201607190817064_trasPeCur.Designer.cs">
+      <DependentUpon>201607190817064_trasPeCur.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\Attributes\AdminOnlyAttribute.cs" />
     <Compile Include="Misc\Filters\AuthAttribute.cs" />
@@ -268,6 +289,7 @@
     <Compile Include="Data\Models\ViewModels\RoomViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\ViewModel.cs" />
     <Compile Include="Data\Models\ViewModels\WorkshopViewModel.cs" />
+    <Compile Include="Misc\Filters\ExceptionCatcherFilter.cs" />
     <Compile Include="Misc\Filters\HeaderTransportFilterAttribute.cs" />
     <Compile Include="Misc\Role.cs" />
     <Compile Include="Misc\Util.cs" />
@@ -350,6 +372,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607172140029_roleToAccount.resx">
       <DependentUpon>201607172140029_roleToAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607182149454_departamentToOrganiser.resx">
+      <DependentUpon>201607182149454_departamentToOrganiser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607190553330_lostOrFound.resx">
+      <DependentUpon>201607190553330_lostOrFound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607190817064_trasPeCur.resx">
+      <DependentUpon>201607190817064_trasPeCur.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

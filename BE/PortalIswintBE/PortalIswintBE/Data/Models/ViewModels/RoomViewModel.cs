@@ -10,6 +10,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
     {
         [VisibleInTable]
         public string Name { get; set; }
+        [VisibleInTable]
         public virtual IList<PersonViewModel> People { get; set; }
     }
 }

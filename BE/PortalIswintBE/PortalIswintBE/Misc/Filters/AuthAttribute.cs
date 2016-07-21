@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -15,7 +16,6 @@ namespace PortalIswintBE.Misc.Filters
         public AuthAttribute(Role role = Role.Visitor)
         {
             Role = role;
-            
         }
         
         protected override bool IsAuthorized(HttpActionContext httpActionContext)
@@ -54,14 +54,20 @@ namespace PortalIswintBE.Misc.Filters
                     SetResponse("You don't have the required Role(" + Role + ") for this action", httpActionContext);
                     return false;
                 }
+                httpActionContext.Request.Headers.Add("Role", session.Account.Role.ToString());
             }
 
+            httpActionContext.Request.Headers.Add("AuthOk", "yes");
             return true;
         }
 
         private void SetResponse(string message, HttpActionContext httpActionContext)
         {
-            //httpActionContext.Request.Headers.Add("AuthResponse", message);
+            httpActionContext.Request.Headers.Add("AuthOk", "no");
+            var msg = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            msg.Headers.Add("Reason", message);
+
+            throw new HttpResponseException(msg);
         }
     }
 }

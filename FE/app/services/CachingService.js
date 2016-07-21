@@ -4,6 +4,7 @@
 
 
 portal.service("CachingService", function (localStorageService) {
+    console.log("CachingService loaded");
     this.set = function(key, value, persistent) {
         if(persistent) {
             localStorageService.set(key, value);

@@ -25,7 +25,8 @@ portal.config(function(NotificationProvider) {
         });
     });
 
-portal.run(function($rootScope, $uibModal, $http, CachingService) {
+portal.run(function($rootScope, $uibModal, $http, $injector, CachingService, Util) {
+
     $rootScope.isLoggedIn = function () {
        return CachingService.get("session", true) != null;
     };

@@ -45,7 +45,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
 
         [MainView]
         [VisibleInTable]
-        [OrganizerOnly]
+//        [OrganizerOnly]
         [ViewName("Phone number")]
         [Tab("Personal")]
         public string PhoneNumber { get; set; }
@@ -82,13 +82,13 @@ namespace PortalIswintBE.Data.Models.ViewModels
 
         [MainView]
         [VisibleInTable]
-        [ViewName("Genre")]
         [JsonConverter(typeof(StringEnumConverter))]
         [Tab("Personal")]
         public Genre Genre { get; set; }
 
         [MainView]
         [VisibleInTable]
+        [OrganizerOnly]
         [ViewName("Birth Date")]
         [TypeName("date")]
         [Tab("Personal")]

@@ -6,7 +6,13 @@
 portal.service("RoomsService", function ($http, CachingService) {
     this.endPoint = backendUrl + "Rooms/";
     bindBasicModelService(this, $http, CachingService);
+
+    this.getAllWithoutPeople = this.getAll;
     
+    this.getAll = function (){
+        return $http.get(this.endPoint + "GetAllWithPeople");
+    };
+
     var cachedRooms = null;
     this.getAllCached = function ( success, error, final) {
         if(cachedRooms) {
@@ -27,11 +33,11 @@ portal.service("RoomsService", function ($http, CachingService) {
             if (typeof error == "function") {
                 error(data);
             }
-        }).finally(function () {
-            if (typeof final == "function") {
-                final(data);
-            }
-        });
+            }).finally(function () {
+                if (typeof final == "function") {
+                    final(data);
+                }
+            });
     }
 
 });

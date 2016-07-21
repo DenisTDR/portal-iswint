@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using PortalIswintBE.Data.Models.Entities;
 using PortalIswintBE.Data.Models.ModelMappings;
 
@@ -133,6 +134,16 @@ namespace PortalIswintBE.Data.Models.ViewModels
             RoomMap rm = new RoomMap();
 //            rm.ma
             return null;
+        }
+
+        public static bool IsNormalUser(this HttpRequestMessage request)
+        {
+            var role = request.Headers.GetValues("Role").FirstOrDefault() ?? "";
+            if (string.IsNullOrEmpty(role) || role == "Visitor")
+            {
+                return true;
+            }
+            return false;
         }
 
 //        static bool IsSubclassOfRawGeneric(this Type toCheck, Type generic)
