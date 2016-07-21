@@ -2,7 +2,7 @@
  * Created by tdr on 19/06/16.
  */
 
-var migrationCount = 11;
+var migrationCount = 12;
 var debugging = false;
 
 // var backendUrl = "http://dev.api.portal.iswint.tdr/api/";

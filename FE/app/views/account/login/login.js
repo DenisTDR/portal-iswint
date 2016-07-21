@@ -51,6 +51,7 @@ views
                     console.log($state.params.Action);
                     $state.go("home");
                     $http.defaults.headers.common.Authorization = null;
+                    $rootScope.isOrganizer = $rootScope.isAdmin = false;
                 }
             };
             $scope.init();
