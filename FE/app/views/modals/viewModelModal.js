@@ -150,7 +150,8 @@ modals
                 }
 
                 $scope.title = PropertyService.getTitleForModal($scope.type, $scope.model);
-                
+                if($scope.model['Genre'] == 'Male') $scope.model['PhotoUrl'] = 'images/profile_male.png';
+                else $scope.model['PhotoUrl'] = 'images/profile_female.png';
             };
 
 

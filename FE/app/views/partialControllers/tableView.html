@@ -56,14 +56,14 @@
             </thead>
             <tbody>
                 <tr ng-repeat="model in models | filter: searchText | orderBy: propertyName: reverse">
-                    <td class="bold table-element">{{$index + 1}}</td>
-                    <td class="table-element" ng-repeat="property in type.Properties" ng-if="showProperty(property)">
+                    <td class="align-vertical-middle bold table-element">{{$index + 1}}</td>
+                    <td class="align-vertical-middle table-element" ng-repeat="property in type.Properties" ng-if="showProperty(property)">
                         <span ng-include='"views/partialViews/propertyDisplay.html"'
                         ng-if="!property.EditableInTable"></span>
                         <span ng-include='"views/partialViews/propertyEditField.html"'
                         ng-if="property.EditableInTable"></span>
                     </td>
-                    <td class="right-content" ng-if="!type.NoActions">
+                    <td class="align-vertical-middle right-content" ng-if="!type.NoActions" style="min-width:200px;">
                         <button class="btn green-yellow" ng-click="modelAction(model, 'view');"><span class="glyphicon glyphicon-eye-open"></span></button>
 
                         <button class="btn green-yellow" ng-click="modelAction(model, 'edit');" ng-if="isOrganizer || isAdmin"><span class="glyphicon glyphicon-edit"></span></button>

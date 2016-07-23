@@ -19,11 +19,11 @@
                     </div>
                     <div class="col-lg-7" ng-include='"views/partialViews/propertyEditField.html"'></div>
                 </div>
-                <h2 class="row" style="text-align: center">
+<!--                 <h2 class="row" style="text-align: center">
                     <span class="control-label"
                           ng-if="!canEdit(property)"
                           ng-repeat="property in propDefaultView.UnderImageProperties" >{{item[property.Name]}}&nbsp;</span>
-                </h2>
+                </h2> -->
             </div>
             <div class="row">
                 <div class="row form_field" ng-repeat="property in propDefaultView.LeftViewProperties" ng-if="showProperty(property)">

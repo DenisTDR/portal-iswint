@@ -340,3 +340,7 @@ body {
   display: block;
   margin-bottom: 15px;
 }
+
+/*Table View*/
+.align-vertical-middle {
+   vertical-align:middle !important;
