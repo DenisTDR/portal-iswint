@@ -8,6 +8,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [ViewName("ID")]
         [ReadOnly(true)]
         [AdminOnly]
+        [OrderIndex(0)]
         public virtual int Id { get; set; }
     }
 }

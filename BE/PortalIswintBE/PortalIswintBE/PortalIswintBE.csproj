@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Misc\Utilis\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
@@ -232,7 +233,16 @@
     <Compile Include="Migrations\201607190817064_trasPeCur.Designer.cs">
       <DependentUpon>201607190817064_trasPeCur.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607211928059_countries.cs" />
+    <Compile Include="Migrations\201607211928059_countries.Designer.cs">
+      <DependentUpon>201607211928059_countries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607221304474_dsfdsf.cs" />
+    <Compile Include="Migrations\201607221304474_dsfdsf.Designer.cs">
+      <DependentUpon>201607221304474_dsfdsf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Attributes\AdminOnlyAttribute.cs" />
+    <Compile Include="Misc\Attributes\OrderIndexAttribute.cs" />
     <Compile Include="Misc\Filters\AuthAttribute.cs" />
     <Compile Include="Misc\Attributes\BooleanAttribute.cs" />
     <Compile Include="Misc\Attributes\EditableInTableAttribute.cs" />
@@ -381,6 +391,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607190817064_trasPeCur.resx">
       <DependentUpon>201607190817064_trasPeCur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607211928059_countries.resx">
+      <DependentUpon>201607211928059_countries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607221304474_dsfdsf.resx">
+      <DependentUpon>201607221304474_dsfdsf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

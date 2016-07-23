@@ -34,8 +34,12 @@ namespace PortalIswintBE
                     pvm.RoomId = p.Room?.Id ?? 0;
                     pvm.Room?.People?.Clear();
                     pvm.Workshop?.Participants?.Clear();
+                    pvm.Nationality = Mapper.Map<CountryViewModel>(p.Country);
                 });
-                cfg.CreateMap<ParticipantViewModel, Participant>();
+                cfg.CreateMap<ParticipantViewModel, Participant>().AfterMap((pvm, p) =>
+                {
+                    p.Country = Mapper.Map<Country>(pvm.Nationality);
+                });
 
                 cfg.CreateMap<Country, CountryViewModel>();
                 cfg.CreateMap<CountryViewModel, Country>();

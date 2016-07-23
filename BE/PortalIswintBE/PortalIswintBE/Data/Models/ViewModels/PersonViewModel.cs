@@ -13,12 +13,14 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [ViewName("First name")]
         [UnderImage]
         [Tab("Personal")]
+        [OrderIndex(1)]
         public string FirstName { get; set; }
 
         [VisibleInTable]
         [ViewName("Last name")]
         [UnderImage]
         [Tab("Personal")]
+        [OrderIndex(2)]
         public string LastName { get; set; }
 
         [MainView]
@@ -73,6 +75,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [OrganizerOnly]
         [ViewName("Room")]
         [Tab("Logistic")]
+        [OrderIndex(5)]
         public RoomViewModel Room { get; set; }
         
         [ReadOnly(true)]

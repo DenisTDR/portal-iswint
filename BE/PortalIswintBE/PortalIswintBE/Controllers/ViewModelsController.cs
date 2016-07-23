@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Http;
 using PortalIswintBE.Data.Models.ViewModels;
+using PortalIswintBE.Misc;
 using PortalIswintBE.Misc.Attributes;
 using WebGrease.Css.Extensions;
 
@@ -44,7 +45,7 @@ namespace PortalIswintBE.Controllers
             var typeBag = new Dictionary<string, object>
             {
                 ["Name"] = selectedType.Name.Replace("ViewModel", ""),
-                ["Properties"] = rez
+                ["Properties"] = rez.ConvertToListWithOrder()
             };
             selectedType.GetCustomAttributes().Where(attr => attr is BooleanAttribute).Cast<BooleanAttribute>().ForEach(attr =>
             {
@@ -73,6 +74,7 @@ namespace PortalIswintBE.Controllers
             var propertyBag = new Dictionary<string, object>();
             AddAttributes(propertyInfo, propertyBag);
 
+
             if (propertyBag.ContainsKey("Type")) return propertyBag;
 
             if (propertyInfo.PropertyType.IsBooleanType())
@@ -99,7 +101,7 @@ namespace PortalIswintBE.Controllers
                 var genericTypeBag = new Dictionary<string, object>
                 {
                     ["Type"] = propertyInfo.PropertyType.GenericTypeArguments[0].Name.Replace("ViewModel", "").ToLower(),
-                    ["Properties"] = rez
+                    ["Properties"] = rez.ConvertToListWithOrder()
                 };
                 propertyBag["GenericType"] = genericTypeBag;
             }
@@ -139,6 +141,10 @@ namespace PortalIswintBE.Controllers
                 else if (attr is TabAttribute)
                 {
                     propertyBag["Tab"] = (attr as TabAttribute).Tab;
+                }
+                else if (attr is OrderIndexAttribute)
+                {
+                    propertyBag["OrderIndex"] = (attr as OrderIndexAttribute).Index;
                 }
             }
 

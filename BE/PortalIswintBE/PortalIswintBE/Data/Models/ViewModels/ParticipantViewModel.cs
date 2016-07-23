@@ -10,13 +10,21 @@ namespace PortalIswintBE.Data.Models.ViewModels
 
         [VisibleInTable]
         [Tab("Logistic")]
+        [OrderIndex(3)]
         public WorkshopViewModel Workshop { get; set; }
+
+        [MainView]
+        [VisibleInTable]
+        [ViewName("Nationality")]
+        [Tab("Residence")]
+        public CountryViewModel Nationality { get; set; }
 
         [MainView]
         [VisibleInTable]
         [ViewName("Country of Residence")]
         [Tab("Residence")]
-        public CountryViewModel Country { get; set; }
+        [OrderIndex(4)]
+        public CountryViewModel Residence { get; set; }
 
         [VisibleInTable]
         [ViewName("Need Visa")]
@@ -36,12 +44,25 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [VisibleInTable]
         [Tab("Logistic")]
         [ViewName("He paid?")]
+        [OrderIndex(6)]
         public bool Paid { get; set; }
 
         [VisibleInTable]
         [Tab("Logistic")]
         [ViewName("Food Preferences")]
+        [OrderIndex(7)]
         public string FoodPreferences { get; set; }
+
+        [VisibleInTable]
+        [Tab("Logistic")]
+        [ViewName("Food Preferences")]
+        [OrderIndex(8)]
+        public string Allergies { get; set; }
+
+        [VisibleInTable]
+        [Tab("Logistic")]
+        [ViewName("Additional Food Preferences")]
+        public string AdditionalFoodPreferences { get; set; }
 
     }
 }

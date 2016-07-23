@@ -19,8 +19,18 @@ portal.service("ModelsService", function ($http, $q, CachingService) {
         }
         return $http.get(thisService + "?typeName=" + typeName).then(function(data){
             console.log("got " + typeName + " from server");
+            reformatTypeObject(data);
             CachingService.set(cacheKey, data.data);
             return data;
         });
+    };
+
+    var reformatTypeObject = function(data) {
+        var props = {};
+        for (var i = 0; i < data.data.Properties.length; i ++){
+            props[data.data.Properties[i].Key] = data.data.Properties[i].Value;
+        }
+        data.data.Properties = props;
+
     };
 });
