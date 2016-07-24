@@ -7,6 +7,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
     public class MentorViewModel : PersonViewModel
     {
 
+        [InitialVisible(true)]
         [VisibleInTable]
         public WorkshopViewModel Workshop { get; set; }
     }

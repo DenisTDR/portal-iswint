@@ -9,6 +9,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
     public class PersonViewModel: ViewModel
     {
 
+        [InitialVisible(true)]
         [VisibleInTable]
         [ViewName("First name")]
         [UnderImage]
@@ -16,6 +17,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [OrderIndex(1)]
         public string FirstName { get; set; }
 
+        [InitialVisible(true)]
         [VisibleInTable]
         [ViewName("Last name")]
         [UnderImage]
@@ -71,6 +73,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [Tab("Personal")]
         public string FacebookUrl { get; set; }
 
+        [InitialVisible(true)]
         [VisibleInTable]
         [OrganizerOnly]
         [ViewName("Room")]
@@ -83,6 +86,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [Tab("Logistic")]
         public int RoomId { get; set; }
 
+        [InitialVisible(true)]
         [MainView]
         [VisibleInTable]
         [JsonConverter(typeof(StringEnumConverter))]

@@ -25,6 +25,11 @@ namespace PortalIswintBE.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
+            return Ok(await GetAllList());
+        }
+
+        protected async Task<ICollection<ViewModel>> GetAllList()
+        {
             using (var db = new Database())
             {
                 var entities = await db.Repo<Model>().GetAllAsync();
@@ -32,9 +37,9 @@ namespace PortalIswintBE.Controllers
                 if (vms.Count > 0 && vms.FirstOrDefault().GetType().GetProperties().Any(prop => prop.Name == "Name"))
                 {
                     vms.Sort(
-                        (m1, m2) => string.Compare(((dynamic) m1).Name.ToString(), ((dynamic) m2).Name.ToString()));
+                        (m1, m2) => string.Compare(((dynamic)m1).Name.ToString(), ((dynamic)m2).Name.ToString()));
                 }
-                return Ok(vms);
+                return vms;
             }
         }
 

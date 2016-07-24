@@ -125,7 +125,7 @@ namespace PortalIswintBE.Controllers
             {
                 if (attr is BooleanAttribute)
                 {
-                    propertyBag[((BooleanAttribute)attr).Name] = true;
+                    propertyBag[((BooleanAttribute) attr).Name] = ((BooleanAttribute) attr).TheBool;
                 }
                 else if (attr is ReadOnlyAttribute)
                 {

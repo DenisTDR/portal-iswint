@@ -10,12 +10,16 @@ namespace PortalIswintBE.Data.Models.ViewModels
     public class ArrivalViewModel : ViewModel
     {
         [VisibleInTable]
+        [InitialVisible(true)]
         public ParticipantViewModel Participant { get; set; }
 
         [VisibleInTable]
+        [InitialVisible(true)]
         public DateTime ArrivalTime { get; set; }
 
         [VisibleInTable]
+        [InitialVisible(true)]
         public string ArrivalLocation { get; set; }
+        
     }
 }

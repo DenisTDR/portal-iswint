@@ -7,7 +7,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
     [Scaffoldable]
     public class ParticipantViewModel : PersonViewModel
     {
-
+        [InitialVisible(true)]
         [VisibleInTable]
         [Tab("Logistic")]
         [OrderIndex(3)]
@@ -35,6 +35,7 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [ViewName("Arrival Time")]
         [Tab("Arrival And Departure")]
         public DateTime ArrivalTime { get; set; }
+
 
         [VisibleInTable]
         [ViewName("Arrival Location")]
@@ -64,5 +65,9 @@ namespace PortalIswintBE.Data.Models.ViewModels
         [ViewName("Additional Food Preferences")]
         public string AdditionalFoodPreferences { get; set; }
 
+        [VisibleInTable]
+        [ViewName("Departure Time")]
+        [Tab("Arrival And Departure")]
+        public DateTime DepartureTime { get; set; }
     }
 }

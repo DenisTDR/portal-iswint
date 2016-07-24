@@ -16,12 +16,10 @@ namespace PortalIswintBE.Controllers
     {
         public async Task<IHttpActionResult> GetAllWithPeople()
         {
+            var roomsVm = await GetAllList();
+            var persons = new List<Person>();
             using (var db = new Database())
             {
-                var rooms = await db.Repo<Room>().GetAllAsync();
-                var roomsVm = Mapper.Map<List<RoomViewModel>>(rooms);
-
-                var persons = new List<Person>();
                 persons.AddRange((await db.Repo<Participant>().GetAllAsync()).Cast<Person>().ToList());
                 persons.AddRange((await db.Repo<Organizer>().GetAllAsync()).Cast<Person>().ToList());
                 persons.AddRange((await db.Repo<Mentor>().GetAllAsync()).Cast<Person>().ToList());
@@ -31,8 +29,8 @@ namespace PortalIswintBE.Controllers
                     roomViewModel.People =
                         Mapper.Map<List<PersonViewModel>>(persons.Where(pers => pers.Room?.Id == roomViewModel.Id));
                 }
-                return Ok(roomsVm);
             }
+            return Ok(roomsVm);
         }
 
 

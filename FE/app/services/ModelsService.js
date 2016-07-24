@@ -31,6 +31,5 @@ portal.service("ModelsService", function ($http, $q, CachingService) {
             props[data.data.Properties[i].Key] = data.data.Properties[i].Value;
         }
         data.data.Properties = props;
-
     };
 });

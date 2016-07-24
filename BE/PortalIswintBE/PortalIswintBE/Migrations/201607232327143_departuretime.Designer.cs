@@ -7,13 +7,13 @@ namespace PortalIswintBE.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class dsfdsf : IMigrationMetadata
+    public sealed partial class departuretime : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(dsfdsf));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(departuretime));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607221304474_dsfdsf"; }
+            get { return "201607232327143_departuretime"; }
         }
         
         string IMigrationMetadata.Source

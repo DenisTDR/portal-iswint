@@ -99,7 +99,12 @@ views
                 }
                 else {
                     ForEachProperty($scope.type.Properties, function(pName, pValue) {
-                        pValue.visible = true;
+                        if(pValue.InitialVisible != undefined) {
+                            pValue.visible = pValue.InitialVisible;
+                        }
+                        else {
+                            pValue.visible = false;
+                        }
                     });
                 }
                 // console.log("got type: ", type);
@@ -152,10 +157,11 @@ views
         };
 
         $scope.showProperty = function(property) {
-            return property.visible
+            var deb = property.visible
                 && (!property.OrganizerOnly || $rootScope.isOrganizer)
                 && property.VisibleInTable
                 && (!property.AdminOnly || $rootScope.isAdmin);
+            return deb;
         };
 
         $scope.showPropertyVisibleCheckbox = function(property) {

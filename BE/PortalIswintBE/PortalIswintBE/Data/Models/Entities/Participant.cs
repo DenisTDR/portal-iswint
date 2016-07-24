@@ -17,5 +17,6 @@ namespace PortalIswintBE.Data.Models.Entities
         public string FoodPreferences { get; set; }
         public string Allergies { get; set; }
         public string AdditionalFoodPreferences { get; set; }
+        public DateTime DepartureTime { get; set; }
     }
 }

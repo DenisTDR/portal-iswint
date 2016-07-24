@@ -14,6 +14,7 @@ portal.service("PropertyService", function () {
         }
 
         switch (property.Type) {
+            case "numeric":
             case "string":
             case "enum":
                 return "text";
@@ -40,7 +41,7 @@ portal.service("PropertyService", function () {
         if(property.Type == "list") {
             return "list";
         }
-        console.log("invalid property type: " + property.Type);
+        console.log("invalid property type: " + property.Type + "(" + property.Name + ")");
         return property.Type;
     };
     this.getCustomEntityListName = function(property){
@@ -97,7 +98,7 @@ portal.service("PropertyService", function () {
     
     this.convertDatePropertiesToDateObject = function(obj, type) {
         ForEachProperty(type.Properties, function(propertyName, propertyBag) {
-            if(propertyBag.Type == "date" || propertyBag.Type == "datetime") {
+            if((propertyBag.Type == "date" || propertyBag.Type == "datetime") && obj[propertyName].constructor == String ) {
                 obj[propertyName] = obj[propertyName]?new Date(obj[propertyName]):new Date();
             }
         });

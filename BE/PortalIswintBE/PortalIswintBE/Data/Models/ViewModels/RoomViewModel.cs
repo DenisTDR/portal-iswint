@@ -9,8 +9,10 @@ namespace PortalIswintBE.Data.Models.ViewModels
     public class RoomViewModel: ViewModel
     {
         [VisibleInTable]
+        [InitialVisible(true)]
         public string Name { get; set; }
         [VisibleInTable]
+        [InitialVisible(true)]
         public virtual IList<PersonViewModel> People { get; set; }
     }
 }
